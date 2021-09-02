@@ -32,3 +32,40 @@ public struct Piece: Hashable, Codable {
     }
 }
 
+public struct PieceStack: Hashable, Codable {
+    private var pieces: [Piece] = []
+    public init() {
+        
+    }
+    
+    public var top: Piece? {
+        pieces.last
+    }
+    
+    public var bottom: Piece? {
+        pieces.first
+    }
+    
+    public var isEmpty: Bool {
+        pieces.isEmpty
+    }
+    
+    public mutating func push(_ piece: Piece) {
+        pieces.append(piece)
+    }
+    
+    public mutating func pop() -> Piece? {
+        pieces.popLast()
+    }
+    
+    public mutating func remove(at index: Int) -> Piece {
+        pieces.remove(at: index)
+    }
+    
+    public static func ~=(lhs: PlayerColor, rhs: PieceStack) -> Bool {
+        lhs == rhs.top?.color
+    }
+    public static func ~=(lhs: PieceType, rhs: PieceStack) -> Bool {
+        lhs == rhs.top?.type
+    }
+}
