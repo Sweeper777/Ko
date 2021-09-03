@@ -4,4 +4,6 @@ public enum GameConstants {
     public static let initialRabbits = 1
     public static let initialHares = 1
     public static let initialMoons = 1
+    public static let boardColumns = 19
+    public static let boardRows = 18
 }

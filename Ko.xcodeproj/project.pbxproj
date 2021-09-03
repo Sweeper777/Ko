@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A8B5A2A26E1B7B000DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
+		5A8B5A2B26E1B7B100DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */; };
 		5A8B771426DF2CED0063C3E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */; };
 		5A8B771626DF2CED0063C3E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771526DF2CED0063C3E7 /* ViewController.swift */; };
@@ -61,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A8B5A2926E1B7B000DD64A7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		5A8B770E26DF2CED0063C3E7 /* Ko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 				5A972E4F26E06D84009E6B3D /* Player.swift */,
 				5A972E5226E06F99009E6B3D /* GameConstants.swift */,
 				5A972E5526E073AD009E6B3D /* Array2D.swift */,
+				5A8B5A2926E1B7B000DD64A7 /* Board.swift */,
 			);
 			path = KoModel;
 			sourceTree = "<group>";
@@ -377,6 +381,7 @@
 			files = (
 				5A972E5026E06D84009E6B3D /* Player.swift in Sources */,
 				5A972E5626E073AD009E6B3D /* Array2D.swift in Sources */,
+				5A8B5A2A26E1B7B000DD64A7 /* Board.swift in Sources */,
 				5A8B776526DF2E390063C3E7 /* Piece.swift in Sources */,
 				5A972E5326E06F99009E6B3D /* GameConstants.swift in Sources */,
 			);
@@ -388,6 +393,7 @@
 			files = (
 				5A972E5126E06D88009E6B3D /* Player.swift in Sources */,
 				5A972E5726E073AD009E6B3D /* Array2D.swift in Sources */,
+				5A8B5A2B26E1B7B100DD64A7 /* Board.swift in Sources */,
 				5A8B776626DF2E390063C3E7 /* Piece.swift in Sources */,
 				5A972E5426E07012009E6B3D /* GameConstants.swift in Sources */,
 			);
