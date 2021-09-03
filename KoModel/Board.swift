@@ -24,6 +24,20 @@ public class Board {
         }
         
         func isValidPositionForEmpress() -> Bool {
+            if !board[position].isEmpty {
+                return false
+            }
+            
+            let opposingMoon = Piece(piece.color.opposingColor, .moon)
+            let opposingEmpress = Piece(piece.color.opposingColor, .empress)
+            return (piecesPositions[opposingMoon] ?? []).intersection([
+                position.above(), position.below(), position.left(), position.right()
+            ]).isEmpty &&
+                (piecesPositions[opposingEmpress] ?? []).intersection([
+                    position.above(), position.below(), position.left(), position.right(),
+                    position.above().left(), position.above().right(),
+                    position.below().left(), position.below().right()
+                ]).isEmpty
         }
         func isValidPositionForBurrow() -> Bool {
         }
