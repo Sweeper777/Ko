@@ -3,4 +3,6 @@ public class Board {
         columns: GameConstants.boardColumns, rows: GameConstants.boardRows, initialValue: .init()
     )
     
+    public internal(set) var piecesPositions: [Piece: Set<Position>] = [:]
+    
 }
