@@ -19,6 +19,8 @@ public class Board {
         }
         
         func isValidPositionForHare() -> Bool {
+            board[position].isEmpty || .field ~= board[position] ||
+                .rabbit ~= board[position] || .hare ~= board[position]
         }
         
         func isValidPositionForEmpress() -> Bool {
