@@ -13,6 +13,34 @@ public class Board {
         board[position]
     }
     
+    func isValidPosition(for piece: Piece, position: Position) -> Bool {
+        if board[safe: position] == nil {
+            return false
+        }
+        
+        func isValidPositionForHare() -> Bool {
+        }
+        
+        func isValidPositionForEmpress() -> Bool {
+        }
+        func isValidPositionForBurrow() -> Bool {
+        }
+        func isValidPositionForMoon() -> Bool {
+        }
+        
+        switch piece.type {
+        case .field, .rabbit:
+            return board[position].isEmpty
+        case .hare:
+            return isValidPositionForHare()
+        case .empress:
+            return isValidPositionForEmpress()
+        case .moon:
+            return isValidPositionForMoon()
+        case .burrow:
+            return isValidPositionForBurrow()
+        }
+    }
     
     func isExactlyOneGrassland(startPosition start: Position) -> Bool {
         var unreached = piecesPositions.values.reduce(Set()) { $0.union($1) }
