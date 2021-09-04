@@ -117,4 +117,22 @@ public struct Board {
         return popped
     }
     
+    mutating func conquerFields(positions: [Position]) -> Bool {
+        guard let first = positions.first,
+              let fieldColor = board[safe: first]?.top?.color else {
+            return false
+        }
+        let opposingColor = fieldColor.opposingColor
+        
+        guard positions.allSatisfy({ board[safe: $0]?.top?.type == .field }) &&
+            Set(positions.map { board[safe: $0]?.top?.color }).count == 1 else {
+            return false
+        }
+        for pos in positions {
+            board[pos].push(Piece(opposingColor, .field))
+        }
+        piecesPositions[Piece(fieldColor, .field)]?.subtract(positions)
+        piecesPositions[Piece(opposingColor, .field)]?.formUnion(positions)
+        return true
+    }
 }
