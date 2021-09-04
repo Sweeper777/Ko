@@ -109,4 +109,12 @@ public struct Board {
         return true
     }
     
+    mutating func removePiece(at position: Position) -> Piece? {
+        guard let popped = board[safe: position]?.pop() else {
+            return nil
+        }
+        piecesPositions[popped]?.remove(position)
+        return popped
+    }
+    
 }
