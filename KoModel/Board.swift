@@ -1,9 +1,9 @@
-public class Board {
-    public internal(set) var board = Array2D<PieceStack>(
+public struct Board {
+    public private(set) var board = Array2D<PieceStack>(
         columns: GameConstants.boardColumns, rows: GameConstants.boardRows, initialValue: .init()
     )
     
-    public internal(set) var piecesPositions: [Piece: Set<Position>] = [:]
+    public private(set) var piecesPositions: [Piece: Set<Position>] = [:]
     
     public subscript(_ x: Int, _ y: Int) -> PieceStack {
         board[x, y]
@@ -24,7 +24,7 @@ public class Board {
         }
         
         func isValidPositionForEmpress() -> Bool {
-            if !board[position].isEmpty {
+            guard board[position].isEmpty else {
                 return false
             }
             
@@ -40,7 +40,7 @@ public class Board {
                 ]).isEmpty
         }
         func isValidPositionForBurrow() -> Bool {
-            if !board[position].isEmpty {
+            guard board[position].isEmpty else {
                 return false
             }
             let eightNeighbours = [
@@ -55,7 +55,7 @@ public class Board {
             return isSurroundedByFields && is4BlocksAwayFromAllBurrows
         }
         func isValidPositionForMoon() -> Bool {
-            if !board[position].isEmpty {
+            guard board[position].isEmpty else {
                 return false
             }
             let opposingMoon = Piece(piece.color.opposingColor, .moon)
