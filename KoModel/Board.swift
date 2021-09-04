@@ -99,4 +99,14 @@ public struct Board {
         }
         return unreached.isEmpty
     }
+    
+    mutating func placePiece(_ piece: Piece, at position: Position) -> Bool {
+        guard isValidPosition(for: piece, position: position) else {
+            return false
+        }
+        piecesPositions[piece, default: []].insert(position)
+        board[position].push(piece)
+        return true
+    }
+    
 }
