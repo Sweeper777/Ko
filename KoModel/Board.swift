@@ -55,6 +55,15 @@ public class Board {
             return isSurroundedByFields && is4BlocksAwayFromAllBurrows
         }
         func isValidPositionForMoon() -> Bool {
+            if !board[position].isEmpty {
+                return false
+            }
+            let opposingMoon = Piece(piece.color.opposingColor, .moon)
+            return (piecesPositions[opposingMoon] ?? []).intersection([
+                position.above(), position.below(), position.left(), position.right(),
+                position.above().left(), position.above().right(),
+                position.below().left(), position.below().right()
+            ]).isEmpty
         }
         
         switch piece.type {
