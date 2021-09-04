@@ -40,6 +40,19 @@ public class Board {
                 ]).isEmpty
         }
         func isValidPositionForBurrow() -> Bool {
+            if !board[position].isEmpty {
+                return false
+            }
+            let eightNeighbours = [
+                position.above(), position.below(), position.left(), position.right(),
+                position.above().left(), position.above().right(),
+                position.below().left(), position.below().right()
+            ]
+            let isSurroundedByFields = (piecesPositions[Piece(.blue, .field)] ?? []).union(piecesPositions[Piece(.white, .field)] ?? [])
+                .isSuperset(of: eightNeighbours)
+            let is4BlocksAwayFromAllBurrows = (piecesPositions[Piece(.blue, .burrow)] ?? []).union(piecesPositions[Piece(.white, .burrow)] ?? [])
+                .allSatisfy { abs(position.x - $0.x) >= 5 && abs(position.y - $0.y) >= 5 }
+            return isSurroundedByFields && is4BlocksAwayFromAllBurrows
         }
         func isValidPositionForMoon() -> Bool {
         }
