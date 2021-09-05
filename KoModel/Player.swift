@@ -6,6 +6,7 @@ public class Player: Codable {
     public internal(set) var availableRabbits = GameConstants.initialRabbits
     public internal(set) var availableHares = GameConstants.initialHares
     public internal(set) var availableMoons = GameConstants.initialMoons
+    public internal(set) var placementRecords = [PiecePlacementRecord]()
     
     public init(color: PlayerColor) {
         self.color = color
