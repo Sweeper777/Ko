@@ -125,7 +125,7 @@ public struct Array2D<T>: Sequence, ExpressibleByArrayLiteral{
     }
 }
 
-public struct Position: Hashable, RawRepresentable {
+public struct Position: Hashable, RawRepresentable, Codable {
     public init?(rawValue: Int) {
         x = rawValue / 1000
         y = rawValue % 1000
@@ -163,6 +163,18 @@ public struct Position: Hashable, RawRepresentable {
     public init(_ x: Int, _ y: Int) {
         self.x = x
         self.y = y
+    }
+    
+    public var fourNeighbours: [Position] {
+        [above(), below(), left(), right()]
+    }
+    
+    public var eightNeighbours: [Position] {
+        [
+            above(), below(), left(), right(),
+            above().left(), above().right(),
+            below().left(), below().right()
+        ]
     }
 }
 
