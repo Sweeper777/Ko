@@ -30,26 +30,15 @@ public struct Board {
             
             let opposingMoon = Piece(piece.color.opposingColor, .moon)
             let opposingEmpress = Piece(piece.color.opposingColor, .empress)
-            return (piecesPositions[opposingMoon] ?? []).intersection([
-                position.above(), position.below(), position.left(), position.right()
-            ]).isEmpty &&
-                (piecesPositions[opposingEmpress] ?? []).intersection([
-                    position.above(), position.below(), position.left(), position.right(),
-                    position.above().left(), position.above().right(),
-                    position.below().left(), position.below().right()
-                ]).isEmpty
+            return (piecesPositions[opposingMoon] ?? []).intersection(position.fourNeighbours).isEmpty &&
+                (piecesPositions[opposingEmpress] ?? []).intersection(position.eightNeighbours).isEmpty
         }
         func isValidPositionForBurrow() -> Bool {
             guard board[position].isEmpty else {
                 return false
             }
-            let eightNeighbours = [
-                position.above(), position.below(), position.left(), position.right(),
-                position.above().left(), position.above().right(),
-                position.below().left(), position.below().right()
-            ]
             let isSurroundedByFields = (piecesPositions[Piece(.blue, .field)] ?? []).union(piecesPositions[Piece(.white, .field)] ?? [])
-                .isSuperset(of: eightNeighbours)
+                .isSuperset(of: position.eightNeighbours)
             let is4BlocksAwayFromAllBurrows = (piecesPositions[Piece(.blue, .burrow)] ?? []).union(piecesPositions[Piece(.white, .burrow)] ?? [])
                 .allSatisfy { abs(position.x - $0.x) >= 5 && abs(position.y - $0.y) >= 5 }
             return isSurroundedByFields && is4BlocksAwayFromAllBurrows
@@ -59,11 +48,7 @@ public struct Board {
                 return false
             }
             let opposingMoon = Piece(piece.color.opposingColor, .moon)
-            return (piecesPositions[opposingMoon] ?? []).intersection([
-                position.above(), position.below(), position.left(), position.right(),
-                position.above().left(), position.above().right(),
-                position.below().left(), position.below().right()
-            ]).isEmpty
+            return (piecesPositions[opposingMoon] ?? []).intersection(position.eightNeighbours).isEmpty
         }
         
         switch piece.type {
@@ -86,11 +71,7 @@ public struct Board {
         var queue = [start]
         while !queue.isEmpty {
             let pos = queue.removeFirst()
-            let neighbours = [
-                pos.above(), pos.below(), pos.left(), pos.right(),
-                pos.above().left(), pos.above().right(),
-                pos.below().left(), pos.below().right()
-            ].filter { board[safe: $0]?.isEmpty == false }
+            let neighbours = pos.eightNeighbours.filter { board[safe: $0]?.isEmpty == false }
             for neighbour in neighbours {
                 if let removed = unreached.remove(neighbour) {
                     queue.append(removed)
