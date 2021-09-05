@@ -35,6 +35,14 @@ public struct Array2D<T>: Sequence, ExpressibleByArrayLiteral{
             }
             return nil
         }
+        set {
+            guard let nonNil = newValue else {
+                return
+            }
+            if (0..<columns).contains(position.x) && (0..<rows).contains(position.y) {
+                self[position] = nonNil
+            }
+        }
     }
     
     public typealias Iterator = Array<T>.Iterator
