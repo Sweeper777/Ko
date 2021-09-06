@@ -7,3 +7,13 @@ public struct PiecePlacementRecord: Hashable, Codable {
         self.position = position
     }
 }
+
+public struct PieceRemovalRecord: Hashable, Codable {
+    public let position: Position
+    public let stackIndex: Int
+    
+    public init(position: Position, stackIndex: Int) {
+        self.position = position
+        self.stackIndex = stackIndex
+    }
+}
