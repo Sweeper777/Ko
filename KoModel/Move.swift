@@ -4,21 +4,21 @@ public enum Move {
 }
 
 public struct MoveResult {
-    public let piecePlaced: PiecePlacementRecord?
-    public let pieceRemovedPosition: (boardPos: Position, stackIndex: Int)?
-    public let conqueredPositions: [Position]?
-    public let hasCapture: Bool
-    public let fromPosition: Position?
-    public let toPosition: Position?
+    public var piecePlaced: PiecePlacementRecord?
+    public var piecesRemoved: [PieceRemovalRecord]
+    public var conqueredPositions: [Position]
+    public var hasCapture: Bool
+    public var fromPosition: Position?
+    public var toPosition: Position?
     
     public init(piecePlaced: PiecePlacementRecord? = nil,
-                pieceRemovedPosition: (boardPos: Position, stackIndex: Int)? = nil,
-                conqueredPositions: [Position]? = nil,
+                piecesRemoved: [PieceRemovalRecord] = [],
+                conqueredPositions: [Position] = [],
                 hasCapture: Bool = false,
                 fromPosition: Position? = nil,
                 toPosition: Position? = nil) {
         self.piecePlaced = piecePlaced
-        self.pieceRemovedPosition = pieceRemovedPosition
+        self.piecesRemoved = piecesRemoved
         self.conqueredPositions = conqueredPositions
         self.hasCapture = hasCapture
         self.fromPosition = fromPosition
