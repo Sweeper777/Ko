@@ -98,6 +98,8 @@ public struct Board {
         return popped
     }
     
+    
+    @discardableResult
     mutating func conquerFields(positions: [Position]) -> Bool {
         guard let first = positions.first,
               let fieldColor = board[safe: first]?.top?.color else {

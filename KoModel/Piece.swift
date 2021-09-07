@@ -54,6 +54,7 @@ public struct PieceStack: Hashable, Codable {
         pieces.append(piece)
     }
     
+    @discardableResult
     public mutating func pop() -> Piece? {
         pieces.popLast()
     }
