@@ -98,6 +98,11 @@ public struct Board {
         return popped
     }
     
+    mutating func removePiece(at position: Position, stackIndex: Int) -> Piece {
+        let piece = board[position].remove(at: stackIndex)
+        piecesPositions[piece]?.remove(position)
+        return piece
+    }
     
     @discardableResult
     mutating func conquerFields(positions: [Position]) -> Bool {
