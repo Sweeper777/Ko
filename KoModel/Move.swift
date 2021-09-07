@@ -3,7 +3,12 @@ public enum Move {
     case move(from: Position, to: Position)
 }
 
+public enum GameResult {
+    case notDetermined, wins(PlayerColor)
+}
+
 public struct MoveResult {
+    public var gameResult: GameResult
     public var piecePlaced: PiecePlacementRecord?
     public var piecesRemoved: [PieceRemovalRecord]
     public var conqueredPositions: [Position]
@@ -11,12 +16,14 @@ public struct MoveResult {
     public var fromPosition: Position?
     public var toPosition: Position?
     
-    public init(piecePlaced: PiecePlacementRecord? = nil,
+    public init(gameResult: GameResult = .notDetermined,
+                piecePlaced: PiecePlacementRecord? = nil,
                 piecesRemoved: [PieceRemovalRecord] = [],
                 conqueredPositions: [Position] = [],
                 hasCapture: Bool = false,
                 fromPosition: Position? = nil,
                 toPosition: Position? = nil) {
+        self.gameResult = gameResult
         self.piecePlaced = piecePlaced
         self.piecesRemoved = piecesRemoved
         self.conqueredPositions = conqueredPositions
