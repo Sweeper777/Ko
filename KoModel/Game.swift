@@ -6,16 +6,20 @@ public class Game {
     public private(set) var currentTurnNumber = 0
     
     public var currentPlayer: Player {
-        switch currentTurn {
+        playerOfColor(currentTurn)
+    }
+    
+    public var currentOpponent: Player {
+        playerOfColor(currentTurn.opposingColor)
+    }
+    
+    public func playerOfColor(_ playerColor: PlayerColor) -> Player {
+        switch playerColor {
         case .white: return whitePlayer
         case .blue: return bluePlayer
         }
     }
     
-    public var currentOpponent: Player {
-        switch currentTurn {
-        case .white: return bluePlayer
-        case .blue: return whitePlayer
         }
     }
     
