@@ -117,6 +117,7 @@ public struct Board {
             return false
         }
         for pos in positions {
+            board[pos].pop()
             board[pos].push(Piece(opposingColor, .field))
         }
         piecesPositions[Piece(fieldColor, .field)]?.subtract(positions)
