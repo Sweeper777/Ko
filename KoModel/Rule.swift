@@ -7,14 +7,18 @@ protocol RuleProtocol {
     func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult
 }
 
-class Rule : RuleProtocol {
+class Rule : RuleProtocol, CustomStringConvertible {
     
     private let isApplicableFunc: (Game, Move) -> Bool
     private let applyFunc: (Game, Move, inout MoveResult) -> RuleApplicationResult
+    let description: String
     
-    init(isApplicable: @escaping (Game, Move) -> Bool, apply: @escaping (Game, Move, inout MoveResult) -> RuleApplicationResult) {
+    init(_ description: String? = nil,
+         isApplicable: @escaping (Game, Move) -> Bool = { _,_ in true },
+         apply: @escaping (Game, Move, inout MoveResult) -> RuleApplicationResult) {
         isApplicableFunc = isApplicable
         applyFunc = apply
+        self.description = description ?? "some rule"
     }
     
     
