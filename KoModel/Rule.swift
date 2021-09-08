@@ -70,6 +70,41 @@ class PlacePieceRule : RuleProtocol, CustomStringConvertible {
     }
 }
 
+class MoveRule : RuleProtocol, CustomStringConvertible {
+    private let isApplicableFunc: (Game, Position, Position) -> Bool
+    private let applyFunc: (Game, Position, Position, inout MoveResult) -> RuleApplicationResult
+    private let _description: String
+    
+    var description: String {
+        _description
+    }
+    
+    init(_ description: String? = nil,
+         isApplicable: @escaping (Game, Position, Position) -> Bool = { _,_,_ in true },
+         apply: @escaping (Game, Position, Position, inout MoveResult) -> RuleApplicationResult) {
+        isApplicableFunc = isApplicable
+        applyFunc = apply
+        self._description = description ?? "some place piece rule"
+    }
+    
+    
+    func isApplicable(to game: Game, move: Move) -> Bool {
+        if case .move(let from, let to) = move {
+            return isApplicableFunc(game, from, to)
+        } else {
+            return false
+        }
+    }
+    
+    func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult {
+        if case .move(let from, let to) = move {
+            return applyFunc(game, from, to, &pendingMoveResult)
+        } else {
+            fatalError("This rule is not applicable!")
+        }
+    }
+}
+
 class IfViolatedApplyRule: RuleProtocol, CustomStringConvertible {
     
     private let rule1: RuleProtocol
