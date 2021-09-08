@@ -11,14 +11,18 @@ class Rule : RuleProtocol, CustomStringConvertible {
     
     private let isApplicableFunc: (Game, Move) -> Bool
     private let applyFunc: (Game, Move, inout MoveResult) -> RuleApplicationResult
-    let description: String
+    private let _description: String
+    
+    var description: String {
+        _description
+    }
     
     init(_ description: String? = nil,
          isApplicable: @escaping (Game, Move) -> Bool = { _,_ in true },
          apply: @escaping (Game, Move, inout MoveResult) -> RuleApplicationResult) {
         isApplicableFunc = isApplicable
         applyFunc = apply
-        self.description = description ?? "some rule"
+        self._description = description ?? "some rule"
     }
     
     
@@ -28,6 +32,41 @@ class Rule : RuleProtocol, CustomStringConvertible {
     
     func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult {
         applyFunc(game, move, &pendingMoveResult)
+    }
+}
+
+class PlacePieceRule : RuleProtocol, CustomStringConvertible {
+    private let isApplicableFunc: (Game, Position) -> Bool
+    private let applyFunc: (Game, Position, inout MoveResult) -> RuleApplicationResult
+    private let _description: String
+    
+    var description: String {
+        _description
+    }
+    
+    init(_ description: String? = nil,
+         isApplicable: @escaping (Game, Position) -> Bool = { _,_ in true },
+         apply: @escaping (Game, Position, inout MoveResult) -> RuleApplicationResult) {
+        isApplicableFunc = isApplicable
+        applyFunc = apply
+        self._description = description ?? "some place piece rule"
+    }
+    
+    
+    func isApplicable(to game: Game, move: Move) -> Bool {
+        if case .placePiece(let pos) = move {
+            return isApplicableFunc(game, pos)
+        } else {
+            return false
+        }
+    }
+    
+    func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult {
+        if case .placePiece(let pos) = move {
+            return applyFunc(game, pos, &pendingMoveResult)
+        } else {
+            fatalError("This rule is not applicable!")
+        }
     }
 }
 
