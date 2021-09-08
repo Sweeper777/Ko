@@ -71,4 +71,21 @@ public class Game {
         }
     }
     
+    private func resolveRemovedPiece(_ removedPiece: Piece) {
+        let owner = playerOfColor(removedPiece.color)
+        switch removedPiece {
+        case .burrow:
+            owner.availableBurrows += 1
+        case .hare:
+            owner.availableHares += 1
+        case .moon:
+            owner.availableMoons += 1
+        case .rabbit:
+            owner.availableRabbits += 1
+        case .field:
+            currentPlayer.availableFields += 1
+        default:
+            fatalError("This piece cannot be removed!")
+        }
+    }
 }
