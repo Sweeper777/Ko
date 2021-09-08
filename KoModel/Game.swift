@@ -64,5 +64,11 @@ public class Game {
         return moveResult
     }
     
+    private func nextTurn() {
+        currentTurn = currentTurn.opposingColor
+        if currentTurn == .blue {
+            currentTurnNumber += 1
+        }
+    }
     
 }
