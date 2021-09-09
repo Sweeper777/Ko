@@ -19,6 +19,14 @@ let allRules: [RuleProtocol] = [
         result.piecePlaced = piecePlaced
         return .compliance
     }),
+    MoveRule("the movable pieces are empress, rabbit, hare, moon", apply: { game, from, _, _ in
+        switch game.board[from] {
+        case .empress, .rabbit, .hare, .moon:
+            return .compliance
+        default:
+            return .violation
+        }
+    }),
             }
     }),
 ]
