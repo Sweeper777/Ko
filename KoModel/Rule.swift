@@ -138,3 +138,45 @@ extension RuleProtocol {
         IfViolatedApplyRule(rule1: self, rule2: rule)
     }
 }
+
+class ExistenceRule : RuleProtocol {
+    private let isApplicableFunc: (Game, Position) -> Bool
+    private let applyFunc: (Game, Position, inout MoveResult) -> RuleApplicationResult
+    private let _description: String
+    private let pieceType: PieceType
+    
+    var description: String {
+        _description
+    }
+    
+    init(_ description: String? = nil,
+         for pieceType: PieceType,
+         isApplicable: @escaping (Game, Position) -> Bool = { _,_ in true },
+         apply: @escaping (Game, Position, inout MoveResult) -> RuleApplicationResult) {
+        isApplicableFunc = isApplicable
+        applyFunc = apply
+        self.pieceType = pieceType
+        self._description = description ?? "some existence rule for \(pieceType)"
+    }
+    
+    
+    func isApplicable(to game: Game, move: Move) -> Bool {
+        if case .placePiece(pieceType, let pos) = move {
+            return isApplicableFunc(game, pos)
+        } else if case .move(_, let to) = move {
+            return isApplicableFunc(game, to)
+        } else {
+            return false
+        }
+    }
+    
+    func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult {
+        if case .placePiece(pieceType, let pos) = move {
+            return applyFunc(game, pos, &pendingMoveResult)
+        } else if case .move(_, let to) = move {
+            return applyFunc(game, to, &pendingMoveResult)
+        } else {
+            fatalError("This rule is not applicable!")
+        }
+    }
+}
