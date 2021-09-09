@@ -2,12 +2,12 @@ enum RuleApplicationResult {
     case compliance, violation
 }
 
-protocol RuleProtocol {
+protocol RuleProtocol: CustomStringConvertible {
     func isApplicable(to game: Game, move: Move) -> Bool
     func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult
 }
 
-class Rule : RuleProtocol, CustomStringConvertible {
+class Rule : RuleProtocol {
     
     private let isApplicableFunc: (Game, Move) -> Bool
     private let applyFunc: (Game, Move, inout MoveResult) -> RuleApplicationResult
@@ -35,9 +35,9 @@ class Rule : RuleProtocol, CustomStringConvertible {
     }
 }
 
-class PlacePieceRule : RuleProtocol, CustomStringConvertible {
-    private let isApplicableFunc: (Game, Position) -> Bool
-    private let applyFunc: (Game, Position, inout MoveResult) -> RuleApplicationResult
+class PlacePieceRule : RuleProtocol {
+    private let isApplicableFunc: (Game, PiecePlacementRecord) -> Bool
+    private let applyFunc: (Game, PiecePlacementRecord, inout MoveResult) -> RuleApplicationResult
     private let _description: String
     
     var description: String {
@@ -45,8 +45,8 @@ class PlacePieceRule : RuleProtocol, CustomStringConvertible {
     }
     
     init(_ description: String? = nil,
-         isApplicable: @escaping (Game, Position) -> Bool = { _,_ in true },
-         apply: @escaping (Game, Position, inout MoveResult) -> RuleApplicationResult) {
+         isApplicable: @escaping (Game, PiecePlacementRecord) -> Bool = { _,_ in true },
+         apply: @escaping (Game, PiecePlacementRecord, inout MoveResult) -> RuleApplicationResult) {
         isApplicableFunc = isApplicable
         applyFunc = apply
         self._description = description ?? "some place piece rule"
@@ -54,23 +54,23 @@ class PlacePieceRule : RuleProtocol, CustomStringConvertible {
     
     
     func isApplicable(to game: Game, move: Move) -> Bool {
-        if case .placePiece(let pos) = move {
-            return isApplicableFunc(game, pos)
+        if case .placePiece(let pieceType, let pos) = move {
+            return isApplicableFunc(game, PiecePlacementRecord(pieceType: pieceType, position: pos))
         } else {
             return false
         }
     }
     
     func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult {
-        if case .placePiece(let pos) = move {
-            return applyFunc(game, pos, &pendingMoveResult)
+        if case .placePiece(let pieceType, let pos) = move {
+            return applyFunc(game, PiecePlacementRecord(pieceType: pieceType, position: pos), &pendingMoveResult)
         } else {
             fatalError("This rule is not applicable!")
         }
     }
 }
 
-class MoveRule : RuleProtocol, CustomStringConvertible {
+class MoveRule : RuleProtocol {
     private let isApplicableFunc: (Game, Position, Position) -> Bool
     private let applyFunc: (Game, Position, Position, inout MoveResult) -> RuleApplicationResult
     private let _description: String
@@ -105,7 +105,7 @@ class MoveRule : RuleProtocol, CustomStringConvertible {
     }
 }
 
-class IfViolatedApplyRule: RuleProtocol, CustomStringConvertible {
+class IfViolatedApplyRule: RuleProtocol {
     
     private let rule1: RuleProtocol
     private let rule2: RuleProtocol

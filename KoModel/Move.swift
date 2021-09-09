@@ -1,5 +1,5 @@
 public enum Move {
-    case placePiece(at: Position)
+    case placePiece(PieceType, at: Position)
     case move(from: Position, to: Position)
 }
 
