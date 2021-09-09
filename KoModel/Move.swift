@@ -3,11 +3,11 @@ public enum Move {
     case move(from: Position, to: Position)
 }
 
-public enum GameResult {
+public enum GameResult: Hashable {
     case notDetermined, wins(PlayerColor)
 }
 
-public struct MoveResult {
+public struct MoveResult: Hashable {
     public var gameResult: GameResult
     public var piecePlaced: PiecePlacementRecord?
     public var piecesRemoved: [PieceRemovalRecord]

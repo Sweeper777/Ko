@@ -90,6 +90,7 @@ public struct Board {
         return true
     }
     
+    @discardableResult
     mutating func removePiece(at position: Position) -> Piece? {
         guard let popped = board[safe: position]?.pop() else {
             return nil
@@ -98,6 +99,7 @@ public struct Board {
         return popped
     }
     
+    @discardableResult
     mutating func removePiece(at position: Position, stackIndex: Int) -> Piece {
         let piece = board[position].remove(at: stackIndex)
         piecesPositions[piece]?.remove(position)
