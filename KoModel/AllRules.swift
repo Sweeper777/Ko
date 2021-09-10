@@ -180,3 +180,9 @@ let allRules: [RuleProtocol] = [
         }
     })
 ]
+
+fileprivate extension Board {
+    func hasPiece(_ piece: Piece, within range: Int, of position: Position) -> Bool {
+        (piecesPositions[piece] ?? []).contains { abs(position.x - $0.x) < range && abs(position.y - $0.y) < range }
+    }
+}
