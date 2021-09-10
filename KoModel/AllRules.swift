@@ -61,7 +61,7 @@ let allRules: [RuleProtocol] = [
         if placedPiece.pieceType != .field {
             return .violation
         }
-        if placedPiece.position.fourNeighbours.allSatisfy({ game.board.board[safe: $0]?.top == Piece(game.currentTurn, .field) }) {
+        if placedPiece.position.fourNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn, .field) }) {
             return .violation
         }
         let validYRange: Range<Int>
