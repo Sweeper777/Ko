@@ -129,6 +129,22 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    ExistenceRule("there must not an opponent empress in the 4-neighbourhood of a moon", for: .moon, apply: {
+        game, position, _ in
+        if position.fourNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .empress) }) {
+            return .compliance
+        } else {
+            return .violation
+        }
+    }),
+    ExistenceRule("there must not be an opponent moon in the 8-neighbourhood of a moon", for: .moon, apply: {
+        game, position, _ in
+        if position.eightNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .moon) }) {
+            return .compliance
+        } else {
+            return .violation
+        }
+    }),
     Rule("after every move, the grassland must be connected", apply: {
         game, move, result in
         
