@@ -145,6 +145,25 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    ExistenceRule("burrows must be 5 squares away from any other burrows", for: .burrow, apply: {
+        game, position, _ in
+        if game.board.hasPiece(Piece(.blue, .burrow), within: 5, of: position) ||
+            game.board.hasPiece(Piece(.white, .burrow), within: 5, of: position) {
+            return .violation
+        } else {
+            return .compliance
+        }
+    }).ifViolatedApply(
+        ExistenceRule("if it is the first burrow, the burrow just needs to be 3 squares away", for: .burrow,
+          apply: { game, position, _ in
+            if !game.currentPlayer.placementRecords.contains(where: { $0.pieceType == .burrow }) {
+                return game.board.hasPiece(Piece(.white, .burrow), within: 3, of: position) ||
+                        game.board.hasPiece(Piece(.blue, .burrow), within: 3, of: position) ?
+                    .violation : .compliance
+            } else {
+                return .violation
+            }
+          })),
     Rule("after every move, the grassland must be connected", apply: {
         game, move, result in
         
