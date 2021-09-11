@@ -27,6 +27,13 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    MoveRule("players can only move their own pieces", apply: { game, from, _, _ in
+        if game.board[from].top?.color == game.currentTurn {
+            return .compliance
+        } else {
+            return .violation
+        }
+    }),
     PlacePieceRule("pieces can only be placed on empty squares", apply: {
         game, placedPiece, _ in
         if game.board[placedPiece.position].isEmpty {
