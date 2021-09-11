@@ -210,6 +210,23 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    PostMoveRule("a player must not trap their empress", isApplicable: {
+        game, move in
+        if case .placePiece = move, game.board.piecesPositions[Piece(game.currentTurn, .empress)]?.first != nil {
+            return true
+        } else {
+            return false
+        }
+    }, apply: { game, _, newBoard, _ in
+        let neighbours = newBoard.piecesPositions[Piece(game.currentTurn, .empress)]!.first!.eightNeighbours
+        if neighbours.allSatisfy({
+            newBoard.board[safe: $0] == nil ||
+            newBoard[$0].bottom?.type == .field ||
+            newBoard[$0].bottom?.type == .burrow }) {
+            return .violation
+        } else {
+            return .compliance
+        }
     })
 ]
 
