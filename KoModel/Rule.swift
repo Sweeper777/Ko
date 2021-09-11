@@ -73,23 +73,30 @@ class PlacePieceRule : RuleProtocol {
 class MoveRule : RuleProtocol {
     private let isApplicableFunc: (Game, Position, Position) -> Bool
     private let applyFunc: (Game, Position, Position, inout MoveResult) -> RuleApplicationResult
+    private let pieceFilter: PieceType?
     private let _description: String
     
     var description: String {
         _description
     }
     
-    init(_ description: String? = nil,
+    init(_ description: String? = nil, for pieceType: PieceType? = nil,
          isApplicable: @escaping (Game, Position, Position) -> Bool = { _,_,_ in true },
          apply: @escaping (Game, Position, Position, inout MoveResult) -> RuleApplicationResult) {
         isApplicableFunc = isApplicable
         applyFunc = apply
-        self._description = description ?? "some place piece rule"
+        pieceFilter = pieceType
+        self._description = description ?? "some move rule"
     }
     
     
     func isApplicable(to game: Game, move: Move) -> Bool {
         if case .move(let from, let to) = move {
+            if let pieceFilter = pieceFilter {
+                if !(pieceFilter ~= game.board[from]) {
+                    return false
+                }
+            }
             return isApplicableFunc(game, from, to)
         } else {
             return false
