@@ -171,27 +171,14 @@ let allRules: [RuleProtocol] = [
                 return .violation
             }
           })),
-    Rule("after every move, the grassland must be connected", apply: {
-        game, move, result in
-        
-        var boardCopy = game.board
-        for removedPieceRecord in result.piecesRemoved.sorted(by: { $0.stackIndex > $1.stackIndex }) {
-            boardCopy.removePiece(at: removedPieceRecord.position, stackIndex: removedPieceRecord.stackIndex)
         }
-        if result.hasCapture, let toPosition = result.toPosition {
-            boardCopy.removePiece(at: toPosition)
         }
-        var movedPiece: Piece?
-        if let fromPosition = result.fromPosition {
-            movedPiece = boardCopy.removePiece(at: fromPosition)
         }
-        boardCopy.conquerFields(positions: result.conqueredPositions)
-        if let movedPiece = movedPiece, let toPosition = result.toPosition {
-            boardCopy.placePiece(movedPiece, at: toPosition)
         }
-        if let placedPieceRecord = result.piecePlaced {
-            boardCopy.placePiece(Piece(game.currentTurn, placedPieceRecord.pieceType), at: placedPieceRecord.position)
         }
+    }),
+    PostMoveRule("after every move, the grassland must be connected", apply: {
+        _, move, newBoard, _ in
         let startPosition: Position
         switch move {
         case .move(from: _, to: let to):
@@ -199,11 +186,12 @@ let allRules: [RuleProtocol] = [
         case .placePiece(_, at: let at):
             startPosition = at
         }
-        if boardCopy.isExactlyOneGrassland(startPosition: startPosition) {
+        if newBoard.isExactlyOneGrassland(startPosition: startPosition) {
             return .compliance
         } else {
             return .violation
         }
+    }),
     })
 ]
 
