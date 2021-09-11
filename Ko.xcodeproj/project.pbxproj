@@ -19,7 +19,7 @@
 		5A8B773F26DF2D620063C3E7 /* KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8B772A26DF2D610063C3E7 /* KoModel.framework */; };
 		5A8B774026DF2D620063C3E7 /* KoModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8B772A26DF2D610063C3E7 /* KoModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A8B775626DF2DCD0063C3E7 /* KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8B774D26DF2DCD0063C3E7 /* KoModel.framework */; };
-		5A8B775B26DF2DCD0063C3E7 /* KoModelMacOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B775A26DF2DCD0063C3E7 /* KoModelMacOSTests.swift */; };
+		5A8B775B26DF2DCD0063C3E7 /* GameBeginningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B775A26DF2DCD0063C3E7 /* GameBeginningTests.swift */; };
 		5A8B775D26DF2DCD0063C3E7 /* KoModelMacOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A8B774F26DF2DCD0063C3E7 /* KoModelMacOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5A8B776526DF2E390063C3E7 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B776426DF2E390063C3E7 /* Piece.swift */; };
 		5A8B776626DF2E390063C3E7 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B776426DF2E390063C3E7 /* Piece.swift */; };
@@ -89,7 +89,7 @@
 		5A8B774F26DF2DCD0063C3E7 /* KoModelMacOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KoModelMacOS.h; sourceTree = "<group>"; };
 		5A8B775026DF2DCD0063C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A8B775526DF2DCD0063C3E7 /* KoModelMacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoModelMacOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5A8B775A26DF2DCD0063C3E7 /* KoModelMacOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoModelMacOSTests.swift; sourceTree = "<group>"; };
+		5A8B775A26DF2DCD0063C3E7 /* GameBeginningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBeginningTests.swift; sourceTree = "<group>"; };
 		5A8B775C26DF2DCD0063C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A8B776426DF2E390063C3E7 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		5A8D322526E5A1FA0065B536 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		5A8B775926DF2DCD0063C3E7 /* KoModelMacOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				5A8B775A26DF2DCD0063C3E7 /* KoModelMacOSTests.swift */,
+				5A8B775A26DF2DCD0063C3E7 /* GameBeginningTests.swift */,
 				5A8B775C26DF2DCD0063C3E7 /* Info.plist */,
 			);
 			path = KoModelMacOSTests;
@@ -433,7 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A8B775B26DF2DCD0063C3E7 /* KoModelMacOSTests.swift in Sources */,
+				5A8B775B26DF2DCD0063C3E7 /* GameBeginningTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
