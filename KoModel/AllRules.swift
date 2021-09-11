@@ -171,7 +171,25 @@ let allRules: [RuleProtocol] = [
                 return .violation
             }
           })),
+    PlacePieceRule("pieces can only be placed near the player's empress", isApplicable: {
+        game, _ in game.currentTurnNumber > 4
+    }, apply: { game, placedPiece, _ in
+        if placedPiece.position.eightNeighbours.contains(where: { game.board.board[safe: $0]?.top == Piece(game.currentTurn, .empress) }) {
+            return .compliance
+        } else {
+            return .violation
         }
+    }).ifViolatedApply(PlacePieceRule("if the piece placed is a burrow, then it must be touching the eight fields around the burrow", isApplicable: {
+        _, placedPiece in placedPiece.pieceType == .burrow
+    }, apply: { game, placedPiece, result in
+        let touching = (game.board.piecesPositions[Piece(game.currentTurn, .empress)] ?? []).contains {
+            (abs(placedPiece.position.x - $0.x) == 2) !=
+                (abs(placedPiece.position.y - $0.y) == 2) &&
+                abs(placedPiece.position.x - $0.x) <= 2 &&
+                abs(placedPiece.position.y - $0.y) <= 2
+        }
+        return touching ? .compliance : .violation
+    })),
         }
         }
         }
