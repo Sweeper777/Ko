@@ -13,58 +13,6 @@ public struct Board {
         board[position]
     }
     
-    func isValidPosition(for piece: Piece, position: Position) -> Bool {
-        if board[safe: position] == nil {
-            return false
-        }
-        
-        func isValidPositionForHare() -> Bool {
-            board[position].isEmpty || .field ~= board[position] ||
-                .rabbit ~= board[position] || .hare ~= board[position]
-        }
-        
-        func isValidPositionForEmpress() -> Bool {
-            guard board[position].isEmpty else {
-                return false
-            }
-            
-            let opposingMoon = Piece(piece.color.opposingColor, .moon)
-            let opposingEmpress = Piece(piece.color.opposingColor, .empress)
-            return (piecesPositions[opposingMoon] ?? []).intersection(position.fourNeighbours).isEmpty &&
-                (piecesPositions[opposingEmpress] ?? []).intersection(position.eightNeighbours).isEmpty
-        }
-        func isValidPositionForBurrow() -> Bool {
-            guard board[position].isEmpty else {
-                return false
-            }
-            let isSurroundedByFields = (piecesPositions[Piece(.blue, .field)] ?? []).union(piecesPositions[Piece(.white, .field)] ?? [])
-                .isSuperset(of: position.eightNeighbours)
-            let is4BlocksAwayFromAllBurrows = (piecesPositions[Piece(.blue, .burrow)] ?? []).union(piecesPositions[Piece(.white, .burrow)] ?? [])
-                .allSatisfy { abs(position.x - $0.x) >= 5 && abs(position.y - $0.y) >= 5 }
-            return isSurroundedByFields && is4BlocksAwayFromAllBurrows
-        }
-        func isValidPositionForMoon() -> Bool {
-            guard board[position].isEmpty else {
-                return false
-            }
-            let opposingMoon = Piece(piece.color.opposingColor, .moon)
-            return (piecesPositions[opposingMoon] ?? []).intersection(position.eightNeighbours).isEmpty
-        }
-        
-        switch piece.type {
-        case .field, .rabbit:
-            return board[position].isEmpty
-        case .hare:
-            return isValidPositionForHare()
-        case .empress:
-            return isValidPositionForEmpress()
-        case .moon:
-            return isValidPositionForMoon()
-        case .burrow:
-            return isValidPositionForBurrow()
-        }
-    }
-    
     func isExactlyOneGrassland(startPosition start: Position) -> Bool {
         var unreached = piecesPositions.values.reduce(Set()) { $0.union($1) }
         unreached.remove(start)
@@ -81,13 +29,9 @@ public struct Board {
         return unreached.isEmpty
     }
     
-    mutating func placePiece(_ piece: Piece, at position: Position) -> Bool {
-        guard isValidPosition(for: piece, position: position) else {
-            return false
-        }
+    mutating func placePiece(_ piece: Piece, at position: Position) {
         piecesPositions[piece, default: []].insert(position)
         board[position].push(piece)
-        return true
     }
     
     @discardableResult
