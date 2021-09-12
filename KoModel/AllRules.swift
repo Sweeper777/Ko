@@ -1,4 +1,5 @@
 let allRules: [RuleProtocol] = [
+    // MARK: Basic Rules
     Rule("all moves must be in range of the board", apply: { game, move, _ in
         func inRange(_ position: Position) -> Bool {
             game.board.board[safe: position] != nil
@@ -42,6 +43,7 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    // MARK: Game Beginning
     PlacePieceRule("first field must be placed on the central squares on the first turn") {
         game, _ in game.currentTurnNumber == 0
     } apply: { game, placedPiece, _ in
@@ -128,6 +130,7 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     },
+    // MARK: Existence Rules
     ExistenceRule("there must not an opponent moon in the 4-neighbourhood of an empress", for: .empress, apply: {
         game, position, _ in
         if position.fourNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .moon) }) {
@@ -171,6 +174,7 @@ let allRules: [RuleProtocol] = [
                 return .violation
             }
           })),
+    // MARK: Placing Pieces
     PlacePieceRule("pieces can only be placed near the player's empress", isApplicable: {
         game, _ in game.currentTurnNumber > 4
     }, apply: { game, placedPiece, _ in
@@ -257,6 +261,7 @@ let allRules: [RuleProtocol] = [
         }
         return .compliance
     }),
+    // MARK: Empress Move Rules
     MoveRule("empress can move to one of its 8 neighbours", for: .empress, apply: {
         game, from, to, _ in
         if !game.board[to].isEmpty {
@@ -268,6 +273,7 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    // MARK: Post-move Rules
     PostMoveRule("after every move, the grassland must be connected", apply: {
         _, move, newBoard, _ in
         let startPosition: Position
