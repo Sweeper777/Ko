@@ -190,6 +190,41 @@ let allRules: [RuleProtocol] = [
         }
         return touching ? .compliance : .violation
     })),
+    PlacePieceRule("a player can place different pieces depending on how many fields they have", isApplicable: {
+        _, placedPiece in placedPiece.pieceType != .empress && placedPiece.pieceType != .field
+    }, apply: {
+        game, placedPiece, _ in
+        let numberOfFields = game.board.piecesPositions[Piece(game.currentTurn, .field)]?.count ?? 0
+        let numberOfHares = game.board.piecesPositions[Piece(game.currentTurn, .hare)]?.count ?? 0
+        let numberOfRabbits = game.board.piecesPositions[Piece(game.currentTurn, .rabbit)]?.count ?? 0
+        let numberOfMoons = game.board.piecesPositions[Piece(game.currentTurn, .moon)]?.count ?? 0
+        let numberOfBurrows = game.board.piecesPositions[Piece(game.currentTurn, .burrow)]?.count ?? 0
+        switch placedPiece.pieceType {
+        case .field, .empress:
+            return .compliance
+        case .burrow:
+            if (numberOfFields >= 8 && numberOfBurrows < 1) ||
+                (numberOfFields >= 22 && numberOfBurrows < 2) ||
+                (numberOfFields >= 36 && numberOfBurrows < 3) {
+                return .compliance
+            } else {
+                return .violation
+            }
+        case .rabbit, .hare:
+            if (numberOfFields >= 14 && numberOfRabbits + numberOfHares < 1) ||
+                (numberOfFields >= 28 && numberOfRabbits + numberOfRabbits < 2) {
+                return .compliance
+            } else {
+                return .violation
+            }
+        case .moon:
+            if (numberOfFields >= 43 && numberOfMoons < 1) {
+                return .compliance
+            } else {
+                return .violation
+            }
+        }
+    }),
         }
         }
         }
