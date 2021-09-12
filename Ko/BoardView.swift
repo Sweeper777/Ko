@@ -18,4 +18,31 @@ class BoardView: UIView {
         backgroundColor = .systemGreen
     }
     
+    let squareLength: CGFloat = 54
+    let lineWidth: CGFloat = 7
+    
+    override func draw(_ rect: CGRect) {
+        UIColor.systemOrange.setStroke()
+        for row in 0...GameConstants.boardRows {
+            let path = UIBezierPath()
+            let y = CGFloat(row) * squareLength
+            path.move(to: CGPoint(x: 0, y: y))
+            path.addLine(to: CGPoint(x: bounds.maxX, y: y))
+            path.lineWidth = lineWidth
+            path.stroke()
+        }
+        for col in 0...GameConstants.boardColumns {
+            let path = UIBezierPath()
+            let x = CGFloat(col) * squareLength
+            path.move(to: CGPoint(x: x, y: 0))
+            path.addLine(to: CGPoint(x: x, y: bounds.maxY))
+            path.lineWidth = lineWidth
+            path.stroke()
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: CGFloat(GameConstants.boardColumns) * squareLength,
+               height: CGFloat(GameConstants.boardRows) * squareLength)
+    }
 }
