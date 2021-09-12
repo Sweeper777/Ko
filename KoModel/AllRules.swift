@@ -242,8 +242,30 @@ let allRules: [RuleProtocol] = [
             return game.currentPlayer.availableMoons > 0 ? .compliance : .violation
         }
     }),
+    PlacePieceRule("a burrow can be placed in a position if that position is surrounded by fields of either color. When it is placed, the fields are conquered.", isApplicable: {
+        _, placedPiece in placedPiece.pieceType == .burrow
+    }, apply: { game, placedPiece, result in
+        let neighbours = placedPiece.position.eightNeighbours
+        for neighbour in neighbours {
+            let neighbourPiece = game.board.board[safe: neighbour]?.bottom
+            if neighbourPiece?.type != .field {
+                return .violation
+            }
+            if neighbourPiece?.color == game.currentTurn.opposingColor {
+                result.conqueredPositions.append(neighbour)
+            }
         }
+        return .compliance
+    }),
+    MoveRule("empress can move to one of its 8 neighbours", for: .empress, apply: {
+        game, from, to, _ in
+        if !game.board[to].isEmpty {
+            return .violation
         }
+        if from.eightNeighbours.contains(to) {
+            return .compliance
+        } else {
+            return .violation
         }
     }),
     PostMoveRule("after every move, the grassland must be connected", apply: {
