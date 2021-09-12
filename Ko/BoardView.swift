@@ -22,6 +22,19 @@ class BoardView: UIView {
     let lineWidth: CGFloat = 7
     
     override func draw(_ rect: CGRect) {
+        UIColor.white.setFill()
+        UIBezierPath(rect: CGRect(x: 8 * squareLength,
+                                  y: 8 * squareLength,
+                                  width: 3 * squareLength,
+                                  height: squareLength))
+            .fill()
+        UIColor.systemBlue.setFill()
+        UIBezierPath(rect: CGRect(x: 8 * squareLength,
+                                  y: 9 * squareLength,
+                                  width: 3 * squareLength,
+                                  height: squareLength))
+            .fill()
+        
         UIColor.systemOrange.setStroke()
         for row in 0...GameConstants.boardRows {
             let path = UIBezierPath()
