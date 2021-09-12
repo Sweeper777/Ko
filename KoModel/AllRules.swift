@@ -225,7 +225,23 @@ let allRules: [RuleProtocol] = [
             }
         }
     }),
+    PlacePieceRule("a player can only place a piece if they have that piece", apply: {
+        game, placedPiece, _ in
+        switch placedPiece.pieceType {
+        case .field:
+            return game.currentPlayer.availableFields > 0 ? .compliance : .violation
+        case .empress:
+            return (game.board.piecesPositions[Piece(game.currentTurn, .empress)]?.count ?? 0) > 0 ? .violation : .compliance
+        case .burrow:
+            return game.currentPlayer.availableBurrows > 0 ? .compliance : .violation
+        case .rabbit:
+            return game.currentPlayer.availableRabbits > 0 ? .compliance : .violation
+        case .hare:
+            return game.currentPlayer.availableHares > 0 ? .compliance : .violation
+        case .moon:
+            return game.currentPlayer.availableMoons > 0 ? .compliance : .violation
         }
+    }),
         }
         }
         }
