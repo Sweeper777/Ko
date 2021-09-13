@@ -57,6 +57,9 @@ public class Game {
         }
         if let placedPieceRecord = moveResult.piecePlaced {
             board.placePiece(Piece(currentTurn, placedPieceRecord.pieceType), at: placedPieceRecord.position)
+            if placedPieceRecord.pieceType != .field && placedPieceRecord.pieceType != .empress {
+                currentPlayer.placementRecords.append(placedPieceRecord)
+            }
         }
         result = moveResult.gameResult
         if case .notDetermined = result {
