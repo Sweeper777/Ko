@@ -1,10 +1,10 @@
 public class Game {
     public let bluePlayer = Player(color: .blue)
     public let whitePlayer = Player(color: .white)
-    public private(set) var currentTurn = PlayerColor.blue
-    public private(set) var board = Board()
-    public private(set) var currentTurnNumber = 0
-    public private(set) var result = GameResult.notDetermined
+    public internal(set) var currentTurn = PlayerColor.blue
+    public internal(set) var board = Board()
+    public internal(set) var currentTurnNumber = 0
+    public internal(set) var result = GameResult.notDetermined
     
     private let rules = allRules
     
