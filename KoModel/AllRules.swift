@@ -105,7 +105,7 @@ let allRules: [RuleProtocol] = [
     },
     ExistenceRule("there must not be other empresses in the 8-neighbourhood of an empress", for: .empress, apply: {
         game, position, _ in
-        if position.eightNeighbours.allSatisfy({ game.board.board[safe: $0]?.top?.type != .empress }) {
+        if position.eightNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .empress) }) {
             return .compliance
         } else {
             return .violation
@@ -262,7 +262,7 @@ let allRules: [RuleProtocol] = [
         return .compliance
     }),
     // MARK: Empress Move Rules
-    MoveRule("empress can move to one of its 8 neighbours", for: .empress, apply: {
+    MoveRule("empress can move to one of its 8 neighbours that are empty", for: .empress, apply: {
         game, from, to, _ in
         if !game.board[to].isEmpty {
             return .violation
