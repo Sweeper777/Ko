@@ -25,6 +25,7 @@
 		5A8B776626DF2E390063C3E7 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B776426DF2E390063C3E7 /* Piece.swift */; };
 		5A8D322626E5A1FA0065B536 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D322526E5A1FA0065B536 /* Rule.swift */; };
 		5A8D322726E5A1FA0065B536 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D322526E5A1FA0065B536 /* Rule.swift */; };
+		5A8F47BE26ECA090000E1C1B /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F47BD26ECA090000E1C1B /* BoardView.swift */; };
 		5A90E2C326E6FF1C00FC3AF1 /* AllRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E2C226E6FF1C00FC3AF1 /* AllRules.swift */; };
 		5A90E2C426E6FF1C00FC3AF1 /* AllRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E2C226E6FF1C00FC3AF1 /* AllRules.swift */; };
 		5A972E5026E06D84009E6B3D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A972E4F26E06D84009E6B3D /* Player.swift */; };
@@ -93,6 +94,7 @@
 		5A8B775C26DF2DCD0063C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A8B776426DF2E390063C3E7 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		5A8D322526E5A1FA0065B536 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		5A8F47BD26ECA090000E1C1B /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		5A90E2C226E6FF1C00FC3AF1 /* AllRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRules.swift; sourceTree = "<group>"; };
 		5A972E4F26E06D84009E6B3D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5A972E5226E06F99009E6B3D /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */,
 				5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */,
 				5A8B771526DF2CED0063C3E7 /* ViewController.swift */,
+				5A8F47BD26ECA090000E1C1B /* BoardView.swift */,
 				5A8B771726DF2CED0063C3E7 /* Main.storyboard */,
 				5A8B771A26DF2CF00063C3E7 /* Assets.xcassets */,
 				5A8B771C26DF2CF00063C3E7 /* LaunchScreen.storyboard */,
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A8B771626DF2CED0063C3E7 /* ViewController.swift in Sources */,
+				5A8F47BE26ECA090000E1C1B /* BoardView.swift in Sources */,
 				5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */,
 				5A8B771426DF2CED0063C3E7 /* SceneDelegate.swift in Sources */,
 			);
