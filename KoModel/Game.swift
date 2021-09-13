@@ -31,6 +31,7 @@ public class Game {
                 hasApplicableRules = true
                 let ruleApplicationResult = rule.apply(to: self, move: move, pendingMoveResult: &moveResult)
                 if ruleApplicationResult == .violation {
+                    print("Rule violated: \(rule)")
                     return nil
                 }
             }
