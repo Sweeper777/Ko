@@ -14,3 +14,27 @@ class HareMovementRule: MoveRule {
     }
 }
 
+
+fileprivate extension Board {
+    func reachableByHare(from: Position, to: Position, depth: Int = 3) -> Bool {
+        if from == to {
+            return true
+        }
+        if depth == 0 {
+            return false
+        }
+        visitedPositions.insert(from)
+        let neighbours = from.fourNeighbours.filter {
+            !visitedPositions.contains($0) && board[safe: $0] != nil &&
+                [PieceType.field, .rabbit, .hare, nil].contains(self[$0].top?.type)
+        }
+        for neighbour in neighbours {
+            if reachableByHare(from: neighbour, to: to, depth: depth - 1) {
+                return true
+            }
+        }
+        return false
+    }
+}
+
+var visitedPositions = Set<Position>()
