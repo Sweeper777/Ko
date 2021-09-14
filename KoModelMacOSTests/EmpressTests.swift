@@ -77,4 +77,27 @@ class EmpressTests: XCTestCase {
         XCTAssertNil(game.makeMove(.placePiece(.rabbit, at: .init(10, 11))))
     }
     
+    func testPlacingBurrows() {
+        game.board.removePiece(at: .init(9, 10))
+        game.board.removePiece(at: .init(9, 11))
+        game.board.placePiece(Piece(.blue, .field), at: .init(9, 11))
+        game.board.placePiece(Piece(.blue, .field), at: .init(8, 11))
+        game.board.placePiece(Piece(.blue, .field), at: .init(10, 11))
+        game.board.placePiece(Piece(.blue, .empress), at: .init(9, 12))
+        game.board.removePiece(at: .init(9, 7))
+        game.board.placePiece(Piece(.white, .field), at: .init(9, 6))
+        game.board.placePiece(Piece(.white, .field), at: .init(8, 6))
+        game.board.placePiece(Piece(.white, .field), at: .init(10, 6))
+        game.bluePlayer.availableFields -= 2
+        game.whitePlayer.availableFields -= 2
+        
+        // try placing burrow somewhere random
+        XCTAssertNil(game.makeMove(.placePiece(.burrow, at: .init(10, 12))))
+        XCTAssertNil(game.makeMove(.placePiece(.burrow, at: .init(11, 12))))
+        
+        XCTAssertNotNil(game.makeMove(.placePiece(.burrow, at: .init(9, 10))))
+        XCTAssertNotNil(game.makeMove(.placePiece(.burrow, at: .init(9, 7))))
+        XCTAssertEqual(game.bluePlayer.placementRecords, [.init(pieceType: .burrow, position: .init(9, 10))])
+        XCTAssertEqual(game.whitePlayer.placementRecords, [.init(pieceType: .burrow, position: .init(9, 7))])
+    }
 }
