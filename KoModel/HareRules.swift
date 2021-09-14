@@ -14,6 +14,43 @@ class HareMovementRule: MoveRule {
     }
 }
 
+class HareConquerRule: MoveRule {
+    init() {
+        super.init("hares can move horizontally or vertically to an empty square, conquering all the fields along the path. All fields along the path must be opponent fields.", for: .hare) {
+            game, from, to, result in
+            guard game.board[to].isEmpty else {
+                return .violation
+            }
+            let deltaX = to.x - from.x
+            let deltaY = to.y - from.y
+            guard (deltaX == 0) != (deltaY == 0) else {
+                return .violation
+            }
+            var conqueredPositions = [Position]()
+            if deltaX != 0 {
+                for x in stride(from: from.x + deltaX.signum(), to: to.x, by: deltaX.signum()) {
+                    let pos = Position(x, from.y)
+                    if game.board[pos].top != Piece(game.currentTurn.opposingColor, .field) {
+                        return .violation
+                    } else {
+                        conqueredPositions.append(pos)
+                    }
+                }
+            } else {
+                for y in stride(from: from.y + deltaY.signum(), to: to.y, by: deltaY.signum()) {
+                    let pos = Position(from.x, y)
+                    if game.board[pos].top != Piece(game.currentTurn.opposingColor, .field) {
+                        return .violation
+                    } else {
+                        conqueredPositions.append(pos)
+                    }
+                }
+            }
+            result.conqueredPositions = conqueredPositions
+            return .compliance
+        }
+    }
+}
 
 fileprivate extension Board {
     func reachableByHare(from: Position, to: Position, depth: Int = 3) -> Bool {
