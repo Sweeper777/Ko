@@ -63,4 +63,18 @@ class EmpressTests: XCTestCase {
         XCTAssertEqual(game.board.piecesPositions[Piece(.white, .empress)], [.init(7, 9)])
     }
     
+    func testPlacingPieces() {
+        // placing fields out of range
+        XCTAssertNil(game.makeMove(.placePiece(.field, at: .init(9, 13))))
+        
+        XCTAssertNotNil(game.makeMove(.placePiece(.field, at: .init(9, 12))))
+        XCTAssertNotNil(game.makeMove(.placePiece(.field, at: .init(6, 8))))
+        
+        // cannot place piece when there are not enough fields
+        XCTAssertNil(game.makeMove(.placePiece(.burrow, at: .init(10, 11))))
+        XCTAssertNil(game.makeMove(.placePiece(.hare, at: .init(10, 11))))
+        XCTAssertNil(game.makeMove(.placePiece(.moon, at: .init(10, 11))))
+        XCTAssertNil(game.makeMove(.placePiece(.rabbit, at: .init(10, 11))))
+    }
+    
 }
