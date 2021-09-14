@@ -54,4 +54,13 @@ class EmpressTests: XCTestCase {
         XCTAssertEqual(game.board.piecesPositions[Piece(.white, .empress)], [.init(7, 10)])
     }
     
+    func testEmpressesThatAreTooClose() {
+        XCTAssertNotNil(game.makeMove(.move(from: .init(9, 11), to: .init(8, 11))))
+        XCTAssertNotNil(game.makeMove(.move(from: .init(7, 8), to: .init(7, 9))))
+        XCTAssertNil(game.makeMove(.move(from: .init(8, 11), to: .init(7, 10))))
+        XCTAssertNotNil(game.makeMove(.move(from: .init(8, 11), to: .init(7, 11))))
+        XCTAssertEqual(game.board.piecesPositions[Piece(.blue, .empress)], [.init(7, 11)])
+        XCTAssertEqual(game.board.piecesPositions[Piece(.white, .empress)], [.init(7, 9)])
+    }
+    
 }
