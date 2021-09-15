@@ -273,6 +273,7 @@ let allRules: [RuleProtocol] = [
             return .violation
         }
     }),
+    HareConquerRule().ifViolatedApply(HareMovementRule()),
     // MARK: Post-move Rules
     PostMoveRule("after every move, the grassland must be connected", apply: {
         _, move, newBoard, _ in
