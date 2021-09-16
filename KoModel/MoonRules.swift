@@ -26,3 +26,26 @@ class MoonCaptureRule: MoveRule {
     }
 }
 
+fileprivate extension Board {
+    func positionsReachableByMoon(from start: Position) -> Set<Position> {
+        var reachable = Set<Position>()
+        reachable.insert(start)
+        var queue = [start]
+        while !queue.isEmpty {
+            let pos = queue.removeFirst()
+            let neighbours = pos.fourNeighbours.filter {
+                board[safe: $0]?.isEmpty == true ||
+                    (board[safe: $0]?.count == 1 &&
+                        [PieceType.field, .rabbit, .hare].contains(board[safe: $0]?.top?.type))
+                
+            }
+            for neighbour in neighbours {
+                reachable.insert(neighbour)
+                if board[neighbour].isEmpty {
+                    queue.append(neighbour)
+                }
+            }
+        }
+        return reachable
+    }
+}
