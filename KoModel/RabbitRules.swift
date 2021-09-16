@@ -57,3 +57,34 @@ class RabbitJumpRule: MoveRule {
     }
 }
 
+class RabbitConquerRule: MoveRule {
+    init() {
+        super.init("when a rabbit moves diagonally, if all the fields along the path are opponent fields, it conquers all those fields", for: .rabbit) {
+            game, from, to, result in
+            guard game.board[to].isEmpty else {
+                return .violation
+            }
+            guard from != to else {
+                return .violation
+            }
+            let deltaX = to.x - from.x
+            let deltaY = to.y - from.y
+            guard abs(deltaX) == abs(deltaY) else {
+                return .violation
+            }
+            let xs = stride(from: from.x + deltaX.signum(), to: to.x, by: deltaX.signum())
+            let ys = stride(from: from.y + deltaY.signum(), to: to.y, by: deltaY.signum())
+            var conqueredPositions = [Position]()
+            for (x, y) in zip(xs, ys) {
+                let pos = Position(x, y)
+                if game.board[pos].top != Piece(game.currentTurn.opposingColor, .field) {
+                    return .violation
+                } else {
+                    conqueredPositions.append(pos)
+                }
+            }
+            result.conqueredPositions = conqueredPositions
+            return .compliance
+        }
+    }
+}
