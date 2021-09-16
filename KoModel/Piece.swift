@@ -50,6 +50,14 @@ public struct PieceStack: Hashable, Codable {
         pieces.isEmpty
     }
     
+    public var count: Int {
+        pieces.count
+    }
+    
+    public func firstIndex(of piece: Piece) -> Int? {
+        pieces.firstIndex(of: piece)
+    }
+    
     public mutating func push(_ piece: Piece) {
         pieces.append(piece)
     }
