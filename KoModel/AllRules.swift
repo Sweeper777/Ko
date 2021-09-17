@@ -203,30 +203,22 @@ let allRules: [RuleProtocol] = [
         let numberOfRabbits = game.board.piecesPositions[Piece(game.currentTurn, .rabbit)]?.count ?? 0
         let numberOfMoons = game.board.piecesPositions[Piece(game.currentTurn, .moon)]?.count ?? 0
         let numberOfBurrows = game.board.piecesPositions[Piece(game.currentTurn, .burrow)]?.count ?? 0
-        switch placedPiece.pieceType {
-        case .field, .empress:
+        var postMovePieceCounts = [
+            PieceType.moon: numberOfMoons,
+            .hare: numberOfHares,
+            .rabbit: numberOfRabbits,
+            .burrow: numberOfBurrows
+        ]
+        postMovePieceCounts[placedPiece.pieceType]! += 1
+        let extraPieces = detectExtraPiece(
+            fieldCount: numberOfFields,
+            piecesCounts: postMovePieceCounts,
+            placementRecords: game.currentPlayer.placementRecords
+        )
+        if extraPieces.values.contains(where: { $0 > 0 }) {
+            return .violation
+        } else {
             return .compliance
-        case .burrow:
-            if (numberOfFields >= 8 && numberOfBurrows < 1) ||
-                (numberOfFields >= 22 && numberOfBurrows < 2) ||
-                (numberOfFields >= 36 && numberOfBurrows < 3) {
-                return .compliance
-            } else {
-                return .violation
-            }
-        case .rabbit, .hare:
-            if (numberOfFields >= 14 && numberOfRabbits + numberOfHares < 1) ||
-                (numberOfFields >= 28 && numberOfRabbits + numberOfRabbits < 2) {
-                return .compliance
-            } else {
-                return .violation
-            }
-        case .moon:
-            if (numberOfFields >= 43 && numberOfMoons < 1) {
-                return .compliance
-            } else {
-                return .violation
-            }
         }
     }),
     PlacePieceRule("a player can only place a piece if they have that piece", apply: {
@@ -261,7 +253,7 @@ let allRules: [RuleProtocol] = [
         }
         return .compliance
     }),
-    // MARK: Empress Move Rules
+    // MARK: Move Rules
     MoveRule("empress can move to one of its 8 neighbours that are empty", for: .empress, apply: {
         game, from, to, _ in
         if !game.board[to].isEmpty {
