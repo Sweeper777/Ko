@@ -39,10 +39,7 @@ public class Game {
         guard hasApplicableRules else {
             return nil
         }
-        for removedPieceRecord in moveResult.piecesRemoved.sorted(by: { $0.stackIndex > $1.stackIndex }) {
-            let removedPiece = board.removePiece(at: removedPieceRecord.position, stackIndex: removedPieceRecord.stackIndex)
-            resolveRemovedPiece(removedPiece)
-        }
+
         if moveResult.hasCapture, let toPosition = moveResult.toPosition,
            let removedPiece = board.removePiece(at: toPosition) {
             resolveRemovedPiece(removedPiece)
@@ -60,6 +57,10 @@ public class Game {
             if placedPieceRecord.pieceType != .field && placedPieceRecord.pieceType != .empress {
                 currentPlayer.placementRecords.append(placedPieceRecord)
             }
+        }
+        for removedPieceRecord in moveResult.piecesRemoved.sorted(by: { $0.stackIndex > $1.stackIndex }) {
+            let removedPiece = board.removePiece(at: removedPieceRecord.position, stackIndex: removedPieceRecord.stackIndex)
+            resolveRemovedPiece(removedPiece)
         }
         result = moveResult.gameResult
         if case .notDetermined = result {
