@@ -266,7 +266,12 @@ let allRules: [RuleProtocol] = [
         }
     }),
     HareConquerRule().ifViolatedApply(HareMovementRule()),
+    MoonMovementRule(),
+    MoonCaptureRule(),
+    RabbitConquerRule().ifViolatedApply(RabbitJumpRule()),
     // MARK: Post-move Rules
+    PieceRemovalRule(),
+    
     PostMoveRule("after every move, the grassland must be connected", apply: {
         _, move, newBoard, _ in
         let startPosition: Position
