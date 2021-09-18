@@ -194,23 +194,7 @@ class PostMoveRule: Rule {
          apply: @escaping (Game, Move, inout Board, inout MoveResult) -> RuleApplicationResult) {
         super.init(description, isApplicable: isApplicable) { game, move, result in
             var boardCopy = game.board
-            for removedPieceRecord in result.piecesRemoved.sorted(by: { $0.stackIndex > $1.stackIndex }) {
-                boardCopy.removePiece(at: removedPieceRecord.position, stackIndex: removedPieceRecord.stackIndex)
-            }
-            if result.hasCapture, let toPosition = result.toPosition {
-                boardCopy.removePiece(at: toPosition)
-            }
-            var movedPiece: Piece?
-            if let fromPosition = result.fromPosition {
-                movedPiece = boardCopy.removePiece(at: fromPosition)
-            }
-            boardCopy.conquerFields(positions: result.conqueredPositions)
-            if let movedPiece = movedPiece, let toPosition = result.toPosition {
-                boardCopy.placePiece(movedPiece, at: toPosition)
-            }
-            if let placedPieceRecord = result.piecePlaced {
-                boardCopy.placePiece(Piece(game.currentTurn, placedPieceRecord.pieceType), at: placedPieceRecord.position)
-            }
+            boardCopy.applyMoveResult(result, currentTurn: game.currentTurn)
             return apply(game, move, &boardCopy, &result)
         }
     }
