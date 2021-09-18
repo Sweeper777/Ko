@@ -70,4 +70,33 @@ public struct Board {
         piecesPositions[Piece(opposingColor, .field)]?.formUnion(positions)
         return true
     }
+    
+    @discardableResult
+    mutating func applyMoveResult(_ moveResult: MoveResult, currentTurn: PlayerColor) -> (piecesRemoved: [Piece], piecesPlaced: [PiecePlacementRecord]) {
+        var piecesRemoved = [Piece]()
+        var piecesPlaced = [PiecePlacementRecord]()
+        if moveResult.hasCapture, let toPosition = moveResult.toPosition,
+           let removedPiece = removePiece(at: toPosition) {
+            piecesRemoved.append(removedPiece)
+        }
+        var movedPiece: Piece?
+        if let fromPosition = moveResult.fromPosition {
+            movedPiece = removePiece(at: fromPosition)
+        }
+        conquerFields(positions: moveResult.conqueredPositions)
+        if let movedPiece = movedPiece, let toPosition = moveResult.toPosition {
+            placePiece(movedPiece, at: toPosition)
+        }
+        if let placedPieceRecord = moveResult.piecePlaced {
+            placePiece(Piece(currentTurn, placedPieceRecord.pieceType), at: placedPieceRecord.position)
+            if placedPieceRecord.pieceType != .field && placedPieceRecord.pieceType != .empress {
+                piecesPlaced.append(placedPieceRecord)
+            }
+        }
+        for removedPieceRecord in moveResult.piecesRemoved.sorted(by: { $0.stackIndex > $1.stackIndex }) {
+            let removedPiece = removePiece(at: removedPieceRecord.position, stackIndex: removedPieceRecord.stackIndex)
+            piecesRemoved.append(removedPiece)
+        }
+        return (piecesRemoved, piecesPlaced)
+    }
 }
