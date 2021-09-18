@@ -52,6 +52,8 @@
 		5A99567F26F0381100E95169 /* MoonRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A99567D26F0381100E95169 /* MoonRules.swift */; };
 		5A99568126F042F700E95169 /* RabbitRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A99568026F042F700E95169 /* RabbitRules.swift */; };
 		5A99568226F042F700E95169 /* RabbitRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A99568026F042F700E95169 /* RabbitRules.swift */; };
+		5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
+		5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,7 @@
 		5A98CAD626E3A91D00D1FEE8 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		5A99567D26F0381100E95169 /* MoonRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonRules.swift; sourceTree = "<group>"; };
 		5A99568026F042F700E95169 /* RabbitRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabbitRules.swift; sourceTree = "<group>"; };
+		5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleRule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +217,7 @@
 				5A99567D26F0381100E95169 /* MoonRules.swift */,
 				5A99568026F042F700E95169 /* RabbitRules.swift */,
 				5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */,
+				5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */,
 			);
 			path = KoModel;
 			sourceTree = "<group>";
@@ -434,6 +438,7 @@
 				5A99568126F042F700E95169 /* RabbitRules.swift in Sources */,
 				5A91767126F1F50500D85B96 /* ExtraPieceDetector.swift in Sources */,
 				5A98CAD426E3A6CC00D1FEE8 /* Game.swift in Sources */,
+				5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */,
 				5A8EA1AE26EEF02B005B4874 /* HareRules.swift in Sources */,
 				5A8D322626E5A1FA0065B536 /* Rule.swift in Sources */,
 				5A972E5626E073AD009E6B3D /* Array2D.swift in Sources */,
@@ -456,6 +461,7 @@
 				5A99568226F042F700E95169 /* RabbitRules.swift in Sources */,
 				5A91767226F1F50500D85B96 /* ExtraPieceDetector.swift in Sources */,
 				5A98CAD526E3A6CC00D1FEE8 /* Game.swift in Sources */,
+				5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */,
 				5A8EA1AF26EEF02B005B4874 /* HareRules.swift in Sources */,
 				5A8D322726E5A1FA0065B536 /* Rule.swift in Sources */,
 				5A972E5726E073AD009E6B3D /* Array2D.swift in Sources */,
