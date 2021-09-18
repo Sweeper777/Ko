@@ -40,28 +40,9 @@ public class Game {
             return nil
         }
 
-        if moveResult.hasCapture, let toPosition = moveResult.toPosition,
-           let removedPiece = board.removePiece(at: toPosition) {
-            resolveRemovedPiece(removedPiece)
-        }
-        var movedPiece: Piece?
-        if let fromPosition = moveResult.fromPosition {
-            movedPiece = board.removePiece(at: fromPosition)
-        }
-        board.conquerFields(positions: moveResult.conqueredPositions)
-        if let movedPiece = movedPiece, let toPosition = moveResult.toPosition {
-            board.placePiece(movedPiece, at: toPosition)
-        }
-        if let placedPieceRecord = moveResult.piecePlaced {
-            board.placePiece(Piece(currentTurn, placedPieceRecord.pieceType), at: placedPieceRecord.position)
-            if placedPieceRecord.pieceType != .field && placedPieceRecord.pieceType != .empress {
-                currentPlayer.placementRecords.append(placedPieceRecord)
-            }
-        }
-        for removedPieceRecord in moveResult.piecesRemoved.sorted(by: { $0.stackIndex > $1.stackIndex }) {
-            let removedPiece = board.removePiece(at: removedPieceRecord.position, stackIndex: removedPieceRecord.stackIndex)
-            resolveRemovedPiece(removedPiece)
-        }
+        let (piecesRemoved, piecesPlaced) = board.applyMoveResult(moveResult, currentTurn: currentTurn)
+        piecesRemoved.forEach(resolveRemovedPiece(_:))
+        currentPlayer.placementRecords.append(contentsOf: piecesPlaced)
         result = moveResult.gameResult
         if case .notDetermined = result {
             nextTurn()
