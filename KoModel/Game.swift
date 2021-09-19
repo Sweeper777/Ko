@@ -1,4 +1,6 @@
 public class Game {
+    public init() {}
+    
     public let bluePlayer = Player(color: .blue)
     public let whitePlayer = Player(color: .white)
     public internal(set) var currentTurn = PlayerColor.blue
