@@ -49,5 +49,51 @@ class PieceView: UIView {
                               y: drawingRect.minY))
         path.close()
         path.lineWidth = lineWidth
+        let textColor: UIColor
+        switch piece.color {
+        case .blue:
+            UIColor.systemBlue.setFill()
+            textColor = .white
+        case .white:
+            UIColor.white.setFill()
+            textColor = .black
+        }
+        UIColor.lightGray.setStroke()
+        path.fill()
+        path.stroke()
+        
+        if pieces.count > 1 {
+            let stackedPiecePath = UIBezierPath()
+            stackedPiecePath.move(to: CGPoint(x: drawingRect.minX + drawingRect.width * (1 - bottomProportion) / 2,
+                                              y: drawingRect.maxY + 2 * lineWidth))
+            stackedPiecePath.addLine(to: CGPoint(x: drawingRect.maxX - drawingRect.width * (1 - bottomProportion) / 2,
+                                                 y: drawingRect.maxY + 2 * lineWidth))
+            stackedPiecePath.lineWidth = lineWidth
+            stackedPiecePath.stroke()
+        }
+        
+        let text: String
+        switch piece.type {
+        case .field:
+            return
+        case .empress:
+            text = "E"
+        case .burrow:
+            text = "B"
+        case .rabbit:
+            text = "R"
+        case .hare:
+            text = "H"
+        case .moon:
+            text = "M"
+        }
+        let attrString = NSAttributedString(string: text, attributes: [
+            .foregroundColor: textColor,
+            .font: UIFont.systemFont(ofSize: fontSize)
+        ])
+        let textSize = attrString.size()
+        let textRect = CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
+            .insetBy(dx: -textSize.width / 2, dy: -textSize.height / 2)
+        attrString.draw(in: textRect)
     }
 }
