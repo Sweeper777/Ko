@@ -1,11 +1,5 @@
-//
-//  ViewController.swift
-//  Ko
-//
-//  Created by Mulang Su on 1/9/2021.
-//
-
 import UIKit
+import KoModel
 
 class ViewController: UIViewController {
 
@@ -18,6 +12,20 @@ class ViewController: UIViewController {
         scrollView.delegate = self
         scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width / 2 - scrollView.bounds.width / 2,
                                            y: scrollView.contentSize.height / 2 - scrollView.bounds.height / 2)
+        
+        let game = Game()
+        boardView.game = game
+        _ = game.makeMove(.placePiece(.field, at: .init(9, 9)))
+        _ = game.makeMove(.placePiece(.field, at: .init(9, 8)))
+        _ = game.makeMove(.placePiece(.field, at: .init(10, 9)))
+        _ = game.makeMove(.placePiece(.field, at: .init(10, 8)))
+        _ = game.makeMove(.placePiece(.field, at: .init(11, 9)))
+        _ = game.makeMove(.placePiece(.field, at: .init(11, 8)))
+        _ = game.makeMove(.placePiece(.field, at: .init(11, 10)))
+        _ = game.makeMove(.placePiece(.field, at: .init(11, 7)))
+        _ = game.makeMove(.placePiece(.empress, at: .init(11, 11)))
+        _ = game.makeMove(.placePiece(.empress, at: .init(11, 6)))
+        boardView.updatePieceViews()
     }
 
 
