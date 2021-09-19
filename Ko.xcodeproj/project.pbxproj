@@ -54,6 +54,7 @@
 		5A99568226F042F700E95169 /* RabbitRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A99568026F042F700E95169 /* RabbitRules.swift */; };
 		5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
+		5A9E3CA826F5D12800F48727 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA726F5D12800F48727 /* PieceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		5A99567D26F0381100E95169 /* MoonRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonRules.swift; sourceTree = "<group>"; };
 		5A99568026F042F700E95169 /* RabbitRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabbitRules.swift; sourceTree = "<group>"; };
 		5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleRule.swift; sourceTree = "<group>"; };
+		5A9E3CA726F5D12800F48727 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */,
 				5A8B771526DF2CED0063C3E7 /* ViewController.swift */,
 				5A8F47BD26ECA090000E1C1B /* BoardView.swift */,
+				5A9E3CA726F5D12800F48727 /* PieceView.swift */,
 				5A8B771726DF2CED0063C3E7 /* Main.storyboard */,
 				5A8B771A26DF2CF00063C3E7 /* Assets.xcassets */,
 				5A8B771C26DF2CF00063C3E7 /* LaunchScreen.storyboard */,
@@ -422,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A9E3CA826F5D12800F48727 /* PieceView.swift in Sources */,
 				5A8B771626DF2CED0063C3E7 /* ViewController.swift in Sources */,
 				5A8F47BE26ECA090000E1C1B /* BoardView.swift in Sources */,
 				5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */,
