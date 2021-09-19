@@ -58,4 +58,25 @@ class BoardView: UIView {
         CGSize(width: CGFloat(GameConstants.boardColumns) * squareLength,
                height: CGFloat(GameConstants.boardRows) * squareLength)
     }
+    
+    func updatePieceViews() {
+        self.subviews.forEach { $0.removeFromSuperview() }
+        guard let game = game else {
+            return
+        }
+        for x in 0..<game.board.board.columns {
+            for y in 0..<game.board.board.rows {
+                let stack = game.board.board[x, y]
+                if !stack.isEmpty {
+                    let pieceView = PieceView(frame: CGRect(x: CGFloat(x) * squareLength,
+                                                            y: CGFloat(y) * squareLength,
+                                                            width: squareLength,
+                                                            height: squareLength))
+                    addSubview(pieceView)
+                    pieceView.pieces = stack
+                    pieceView.tag = Position(x, y).rawValue
+                }
+            }
+        }
+    }
 }
