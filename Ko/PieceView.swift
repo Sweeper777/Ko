@@ -23,6 +23,12 @@ class PieceView: UIView {
         }
     }
     
+    var isSelected: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         guard let piece = pieces.top else {
             return
@@ -65,6 +71,9 @@ class PieceView: UIView {
             textOffset = -5
             path.apply(CGAffineTransform(scaleX: 1, y: -1))
             path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
+        }
+        if isSelected {
+            UIColor.systemRed.setStroke()
         }
         path.fill()
         path.stroke()

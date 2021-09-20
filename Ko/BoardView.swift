@@ -21,6 +21,17 @@ class BoardView: UIView {
     let squareLength: CGFloat = 54
     let lineWidth: CGFloat = 7
     
+    var selectedPosition: Position? {
+        didSet {
+            if let tag = oldValue?.rawValue, let pieceView = viewWithTag(tag) as? PieceView {
+                pieceView.isSelected = false
+            }
+            if let newTag = selectedPosition?.rawValue, let selectedView = viewWithTag(newTag) as? PieceView {
+                selectedView.isSelected = true
+            }
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         UIColor.white.setFill()
         UIBezierPath(rect: CGRect(x: 8 * squareLength,
