@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         _ = game.makeMove(.placePiece(.empress, at: .init(11, 11)))
         _ = game.makeMove(.placePiece(.empress, at: .init(11, 6)))
         boardView.updatePieceViews()
+        boardView.delegate = self
     }
 
 
@@ -40,5 +41,15 @@ extension ViewController: UIScrollViewDelegate {
         let offsetX = max((scrollView.bounds.width - scrollView.contentSize.width) * 0.5, 0)
         let offsetY = max((scrollView.bounds.height - scrollView.contentSize.height) * 0.5, 0)
         scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
+    }
+}
+
+extension ViewController: BoardViewDelegate {
+    func didTapPosition(_ boardView: BoardView, position: Position) {
+        if position != boardView.selectedPosition {
+            boardView.selectedPosition = position
+        } else {
+            boardView.selectedPosition = nil
+        }
     }
 }
