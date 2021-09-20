@@ -32,6 +32,8 @@ class BoardView: UIView {
         }
     }
     
+    weak var delegate: BoardViewDelegate?
+    
     override func draw(_ rect: CGRect) {
         UIColor.white.setFill()
         UIBezierPath(rect: CGRect(x: 8 * squareLength,
@@ -90,4 +92,19 @@ class BoardView: UIView {
             }
         }
     }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        let location = touch.location(in: self)
+        let (x, y) = (Int(location.x / squareLength), Int(location.y / squareLength))
+        if (0..<(game?.board.board.columns ?? 0)).contains(x) && (0..<(game?.board.board.rows ?? 0)).contains(y) {
+            delegate?.didTapPosition(self, position: Position(x, y))
+        }
+    }
+}
+
+protocol BoardViewDelegate: AnyObject {
+    func didTapPosition(_ boardView: BoardView, position: Position)
 }
