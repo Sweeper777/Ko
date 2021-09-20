@@ -1,5 +1,6 @@
 import UIKit
 import KoModel
+import SwiftyUtils
 
 class PieceView: UIView {
     override init(frame: CGRect) {
@@ -53,12 +54,15 @@ class PieceView: UIView {
         switch piece.color {
         case .blue:
             UIColor.systemBlue.setFill()
+            UIColor.systemBlue.lighter().setStroke()
             textColor = .white
         case .white:
             UIColor.white.setFill()
+            UIColor.white.darker().setStroke()
             textColor = .black
+            path.apply(CGAffineTransform(scaleX: 1, y: -1))
+            path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
         }
-        UIColor.lightGray.setStroke()
         path.fill()
         path.stroke()
         
