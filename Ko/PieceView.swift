@@ -51,15 +51,18 @@ class PieceView: UIView {
         path.close()
         path.lineWidth = lineWidth
         let textColor: UIColor
+        let textOffset: CGFloat
         switch piece.color {
         case .blue:
             UIColor.systemBlue.setFill()
             UIColor.systemBlue.lighter().setStroke()
             textColor = .white
+            textOffset = 5
         case .white:
             UIColor.white.setFill()
             UIColor.white.darker().setStroke()
             textColor = .black
+            textOffset = -5
             path.apply(CGAffineTransform(scaleX: 1, y: -1))
             path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
         }
@@ -93,11 +96,12 @@ class PieceView: UIView {
         }
         let attrString = NSAttributedString(string: text, attributes: [
             .foregroundColor: textColor,
-            .font: UIFont.systemFont(ofSize: fontSize)
+            .font: UIFont.boldSystemFont(ofSize: fontSize)
         ])
         let textSize = attrString.size()
         let textRect = CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
             .insetBy(dx: -textSize.width / 2, dy: -textSize.height / 2)
+            .applying(CGAffineTransform(translationX: 0, y: textOffset))
         attrString.draw(in: textRect)
     }
 }
