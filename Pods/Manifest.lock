@@ -1,0 +1,20 @@
+PODS:
+  - SCLAlertView (0.8)
+  - SwiftyUtils (5.2.0)
+
+DEPENDENCIES:
+  - SCLAlertView
+  - SwiftyUtils
+
+SPEC REPOS:
+  trunk:
+    - SCLAlertView
+    - SwiftyUtils
+
+SPEC CHECKSUMS:
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SwiftyUtils: 4c99e810e769063dbd5d4e83b486961a5d470aeb
+
+PODFILE CHECKSUM: 47f6d525d16c0fa8a03d7d09f80e3b6cd6e9c310
+
+COCOAPODS: 1.10.1

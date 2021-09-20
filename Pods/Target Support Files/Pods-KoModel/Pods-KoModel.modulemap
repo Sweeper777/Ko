@@ -1,0 +1,6 @@
+framework module Pods_KoModel {
+  umbrella header "Pods-KoModel-umbrella.h"
+
+  export *
+  module * { export * }
+}
