@@ -103,6 +103,11 @@ class BoardView: UIView {
             delegate?.didTapPosition(self, position: Position(x, y))
         }
     }
+    
+    func animateMoveResult(_ moveResult: MoveResult, completion: (() -> Void)?) {
+        updatePieceViews()
+        completion?()
+    }
 }
 
 protocol BoardViewDelegate: AnyObject {
