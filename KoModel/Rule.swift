@@ -128,7 +128,7 @@ class IfViolatedApplyRule: RuleProtocol {
     
     func apply(to game: Game, move: Move, pendingMoveResult: inout MoveResult) -> RuleApplicationResult {
         let rule1Result = rule1.apply(to: game, move: move, pendingMoveResult: &pendingMoveResult)
-        if rule1Result == .violation {
+        if rule1Result == .violation, rule2.isApplicable(to: game, move: move) {
             return rule2.apply(to: game, move: move, pendingMoveResult: &pendingMoveResult)
         } else {
             return rule1Result
@@ -170,7 +170,7 @@ class ExistenceRule : RuleProtocol {
     func isApplicable(to game: Game, move: Move) -> Bool {
         if case .placePiece(pieceType, let pos) = move {
             return isApplicableFunc(game, pos)
-        } else if case .move(_, let to) = move {
+        } else if case .move(let from, let to) = move, case pieceType = game.board[from] {
             return isApplicableFunc(game, to)
         } else {
             return false
