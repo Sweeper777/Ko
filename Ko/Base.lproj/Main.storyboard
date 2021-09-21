@@ -20,7 +20,7 @@
                                 <rect key="frame" x="16" y="20" width="343" height="627"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" minimumZoomScale="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fdi-B3-6qW">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="627"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="596"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-fK-ZoK" customClass="BoardView" customModule="Ko" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="1026" height="972"/>
@@ -29,6 +29,21 @@
                                             </view>
                                         </subviews>
                                     </scrollView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="REA-CX-G17">
+                                        <rect key="frame" x="0.0" y="596" width="343" height="32"/>
+                                        <segments>
+                                            <segment title="" image="arrow.up.and.down.and.arrow.left.and.right" catalog="system"/>
+                                            <segment title="F"/>
+                                            <segment title="E"/>
+                                            <segment title="B"/>
+                                            <segment title="H"/>
+                                            <segment title="R"/>
+                                            <segment title="M"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="moveModeChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="G2O-0k-iwx"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -43,6 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="Nch-fK-ZoK" id="ZjV-Dg-hBb"/>
+                        <outlet property="moveModeSelector" destination="REA-CX-G17" id="dpQ-Oa-OOI"/>
                         <outlet property="scrollView" destination="fdi-B3-6qW" id="2HQ-Xg-ruH"/>
                     </connections>
                 </viewController>
@@ -52,6 +68,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.and.down.and.arrow.left.and.right" catalog="system" width="128" height="122"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

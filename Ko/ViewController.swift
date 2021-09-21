@@ -5,6 +5,8 @@ class ViewController: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var boardView: BoardView!
+    @IBOutlet var moveModeSelector: UISegmentedControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,8 @@ class ViewController: UIViewController {
         boardView.delegate = self
     }
 
-
+    @IBAction func moveModeChanged() {
+    }
 }
 
 extension ViewController: UIScrollViewDelegate {
