@@ -7,6 +7,7 @@ class ViewController: UIViewController {
     @IBOutlet var boardView: BoardView!
     @IBOutlet var moveModeSelector: UISegmentedControl!
     
+    let game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +16,6 @@ class ViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width / 2 - scrollView.bounds.width / 2,
                                            y: scrollView.contentSize.height / 2 - scrollView.bounds.height / 2)
         
-        let game = Game()
         boardView.game = game
         _ = game.makeMove(.placePiece(.field, at: .init(9, 9)))
         _ = game.makeMove(.placePiece(.field, at: .init(9, 8)))
@@ -32,6 +32,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func moveModeChanged() {
+        if moveModeSelector.selectedSegmentIndex != 0 {
+            boardView.selectedPosition = nil
+        }
     }
 }
 
@@ -49,9 +52,38 @@ extension ViewController: UIScrollViewDelegate {
 
 extension ViewController: BoardViewDelegate {
     func didTapPosition(_ boardView: BoardView, position: Position) {
-        if position != boardView.selectedPosition {
-            boardView.selectedPosition = position
-        } else {
+        let moveToMake: Move
+        switch moveModeSelector.selectedSegmentIndex {
+        case 0:
+            if let selectedPosition = boardView.selectedPosition {
+                if selectedPosition == position {
+                    boardView.selectedPosition = nil
+                    return
+                }
+                moveToMake = .move(from: selectedPosition, to: position)
+            } else if !game.board[position].isEmpty {
+                boardView.selectedPosition = position
+                return
+            } else {
+                return
+            }
+        case 1:
+            moveToMake = .placePiece(.field, at: position)
+        case 2:
+            moveToMake = .placePiece(.empress, at: position)
+        case 3:
+            moveToMake = .placePiece(.burrow, at: position)
+        case 4:
+            moveToMake = .placePiece(.hare, at: position)
+        case 5:
+            moveToMake = .placePiece(.rabbit, at: position)
+        case 6:
+            moveToMake = .placePiece(.moon, at: position)
+        default:
+            return
+        }
+        if let moveResult = game.makeMove(moveToMake) {
+            boardView.animateMoveResult(moveResult, completion: nil)
             boardView.selectedPosition = nil
         }
     }
