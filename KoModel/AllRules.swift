@@ -1,5 +1,14 @@
 let allRules: [RuleProtocol] = [
     // MARK: Basic Rules
+    Rule("if a game has ended, no moves can be made", isApplicable: { game, _ in
+        if case .notDetermined = game.result {
+            return false
+        } else {
+            return true
+        }
+    }, apply: { _, _, _ in
+        return .violation
+    }),
     Rule("all moves must be in range of the board", apply: { game, move, _ in
         func inRange(_ position: Position) -> Bool {
             game.board.board[safe: position] != nil
