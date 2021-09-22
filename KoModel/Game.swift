@@ -1,5 +1,7 @@
 public class Game {
-    public init() {}
+    public init() {
+        ruleResolver.rules.append(contentsOf: allRules)
+    }
     
     public let bluePlayer = Player(color: .blue)
     public let whitePlayer = Player(color: .white)
@@ -8,7 +10,7 @@ public class Game {
     public internal(set) var currentTurnNumber = 0
     public internal(set) var result = GameResult.notDetermined
     
-    private let rules = allRules
+    private let ruleResolver = RuleResolver()
     
     public var currentPlayer: Player {
         playerOfColor(currentTurn)
@@ -26,19 +28,7 @@ public class Game {
     }
     
     public func makeMove(_ move: Move) -> MoveResult? {
-        var moveResult = MoveResult()
-        var hasApplicableRules = false
-        for rule in rules {
-            if rule.isApplicable(to: self, move: move) {
-                hasApplicableRules = true
-                let ruleApplicationResult = rule.apply(to: self, move: move, pendingMoveResult: &moveResult)
-                if ruleApplicationResult == .violation {
-                    print("Rule violated: \(rule)")
-                    return nil
-                }
-            }
-        }
-        guard hasApplicableRules else {
+        guard let moveResult = ruleResolver.resolve(against: move, game: self) else {
             return nil
         }
 
