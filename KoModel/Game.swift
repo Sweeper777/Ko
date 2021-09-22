@@ -38,7 +38,17 @@ public class Game {
         result = moveResult.gameResult
         if case .notDetermined = result {
             nextTurn()
+            guard let empressPosition = board.piecesPositions[Piece(currentTurn, .empress)]?.first else {
+                return moveResult
+            }
+            let stalemate = empressPosition.eightNeighbours.map {
+                Move.move(from: empressPosition, to: $0)
+            }.allSatisfy { ruleResolver.resolve(against: $0, game: self) != nil }
+            if stalemate {
+                result = .draw
+            }
         }
+        
         return moveResult
     }
     

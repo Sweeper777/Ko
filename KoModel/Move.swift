@@ -4,7 +4,7 @@ public enum Move {
 }
 
 public enum GameResult: Hashable {
-    case notDetermined, wins(PlayerColor)
+    case notDetermined, wins(PlayerColor), draw
 }
 
 public struct MoveResult: Hashable {
