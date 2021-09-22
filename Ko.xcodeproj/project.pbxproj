@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,8 @@
 		5A972E5426E07012009E6B3D /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A972E5226E06F99009E6B3D /* GameConstants.swift */; };
 		5A972E5626E073AD009E6B3D /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A972E5526E073AD009E6B3D /* Array2D.swift */; };
 		5A972E5726E073AD009E6B3D /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A972E5526E073AD009E6B3D /* Array2D.swift */; };
+		5A984DD726FAB735006738CD /* RuleResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A984DD626FAB735006738CD /* RuleResolver.swift */; };
+		5A984DD826FAB735006738CD /* RuleResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A984DD626FAB735006738CD /* RuleResolver.swift */; };
 		5A98CAD126E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A98CAD026E30C9A00D1FEE8 /* PiecePlacementRecord.swift */; };
 		5A98CAD226E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A98CAD026E30C9A00D1FEE8 /* PiecePlacementRecord.swift */; };
 		5A98CAD426E3A6CC00D1FEE8 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A98CAD326E3A6CC00D1FEE8 /* Game.swift */; };
@@ -55,7 +57,6 @@
 		5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA826F5D12800F48727 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA726F5D12800F48727 /* PieceView.swift */; };
-		94481AA574EB1C31CCC2DB34 /* Pods_KoModelMacOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 477D749A8438DE9D6BE2BA5D /* Pods_KoModelMacOSTests.framework */; };
 		ACA978C81008B24F22C95788 /* Pods_KoModelMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */; };
 		DFC6B28C38CDFD14613339A4 /* Pods_Ko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC9E7099C708D0CEDDC576F /* Pods_Ko.framework */; };
 		F1F2F4052D100621DEC4D197 /* Pods_KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14719D225B1D54F491DD50 /* Pods_KoModel.framework */; };
@@ -95,7 +96,6 @@
 /* Begin PBXFileReference section */
 		1A59043FB43BD5C14A522A9E /* Pods-Ko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ko.debug.xcconfig"; path = "Target Support Files/Pods-Ko/Pods-Ko.debug.xcconfig"; sourceTree = "<group>"; };
 		4408F1594CA4F054E65399BF /* Pods-KoModelMacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModelMacOS.release.xcconfig"; path = "Target Support Files/Pods-KoModelMacOS/Pods-KoModelMacOS.release.xcconfig"; sourceTree = "<group>"; };
-		477D749A8438DE9D6BE2BA5D /* Pods_KoModelMacOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoModelMacOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADC738E40217E8DBD3CA621 /* Pods-KoModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModel.debug.xcconfig"; path = "Target Support Files/Pods-KoModel/Pods-KoModel.debug.xcconfig"; sourceTree = "<group>"; };
 		5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalRule.swift; sourceTree = "<group>"; };
 		5A8B5A2926E1B7B000DD64A7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -127,6 +127,7 @@
 		5A972E4F26E06D84009E6B3D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5A972E5226E06F99009E6B3D /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 		5A972E5526E073AD009E6B3D /* Array2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		5A984DD626FAB735006738CD /* RuleResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleResolver.swift; sourceTree = "<group>"; };
 		5A98CAD026E30C9A00D1FEE8 /* PiecePlacementRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecePlacementRecord.swift; sourceTree = "<group>"; };
 		5A98CAD326E3A6CC00D1FEE8 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		5A98CAD626E3A91D00D1FEE8 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
@@ -134,11 +135,9 @@
 		5A99568026F042F700E95169 /* RabbitRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabbitRules.swift; sourceTree = "<group>"; };
 		5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleRule.swift; sourceTree = "<group>"; };
 		5A9E3CA726F5D12800F48727 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
-		6B390FE789AC060DBF977B70 /* Pods-KoModelMacOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModelMacOSTests.release.xcconfig"; path = "Target Support Files/Pods-KoModelMacOSTests/Pods-KoModelMacOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoModelMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837253C06417681D14FC5E5D /* Pods-Ko.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ko.release.xcconfig"; path = "Target Support Files/Pods-Ko/Pods-Ko.release.xcconfig"; sourceTree = "<group>"; };
 		AD15E928AF4F4780FC9A0340 /* Pods-KoModelMacOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModelMacOS.debug.xcconfig"; path = "Target Support Files/Pods-KoModelMacOS/Pods-KoModelMacOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C29BCA5C5F2DA5AAB44258D6 /* Pods-KoModelMacOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModelMacOSTests.debug.xcconfig"; path = "Target Support Files/Pods-KoModelMacOSTests/Pods-KoModelMacOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CC7065C25B60088E44CE2728 /* Pods-KoModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModel.release.xcconfig"; path = "Target Support Files/Pods-KoModel/Pods-KoModel.release.xcconfig"; sourceTree = "<group>"; };
 		DE14719D225B1D54F491DD50 /* Pods_KoModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCC9E7099C708D0CEDDC576F /* Pods_Ko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,7 +174,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A8B775626DF2DCD0063C3E7 /* KoModel.framework in Frameworks */,
-				94481AA574EB1C31CCC2DB34 /* Pods_KoModelMacOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +186,6 @@
 				FCC9E7099C708D0CEDDC576F /* Pods_Ko.framework */,
 				DE14719D225B1D54F491DD50 /* Pods_KoModel.framework */,
 				728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */,
-				477D749A8438DE9D6BE2BA5D /* Pods_KoModelMacOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,10 +199,7 @@
 				CC7065C25B60088E44CE2728 /* Pods-KoModel.release.xcconfig */,
 				AD15E928AF4F4780FC9A0340 /* Pods-KoModelMacOS.debug.xcconfig */,
 				4408F1594CA4F054E65399BF /* Pods-KoModelMacOS.release.xcconfig */,
-				C29BCA5C5F2DA5AAB44258D6 /* Pods-KoModelMacOSTests.debug.xcconfig */,
-				6B390FE789AC060DBF977B70 /* Pods-KoModelMacOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -263,6 +257,7 @@
 				5A98CAD326E3A6CC00D1FEE8 /* Game.swift */,
 				5A98CAD626E3A91D00D1FEE8 /* Move.swift */,
 				5A8D322526E5A1FA0065B536 /* Rule.swift */,
+				5A984DD626FAB735006738CD /* RuleResolver.swift */,
 				5A91767026F1F50500D85B96 /* ExtraPieceDetector.swift */,
 				5A90E2C226E6FF1C00FC3AF1 /* AllRules.swift */,
 				5A8EA1AD26EEF02B005B4874 /* HareRules.swift */,
@@ -379,7 +374,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A8B776126DF2DCD0063C3E7 /* Build configuration list for PBXNativeTarget "KoModelMacOSTests" */;
 			buildPhases = (
-				3931976C40F3B032753A72C8 /* [CP] Check Pods Manifest.lock */,
 				5A8B775126DF2DCD0063C3E7 /* Sources */,
 				5A8B775226DF2DCD0063C3E7 /* Frameworks */,
 				5A8B775326DF2DCD0063C3E7 /* Resources */,
@@ -492,28 +486,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ko/Pods-Ko-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3931976C40F3B032753A72C8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KoModelMacOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4B22338DBAF82999BEC38B59 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -599,6 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A984DD726FAB735006738CD /* RuleResolver.swift in Sources */,
 				5A972E5026E06D84009E6B3D /* Player.swift in Sources */,
 				5A98CAD126E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
 				5A99568126F042F700E95169 /* RabbitRules.swift in Sources */,
@@ -622,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A984DD826FAB735006738CD /* RuleResolver.swift in Sources */,
 				5A972E5126E06D88009E6B3D /* Player.swift in Sources */,
 				5A98CAD226E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
 				5A99568226F042F700E95169 /* RabbitRules.swift in Sources */,
@@ -968,7 +942,6 @@
 		};
 		5A8B776226DF2DCD0063C3E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C29BCA5C5F2DA5AAB44258D6 /* Pods-KoModelMacOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -990,7 +963,6 @@
 		};
 		5A8B776326DF2DCD0063C3E7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B390FE789AC060DBF977B70 /* Pods-KoModelMacOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -6,11 +6,6 @@ target 'Ko' do
   use_frameworks!
 
   # Pods for Ko
-
-  target 'KoModelMacOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
   pod 'SwiftyUtils'
   pod 'SCLAlertView'
 end
