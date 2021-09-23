@@ -56,8 +56,8 @@ extension ViewController: UIScrollViewDelegate {
 extension ViewController: BoardViewDelegate {
     func didTapPosition(_ boardView: BoardView, position: Position) {
         let moveToMake: Move
-        switch moveModeSelector.selectedSegmentIndex {
-        case 0:
+        switch pieceSelector.selectedPiece?.type {
+        case nil:
             if let selectedPosition = boardView.selectedPosition {
                 if selectedPosition == position {
                     boardView.selectedPosition = nil
@@ -70,24 +70,13 @@ extension ViewController: BoardViewDelegate {
             } else {
                 return
             }
-        case 1:
-            moveToMake = .placePiece(.field, at: position)
-        case 2:
-            moveToMake = .placePiece(.empress, at: position)
-        case 3:
-            moveToMake = .placePiece(.burrow, at: position)
-        case 4:
-            moveToMake = .placePiece(.hare, at: position)
-        case 5:
-            moveToMake = .placePiece(.rabbit, at: position)
-        case 6:
-            moveToMake = .placePiece(.moon, at: position)
-        default:
-            return
+        case let type?:
+            moveToMake = .placePiece(type, at: position)
         }
         if let moveResult = game.makeMove(moveToMake) {
             boardView.animateMoveResult(moveResult, completion: nil)
             boardView.selectedPosition = nil
+            pieceSelector.selectedPiece = nil
         }
     }
 }
