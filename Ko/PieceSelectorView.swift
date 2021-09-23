@@ -16,6 +16,8 @@ class PieceSelectorView: UIView {
     
     private var stackView: UIStackView!
     
+    weak var delegate: PieceSelectorDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -41,5 +43,28 @@ class PieceSelectorView: UIView {
         ])
     }
     
+    private func updatePieceViews() {
+        let subviews = stackView.arrangedSubviews
+        subviews.forEach { stackView.removeArrangedSubview($0) }
+        for piece in selectablePieces {
+            let pieceView = PieceViewButton(frame: stackView.bounds)
+            pieceView.translatesAutoresizingMaskIntoConstraints = false
+            pieceView.widthAnchor.constraint(equalTo: pieceView.heightAnchor).isActive = true
+            pieceView.isSelected = piece == selectedPiece
+            pieceView.pieces.push(piece)
+            pieceView.tapped = {
+                [weak self] in
+                if self?.selectedPiece == $0.pieces.top {
+                    self?.selectedPiece = nil
+                } else {
+                    self?.selectedPiece = $0.pieces.top
+                }
+            }
+            stackView.addArrangedSubview(pieceView)
+        }
+    }
 }
 
+protocol PieceSelectorDelegate: AnyObject {
+    func pieceSelectorValueDidChange(_ pieceSelector: PieceSelectorView, selectedPiece: Piece?)
+}
