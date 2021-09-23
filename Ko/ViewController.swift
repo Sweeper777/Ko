@@ -5,7 +5,7 @@ class ViewController: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var boardView: BoardView!
-    @IBOutlet var moveModeSelector: UISegmentedControl!
+    @IBOutlet var pieceSelector: PieceSelectorView!
     
     let game = Game()
     
@@ -29,12 +29,15 @@ class ViewController: UIViewController {
         _ = game.makeMove(.placePiece(.empress, at: .init(11, 6)))
         boardView.updatePieceViews()
         boardView.delegate = self
-    }
-
-    @IBAction func moveModeChanged() {
-        if moveModeSelector.selectedSegmentIndex != 0 {
-            boardView.selectedPosition = nil
-        }
+        
+        pieceSelector.selectablePieces = [
+            .init(.blue, .field),
+            .init(.blue, .burrow),
+            .init(.blue, .rabbit),
+            .init(.blue, .hare),
+            .init(.blue, .moon),
+        ]
+        pieceSelector.delegate = self
     }
 }
 
@@ -86,5 +89,11 @@ extension ViewController: BoardViewDelegate {
             boardView.animateMoveResult(moveResult, completion: nil)
             boardView.selectedPosition = nil
         }
+    }
+}
+
+extension ViewController: PieceSelectorDelegate {
+    func pieceSelectorValueDidChange(_ pieceSelector: PieceSelectorView, selectedPiece: Piece?) {
+        boardView.selectedPosition = nil
     }
 }
