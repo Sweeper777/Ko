@@ -6,6 +6,10 @@ class ViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var boardView: BoardView!
     @IBOutlet var pieceSelector: PieceSelectorView!
+    @IBOutlet var blueProgress: UIProgressView!
+    @IBOutlet var whiteProgress: UIProgressView!
+    @IBOutlet var blueFieldCountLabel: UILabel!
+    @IBOutlet var whiteFieldCountLabel: UILabel!
     
     let game = Game()
     
@@ -38,6 +42,19 @@ class ViewController: UIViewController {
             .init(.blue, .moon),
         ]
         pieceSelector.delegate = self
+        updateViews()
+    }
+    
+    func updateViews() {
+        boardView.selectedPosition = nil
+        pieceSelector.selectedPiece = nil
+        let blueFieldCount = game.board.piecesPositions[Piece(.blue, .field)]?.count ?? 0
+        let whiteFieldCount = game.board.piecesPositions[Piece(.white, .field)]?.count ?? 0
+        blueProgress.progress = min(1, Float(blueFieldCount) / Float(GameConstants.requiredFieldCountForCastle))
+        whiteProgress.progress = min(1, Float(whiteFieldCount) / Float(GameConstants.requiredFieldCountForCastle))
+        blueFieldCountLabel.text = "\(blueFieldCount)"
+        whiteFieldCountLabel.text = "\(whiteFieldCount)"
+        pieceSelector.selectablePieces = game.allPlaceablePieces()
     }
 }
 
@@ -75,8 +92,7 @@ extension ViewController: BoardViewDelegate {
         }
         if let moveResult = game.makeMove(moveToMake) {
             boardView.animateMoveResult(moveResult, completion: nil)
-            boardView.selectedPosition = nil
-            pieceSelector.selectedPiece = nil
+            updateViews()
         }
     }
 }
