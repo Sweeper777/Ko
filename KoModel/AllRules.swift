@@ -203,50 +203,8 @@ let allRules: [RuleProtocol] = [
         }
         return touching ? .compliance : .violation
     })),
-    PlacePieceRule("a player can place different pieces depending on how many fields they have", isApplicable: {
-        _, placedPiece in placedPiece.pieceType != .empress && placedPiece.pieceType != .field
-    }, apply: {
-        game, placedPiece, _ in
-        let numberOfFields = game.board.piecesPositions[Piece(game.currentTurn, .field)]?.count ?? 0
-        let numberOfHares = game.board.piecesPositions[Piece(game.currentTurn, .hare)]?.count ?? 0
-        let numberOfRabbits = game.board.piecesPositions[Piece(game.currentTurn, .rabbit)]?.count ?? 0
-        let numberOfMoons = game.board.piecesPositions[Piece(game.currentTurn, .moon)]?.count ?? 0
-        let numberOfBurrows = game.board.piecesPositions[Piece(game.currentTurn, .burrow)]?.count ?? 0
-        var postMovePieceCounts = [
-            PieceType.moon: numberOfMoons,
-            .hare: numberOfHares,
-            .rabbit: numberOfRabbits,
-            .burrow: numberOfBurrows
-        ]
-        postMovePieceCounts[placedPiece.pieceType]! += 1
-        let extraPieces = detectExtraPiece(
-            fieldCount: numberOfFields,
-            piecesCounts: postMovePieceCounts,
-            placementRecords: game.currentPlayer.placementRecords
-        )
-        if extraPieces.values.contains(where: { $0 > 0 }) {
-            return .violation
-        } else {
-            return .compliance
-        }
-    }),
-    PlacePieceRule("a player can only place a piece if they have that piece", apply: {
-        game, placedPiece, _ in
-        switch placedPiece.pieceType {
-        case .field:
-            return game.currentPlayer.availableFields > 0 ? .compliance : .violation
-        case .empress:
-            return (game.board.piecesPositions[Piece(game.currentTurn, .empress)]?.count ?? 0) > 0 ? .violation : .compliance
-        case .burrow:
-            return game.currentPlayer.availableBurrows > 0 ? .compliance : .violation
-        case .rabbit:
-            return game.currentPlayer.availableRabbits > 0 ? .compliance : .violation
-        case .hare:
-            return game.currentPlayer.availableHares > 0 ? .compliance : .violation
-        case .moon:
-            return game.currentPlayer.availableMoons > 0 ? .compliance : .violation
-        }
-    }),
+    placePieceFieldRequirementRule,
+    placePieceRemainingPieceRequirementRule,
     PlacePieceRule("a burrow can be placed in a position if that position is surrounded by fields of either color. When it is placed, the fields are conquered.", isApplicable: {
         _, placedPiece in placedPiece.pieceType == .burrow
     }, apply: { game, placedPiece, result in
