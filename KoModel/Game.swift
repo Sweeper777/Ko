@@ -35,6 +35,7 @@ public class Game {
         let (piecesRemoved, piecesPlaced) = board.applyMoveResult(moveResult, currentTurn: currentTurn)
         piecesRemoved.forEach(resolveRemovedPiece(_:))
         currentPlayer.placementRecords.append(contentsOf: piecesPlaced)
+        piecesPlaced.forEach(resolvePlacedPiece(_:))
         result = moveResult.gameResult
         if case .notDetermined = result {
             nextTurn()
@@ -74,6 +75,23 @@ public class Game {
             currentPlayer.availableFields += 1
         default:
             fatalError("This piece cannot be removed!")
+        }
+    }
+    
+    private func resolvePlacedPiece(_ placedPiece: PiecePlacementRecord) {
+        switch placedPiece.pieceType {
+        case .burrow:
+            currentPlayer.availableBurrows -= 1
+        case .hare:
+            currentPlayer.availableHares -= 1
+        case .moon:
+            currentPlayer.availableMoons -= 1
+        case .rabbit:
+            currentPlayer.availableRabbits -= 1
+        case .field:
+            currentPlayer.availableFields -= 1
+        case .empress:
+            break
         }
     }
     
