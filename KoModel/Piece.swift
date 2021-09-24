@@ -1,4 +1,4 @@
-public enum PieceType: Int, Hashable, Codable {
+public enum PieceType: Int, Hashable, Codable, CaseIterable {
     case field, empress, burrow, rabbit, hare, moon
 }
 

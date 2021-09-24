@@ -76,4 +76,24 @@ public class Game {
             fatalError("This piece cannot be removed!")
         }
     }
+    
+    public func allPlaceablePieces() -> [Piece] {
+        guard result == .notDetermined else { return [] }
+        if currentTurnNumber < 4 {
+            return [Piece(currentTurn, .field)]
+        }
+        if currentTurnNumber == 4 {
+            return [Piece(currentTurn, .empress)]
+        }
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = [placePieceFieldRequirementRule, placePieceRemainingPieceRequirementRule]
+        var placeablePieceTypes = [PieceType]()
+        for pieceType in PieceType.allCases {
+            if ruleResolver.resolve(against: .placePiece(pieceType, at: .init(0, 0)), game: self) != nil {
+                placeablePieceTypes.append(pieceType)
+            }
+        }
+        return placeablePieceTypes.map { Piece(currentTurn, $0) }
+    }
+    
 }
