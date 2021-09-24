@@ -12,4 +12,5 @@ public enum GameConstants {
     public static let firstRabbitHareThreshold = 14
     public static let secondRabbitHareThreshold = 28
     public static let moonThreshold = 43
+    public static let requiredFieldCountForCastle = 60
 }

@@ -6,8 +6,8 @@ class EmpressCastleRule: PostMoveRule {
             let numberOfBurrows = newBoard.piecesPositions[Piece(game.currentTurn, .burrow)]?.count ?? 0
             guard let empressPosition = newBoard.piecesPositions[Piece(game.currentTurn, .empress)]?.first,
                   let moonPosition = newBoard.piecesPositions[Piece(game.currentTurn, .moon)]?.first,
-                  numberOfFields >= 60,
-                  numberOfBurrows >= 3,
+                  numberOfFields >= GameConstants.requiredFieldCountForCastle,
+                  numberOfBurrows >= GameConstants.initialBurrows,
                   empressPosition.fourNeighbours.contains(moonPosition),
                   empressPosition.fourNeighbours.filter({
                     newBoard.board[safe: $0]?.bottom == Piece(game.currentTurn, .field)
