@@ -114,4 +114,19 @@ public class Game {
         return placeablePieceTypes.map { Piece(currentTurn, $0) }
     }
     
+    public func placeFieldsForDebugging() {
+        for x in 2...16 {
+            for y in 6...8 {
+                board.placePiece(Piece(.white, .field), at: .init(x, y))
+            }
+            for y in 9...11 {
+                board.placePiece(Piece(.blue, .field), at: .init(x, y))
+            }
+        }
+        board.placePiece(Piece(.blue, .empress), at: .init(9, 12))
+        board.placePiece(Piece(.white, .empress), at: .init(9, 5))
+        currentTurnNumber = 45
+        bluePlayer.availableFields = GameConstants.initialFields - 45
+        whitePlayer.availableFields = GameConstants.initialFields - 45
+    }
 }

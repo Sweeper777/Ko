@@ -21,16 +21,7 @@ class ViewController: UIViewController {
                                            y: scrollView.contentSize.height / 2 - scrollView.bounds.height / 2)
         
         boardView.game = game
-        _ = game.makeMove(.placePiece(.field, at: .init(9, 9)))
-        _ = game.makeMove(.placePiece(.field, at: .init(9, 8)))
-        _ = game.makeMove(.placePiece(.field, at: .init(10, 9)))
-        _ = game.makeMove(.placePiece(.field, at: .init(10, 8)))
-        _ = game.makeMove(.placePiece(.field, at: .init(11, 9)))
-        _ = game.makeMove(.placePiece(.field, at: .init(11, 8)))
-        _ = game.makeMove(.placePiece(.field, at: .init(11, 10)))
-        _ = game.makeMove(.placePiece(.field, at: .init(11, 7)))
-        _ = game.makeMove(.placePiece(.empress, at: .init(11, 11)))
-        _ = game.makeMove(.placePiece(.empress, at: .init(11, 6)))
+        game.placeFieldsForDebugging()
         boardView.updatePieceViews()
         boardView.delegate = self
         
