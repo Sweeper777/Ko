@@ -8,7 +8,6 @@ class HareMovementRule: MoveRule {
             guard from != to else {
                 return .violation
             }
-            visitedPositions = []
             return game.board.reachableByHare(from: from, to: to) ? .compliance : .violation
         }
     }
@@ -53,25 +52,27 @@ class HareConquerRule: MoveRule {
 }
 
 fileprivate extension Board {
-    func reachableByHare(from: Position, to: Position, depth: Int = 3) -> Bool {
-        if from == to {
-            return true
-        }
-        if depth == 0 {
-            return false
-        }
-        visitedPositions.insert(from)
-        let neighbours = from.fourNeighbours.filter {
-            !visitedPositions.contains($0) && board[safe: $0] != nil &&
-                [PieceType.field, .rabbit, .hare, nil].contains(self[$0].top?.type)
-        }
-        for neighbour in neighbours {
-            if reachableByHare(from: neighbour, to: to, depth: depth - 1) {
+    func reachableByHare(from: Position, to: Position) -> Bool {
+        var visitedPositions = Set<Position>()
+        func reachableByHare(from: Position, to: Position, depth: Int) -> Bool {
+            if from == to {
                 return true
             }
+            if depth == 0 {
+                return false
+            }
+            visitedPositions.insert(from)
+            let neighbours = from.fourNeighbours.filter {
+                !visitedPositions.contains($0) && board[safe: $0] != nil &&
+                    [PieceType.field, .rabbit, .hare, nil].contains(self[$0].top?.type)
+            }
+            for neighbour in neighbours {
+                if reachableByHare(from: neighbour, to: to, depth: depth - 1) {
+                    return true
+                }
+            }
+            return false
         }
-        return false
+        return reachableByHare(from: from, to: to, depth: 3)
     }
 }
-
-var visitedPositions = Set<Position>()
