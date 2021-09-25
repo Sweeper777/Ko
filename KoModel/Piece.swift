@@ -2,7 +2,7 @@ public enum PieceType: Int, Hashable, Codable, CaseIterable {
     case field, empress, burrow, rabbit, hare, moon
 }
 
-public enum PlayerColor: Int, Hashable, Codable {
+public enum PlayerColor: Int, Hashable, Codable, CustomStringConvertible {
     case blue, white
     
     var opposingColor: PlayerColor {
@@ -11,6 +11,15 @@ public enum PlayerColor: Int, Hashable, Codable {
             return .white
         case .white:
             return .blue
+        }
+    }
+    
+    public var description: String {
+        switch self {
+        case .blue:
+            return "Blue"
+        case .white:
+            return "White"
         }
     }
 }
