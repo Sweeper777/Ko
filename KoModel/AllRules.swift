@@ -271,7 +271,8 @@ let allRules: [RuleProtocol] = [
         } else {
             return .compliance
         }
-    })
+    }),
+    EmpressCastleRule()
 ]
 
 fileprivate extension Board {
