@@ -125,8 +125,18 @@ public class Game {
         }
         board.placePiece(Piece(.blue, .empress), at: .init(9, 12))
         board.placePiece(Piece(.white, .empress), at: .init(9, 5))
+        
+        board.removePiece(at: .init(3, 10))
+        board.placePiece(Piece(.blue, .burrow), at: .init(3, 10))
+        
+        board.removePiece(at: .init(8, 10))
+        board.placePiece(Piece(.blue, .burrow), at: .init(8, 10))
+        
+        board.removePiece(at: .init(13, 10))
+        board.placePiece(Piece(.blue, .burrow), at: .init(13, 10))
+        
         currentTurnNumber = 45
-        bluePlayer.availableFields = GameConstants.initialFields - 45
+        bluePlayer.availableFields = GameConstants.initialFields - 42
         whitePlayer.availableFields = GameConstants.initialFields - 45
     }
 }
