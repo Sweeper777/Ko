@@ -1,5 +1,6 @@
 import UIKit
 import KoModel
+import SCLAlertView
 
 class ViewController: UIViewController {
 
@@ -24,14 +25,6 @@ class ViewController: UIViewController {
         game.placeFieldsForDebugging()
         boardView.updatePieceViews()
         boardView.delegate = self
-        
-        pieceSelector.selectablePieces = [
-            .init(.blue, .field),
-            .init(.blue, .burrow),
-            .init(.blue, .rabbit),
-            .init(.blue, .hare),
-            .init(.blue, .moon),
-        ]
         pieceSelector.delegate = self
         updateViews()
     }
@@ -84,6 +77,11 @@ extension ViewController: BoardViewDelegate {
         if let moveResult = game.makeMove(moveToMake) {
             boardView.animateMoveResult(moveResult, completion: nil)
             updateViews()
+            if case .wins(let color) = moveResult.gameResult {
+                SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
+            } else if .draw == moveResult.gameResult {
+                SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
+            }
         }
     }
 }
