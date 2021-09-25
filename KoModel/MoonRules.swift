@@ -40,8 +40,7 @@ fileprivate extension Board {
                 
             }
             for neighbour in neighbours {
-                reachable.insert(neighbour)
-                if board[neighbour].isEmpty {
+                if reachable.insert(neighbour).inserted, board[neighbour].isEmpty {
                     queue.append(neighbour)
                 }
             }
