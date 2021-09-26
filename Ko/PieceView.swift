@@ -30,10 +30,14 @@ class PieceView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        guard let piece = pieces.top else {
-            return
+        var stack = pieces
+        while let piece = stack.bottom {
+            drawPiece(piece)
+            _ = stack.remove(at: 0)
         }
-        
+    }
+    
+    private func drawPiece(_ piece: Piece) {
         let topProportion: CGFloat = 0.2
         let bottomProportion: CGFloat = 0.6
         let bottomHeightProportion: CGFloat = 0.4
@@ -60,13 +64,13 @@ class PieceView: UIView {
         let textOffset: CGFloat
         switch piece.color {
         case .blue:
-            UIColor.systemBlue.setFill()
-            UIColor.systemBlue.lighter().setStroke()
+            UIColor(named: "bluePlayerColor")?.setFill()
+            UIColor(named: "bluePlayerColor")?.lighter().setStroke()
             textColor = .white
             textOffset = 5
         case .white:
-            UIColor.white.setFill()
-            UIColor.white.darker().setStroke()
+            UIColor(named: "whitePlayerColor")?.setFill()
+            UIColor(named: "whitePlayerColor")?.darker().setStroke()
             textColor = .black
             textOffset = -5
             path.apply(CGAffineTransform(scaleX: 1, y: -1))
@@ -77,16 +81,6 @@ class PieceView: UIView {
         }
         path.fill()
         path.stroke()
-        
-        if pieces.count > 1 {
-            let stackedPiecePath = UIBezierPath()
-            stackedPiecePath.move(to: CGPoint(x: drawingRect.minX + drawingRect.width * (1 - bottomProportion) / 2,
-                                              y: drawingRect.maxY + 2 * lineWidth))
-            stackedPiecePath.addLine(to: CGPoint(x: drawingRect.maxX - drawingRect.width * (1 - bottomProportion) / 2,
-                                                 y: drawingRect.maxY + 2 * lineWidth))
-            stackedPiecePath.lineWidth = lineWidth
-            stackedPiecePath.stroke()
-        }
         
         let text: String
         switch piece.type {
