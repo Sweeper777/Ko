@@ -41,7 +41,7 @@ public struct Piece: Hashable, Codable {
     }
 }
 
-public struct PieceStack: Hashable, Codable {
+public struct PieceStack: Hashable, Codable, Sequence {
     private var pieces: [Piece] = []
     public init() {
         
@@ -85,5 +85,9 @@ public struct PieceStack: Hashable, Codable {
     }
     public static func ~=(lhs: PieceType, rhs: PieceStack) -> Bool {
         lhs == rhs.top?.type
+    }
+    
+    public func makeIterator() -> IndexingIterator<[Piece]> {
+        pieces.makeIterator()
     }
 }

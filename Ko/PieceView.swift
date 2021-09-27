@@ -30,10 +30,8 @@ class PieceView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        var stack = pieces
-        while let piece = stack.bottom {
+        for piece in pieces {
             drawPiece(piece)
-            _ = stack.remove(at: 0)
         }
     }
     
