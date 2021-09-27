@@ -29,10 +29,21 @@ class PieceView: UIView {
         }
     }
     
-    override func draw(_ rect: CGRect) {
-        for piece in pieces {
-            drawPiece(piece)
+    private var pieceLayers: [CAShapeLayer] = []
+    private var textLayer: CATextLayer?
+    
+    private func setupLayers() {
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        for _ in pieces {
+            let pieceLayer = CAShapeLayer()
+            pieceLayers.append(pieceLayer)
+            layer.addSublayer(pieceLayer)
         }
+        if !pieces.isEmpty {
+            textLayer = CATextLayer()
+            layer.addSublayer(textLayer!)
+        }
+        setNeedsLayout()
     }
     
     private func drawPiece(_ piece: Piece) {
