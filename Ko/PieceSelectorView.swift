@@ -45,7 +45,10 @@ class PieceSelectorView: UIView {
     
     private func updatePieceViews() {
         let subviews = stackView.arrangedSubviews
-        subviews.forEach { stackView.removeArrangedSubview($0) }
+        subviews.forEach {
+            stackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
         for piece in selectablePieces {
             let pieceView = PieceViewButton(frame: stackView.bounds)
             pieceView.translatesAutoresizingMaskIntoConstraints = false
