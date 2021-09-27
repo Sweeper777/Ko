@@ -10,7 +10,11 @@ class PieceSelectorView: UIView {
     var selectedPiece: Piece? {
         didSet {
             delegate?.pieceSelectorValueDidChange(self, selectedPiece: selectedPiece)
-            updatePieceViews()
+            for view in stackView.arrangedSubviews {
+                if let pieceButton = view as? PieceView {
+                    pieceButton.isSelected = pieceButton.pieces.top == selectedPiece
+                }
+            }
         }
     }
     
