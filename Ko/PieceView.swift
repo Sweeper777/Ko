@@ -80,51 +80,51 @@ class PieceView: UIView {
                 layer.strokeColor = UIColor.red.cgColor
             }
             layer.path = path.cgPath
-            
-            if let piece = pieces.top {
-                let textLayer = CATextLayer()
-                layer.addSublayer(textLayer)
-                let text: String
-                switch piece.type {
-                case .field:
-                    return
-                case .empress:
-                    text = "E"
-                case .burrow:
-                    text = "B"
-                case .rabbit:
-                    text = "R"
-                case .hare:
-                    text = "H"
-                case .moon:
-                    text = "M"
-                }
-                let textColor: UIColor
-                let textOffset: CGFloat
-                let initialTextTransform: CGAffineTransform
-                switch piece.color {
-                case .blue:
-                    textColor = .white
-                    textOffset = 5
-                    initialTextTransform = .identity
-                case .white:
-                    textColor = .black
-                    textOffset = -5
-                    initialTextTransform = CGAffineTransform(rotationAngle: .pi)
-                }
-                let attrString = NSAttributedString(string: text, attributes: [
-                    .foregroundColor: textColor,
-                    .font: UIFont.boldSystemFont(ofSize: fontSize)
-                ])
-                let textSize = attrString.size()
-                let textRect = CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
-                            .insetBy(dx: -textSize.width / 2, dy: -textSize.height / 2)
-                            .applying(CGAffineTransform(translationX: 0, y: textOffset))
-                textLayer.frame = textRect
-                textLayer.string = attrString
-                textLayer.alignmentMode = .center
-                textLayer.setAffineTransform(initialTextTransform)
+            let textLayer = CATextLayer()
+            layer.addSublayer(textLayer)
+            let text: String
+            switch piece.type {
+            case .field:
+                return
+            case .empress:
+                text = "E"
+            case .burrow:
+                text = "B"
+            case .rabbit:
+                text = "R"
+            case .hare:
+                text = "H"
+            case .moon:
+                text = "M"
             }
+            let textColor: UIColor
+            let textOffset: CGFloat
+            let initialTextTransform: CGAffineTransform
+            switch piece.color {
+            case .blue:
+                textColor = .white
+                textOffset = 5
+                initialTextTransform = .identity
+            case .white:
+                textColor = .black
+                textOffset = -5
+                initialTextTransform = CGAffineTransform(rotationAngle: .pi)
+            }
+            let attrString = NSAttributedString(string: text, attributes: [
+                .foregroundColor: textColor,
+                .font: UIFont.boldSystemFont(ofSize: fontSize)
+            ])
+            let textSize = attrString.size()
+            let textRect = CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
+                        .insetBy(dx: -textSize.width / 2, dy: -textSize.height / 2)
+                        .applying(CGAffineTransform(translationX: 0, y: textOffset))
+            textLayer.frame = textRect
+            textLayer.font = CGFont(UIFont.boldSystemFont(ofSize: fontSize).fontName as CFString)
+            textLayer.fontSize = fontSize
+            textLayer.string = text
+            textLayer.foregroundColor = textColor.cgColor
+            textLayer.alignmentMode = .center
+            textLayer.setAffineTransform(initialTextTransform)
         }
     }
 }
