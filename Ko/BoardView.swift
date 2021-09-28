@@ -104,9 +104,19 @@ class BoardView: UIView {
         }
     }
     
+    let animationManager = AnimationManager<PieceViewAnimationPhase>()
+    
     func animateMoveResult(_ moveResult: MoveResult, completion: (() -> Void)?) {
-        updatePieceViews()
-        completion?()
+//        updatePieceViews()
+//        completion?()
+        animationManager.reset()
+        let pieceView = (viewWithTag(Position(9, 12).rawValue) as! PieceView)
+        pieceView.markDirty()
+        let layers = [pieceView.pieceLayers[0]]
+        animationManager.addPhase(group: [
+            .disappear: layers
+        ], duration: 0.5, completion: nil)
+        animationManager.runAnimation(completion: completion)
     }
 }
 
