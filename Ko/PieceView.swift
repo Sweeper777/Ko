@@ -29,6 +29,12 @@ class PieceView: UIView {
         }
     }
     
+    private var isDirty = false
+    
+    func markDirty() {
+        isDirty = true
+    }
+    
     var pieceLayers: [CAShapeLayer] = []
     
     private func setupLayers() {
@@ -42,6 +48,8 @@ class PieceView: UIView {
     }
     
     override func layoutSubviews() {
+        guard !isDirty else { return }
+        
         let topProportion: CGFloat = 0.2
         let bottomProportion: CGFloat = 0.6
         let bottomHeightProportion: CGFloat = 0.4
