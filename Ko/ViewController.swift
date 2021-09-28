@@ -72,7 +72,13 @@ extension ViewController: BoardViewDelegate {
                 return
             }
         case let type?:
-            moveToMake = .placePiece(type, at: position)
+            if !game.board[position].isEmpty {
+                pieceSelector.selectedPiece = nil
+                boardView.selectedPosition = position
+                return
+            } else {
+                moveToMake = .placePiece(type, at: position)
+            }
         }
         if let moveResult = game.makeMove(moveToMake) {
             boardView.animateMoveResult(moveResult, completion: nil)
