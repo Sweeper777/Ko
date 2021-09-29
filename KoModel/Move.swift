@@ -1,4 +1,4 @@
-public enum Move {
+public enum Move: Hashable {
     case placePiece(PieceType, at: Position)
     case move(from: Position, to: Position)
 }
