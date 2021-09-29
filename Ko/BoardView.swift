@@ -16,6 +16,10 @@ class BoardView: UIView {
     
     func commonInit() {
         backgroundColor = .systemGreen
+        highlightLayer = CAShapeLayer()
+        highlightLayer.fillColor = UIColor.systemYellow.cgColor
+        highlightLayer.zPosition = 100
+        layer.addSublayer(highlightLayer)
     }
     
     let squareLength: CGFloat = 54
@@ -25,12 +29,29 @@ class BoardView: UIView {
         didSet {
             if let tag = oldValue?.rawValue, let pieceView = viewWithTag(tag) as? PieceView {
                 pieceView.isSelected = false
+                highlightedPositions = []
             }
-            if let newTag = selectedPosition?.rawValue, let selectedView = viewWithTag(newTag) as? PieceView {
+            if let selectedPos = selectedPosition, let selectedView = viewWithTag(selectedPos.rawValue) as? PieceView {
                 selectedView.isSelected = true
+                if let game = game {
+                    switch game.board[selectedPos] {
+                    case .empress:
+                        highlightMoves(EmpressMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                    default:
+                        break
+                    }
+                }
             }
         }
     }
+    
+    var highlightedPositions: [Position] = [] {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    var highlightLayer: CAShapeLayer!
     
     weak var delegate: BoardViewDelegate?
     
@@ -65,6 +86,23 @@ class BoardView: UIView {
             path.lineWidth = lineWidth
             path.stroke()
         }
+        
+    }
+    
+    override func layoutSubviews() {
+        let highlightPaths = highlightedPositions.map { pos -> UIBezierPath in
+            let squareRect = CGRect(x: CGFloat(pos.x) * squareLength,
+                                    y: CGFloat(pos.y) * squareLength,
+                                    width: squareLength,
+                                    height: squareLength)
+            let origin = CGPoint(x: squareRect.midX, y: squareRect.midY)
+            return UIBezierPath(ovalIn: CGRect(origin: origin, size: .zero)
+                                        .insetBy(dx: -squareLength / 5, dy: -squareLength / 5))
+        }
+        let combinedPath = highlightPaths.reduce(into: UIBezierPath()) { combined, path in
+            combined.append(path)
+        }
+        highlightLayer.path = combinedPath.cgPath
     }
     
     override var intrinsicContentSize: CGSize {
@@ -107,16 +145,20 @@ class BoardView: UIView {
     let animationManager = AnimationManager<PieceViewAnimationPhase>()
     
     func animateMoveResult(_ moveResult: MoveResult, completion: (() -> Void)?) {
-//        updatePieceViews()
-//        completion?()
-        animationManager.reset()
-        let pieceView = (viewWithTag(Position(9, 12).rawValue) as! PieceView)
-        pieceView.markDirty()
-        let layers = [pieceView.pieceLayers[0]]
-        animationManager.addPhase(group: [
-            .disappear: layers
-        ], duration: 0.5, completion: nil)
-        animationManager.runAnimation(completion: completion)
+        updatePieceViews()
+        completion?()
+    }
+    
+    func highlightMoves<S: Sequence>(_ moves: S) where S.Element == Move {
+        highlightedPositions = []
+        for move in moves {
+            switch move {
+            case .move(from: _, let to):
+                highlightedPositions.append(to)
+            case .placePiece(_, let at):
+                highlightedPositions.append(at)
+            }
+        }
     }
 }
 
