@@ -303,6 +303,30 @@ let allRules: [RuleProtocol] = [
     empressCastleRule
 ]
 
+let rulesThatModifyResultOnly: [RuleProtocol] = [
+    movePieceResultRule,
+    placePieceResultRule,
+    hareMoveRule,
+    rabbitMoveRule,
+    pieceRemovalRule,
+    moonCaptureRule,
+    empressCastleRule
+]
+
+let gameBeginningRulesOnly: [RuleProtocol] = [
+    rangeCheckRule,
+    placePieceResultRule,
+    currentTurnRule,
+    placePieceOnEmptySquaresRule,
+    // MARK: Game Beginning
+    firstTurnRule,
+    secondToFourthTurnRule,
+    lShapeRule,
+    empressExistenceRule,
+    fifthTurnRule,
+    grasslandConnectedRule
+]
+
 fileprivate extension Board {
     func hasPiece(_ piece: Piece, within range: Int, of position: Position) -> Bool {
         (piecesPositions[piece] ?? []).contains { abs(position.x - $0.x) < range && abs(position.y - $0.y) < range }
