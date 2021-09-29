@@ -1,5 +1,6 @@
 class RuleResolver {
     var rules: [RuleProtocol] = []
+    var outputDebugMessages = false
     func resolve(against move: Move, game: Game) -> MoveResult? {
         var moveResult = MoveResult()
         var hasApplicableRules = false
@@ -8,7 +9,9 @@ class RuleResolver {
                 hasApplicableRules = true
                 let ruleApplicationResult = rule.apply(to: game, move: move, pendingMoveResult: &moveResult)
                 if ruleApplicationResult == .violation {
-                    print("Rule violated: \(rule)")
+                    if outputDebugMessages {
+                        print("Rule violated: \(rule)")
+                    }
                     return nil
                 }
             }

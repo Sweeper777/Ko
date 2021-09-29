@@ -1,6 +1,7 @@
 public class Game {
     public init() {
         ruleResolver.rules.append(contentsOf: allRules)
+        ruleResolver.outputDebugMessages = true
     }
     
     public let bluePlayer = Player(color: .blue)
@@ -42,9 +43,11 @@ public class Game {
             guard let empressPosition = board.piecesPositions[Piece(currentTurn, .empress)]?.first else {
                 return moveResult
             }
+            ruleResolver.outputDebugMessages = false
             let stalemate = empressPosition.eightNeighbours.map {
                 Move.move(from: empressPosition, to: $0)
             }.allSatisfy { ruleResolver.resolve(against: $0, game: self) != nil }
+            ruleResolver.outputDebugMessages = true
             if stalemate {
                 result = .draw
             }
