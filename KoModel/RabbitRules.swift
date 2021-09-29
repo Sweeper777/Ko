@@ -35,11 +35,11 @@ class RabbitJumpRule: MoveRule {
             
             let xs: [Int]
             let ys: [Int]
-            if deltaX != 0 { // horizontal
+            if deltaX != 0 && deltaY == 0 { // horizontal
                 xs = Array(stride(from: from.x + deltaX.signum(), to: to.x, by: deltaX.signum()))
                 ys = Array(repeating: from.y, count: xs.count)
                 
-            } else if deltaY != 0 { // vertical
+            } else if deltaY != 0 && deltaX == 0 { // vertical
                 ys = Array(stride(from: from.y + deltaY.signum(), to: to.y, by: deltaY.signum()))
                 xs = Array(repeating: from.x, count: ys.count)
             } else { // diagonal
