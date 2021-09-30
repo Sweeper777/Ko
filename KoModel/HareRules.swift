@@ -8,7 +8,7 @@ class HareMovementRule: MoveRule {
             guard from != to else {
                 return .violation
             }
-            return game.board.reachableByHare(from: from, to: to) ? .compliance : .violation
+            return game.board.positionsReachableByHare(from: from).contains(to) ? .compliance : .violation
         }
     }
 }
@@ -51,15 +51,13 @@ class HareConquerRule: MoveRule {
     }
 }
 
-fileprivate extension Board {
-    func reachableByHare(from: Position, to: Position) -> Bool {
+public extension Board {
+    func positionsReachableByHare(from: Position) -> Set<Position> {
         var visitedPositions = Set<Position>()
-        func reachableByHare(from: Position, to: Position, depth: Int) -> Bool {
-            if from == to {
-                return true
-            }
+        func findPositionsReachableByHare(from: Position, depth: Int) {
             if depth == 0 {
-                return false
+                visitedPositions.insert(from)
+                return
             }
             visitedPositions.insert(from)
             let neighbours = from.fourNeighbours.filter {
@@ -67,12 +65,12 @@ fileprivate extension Board {
                     [PieceType.field, .rabbit, .hare, nil].contains(self[$0].top?.type)
             }
             for neighbour in neighbours {
-                if reachableByHare(from: neighbour, to: to, depth: depth - 1) {
-                    return true
-                }
+                findPositionsReachableByHare(from: neighbour, depth: depth - 1)
             }
-            return false
         }
-        return reachableByHare(from: from, to: to, depth: 3)
+        findPositionsReachableByHare(from: from, depth: 3)
+        return visitedPositions
+    }
+}
     }
 }
