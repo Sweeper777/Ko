@@ -37,6 +37,8 @@ class BoardView: UIView {
                     switch game.board[selectedPos] {
                     case .empress:
                         highlightMoves(EmpressMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                    case .hare:
+                        highlightMoves(HareMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
                     default:
                         break
                     }
