@@ -95,5 +95,10 @@ extension ViewController: BoardViewDelegate {
 extension ViewController: PieceSelectorDelegate {
     func pieceSelectorValueDidChange(_ pieceSelector: PieceSelectorView, selectedPiece: Piece?) {
         boardView.selectedPosition = nil
+        if let selectedPieceType = selectedPiece?.type {
+            boardView.highlightMoves(PlacePieceMoveGenerator.generateMoves(forPlacing: selectedPieceType, game: game))
+        } else {
+            boardView.highlightedPositions = []
+        }
     }
 }
