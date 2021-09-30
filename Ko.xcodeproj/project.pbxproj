@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A2646522703A5AA0064CC93 /* PlacePieceMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2646512703A5AA0064CC93 /* PlacePieceMoveGenerator.swift */; };
+		5A2646532703A5AA0064CC93 /* PlacePieceMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2646512703A5AA0064CC93 /* PlacePieceMoveGenerator.swift */; };
 		5A6E5EF026FD864700D7B6B3 /* AnimationPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E5EEC26FD864700D7B6B3 /* AnimationPhase.swift */; };
 		5A6E5EF126FD864700D7B6B3 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E5EED26FD864700D7B6B3 /* AnimationManager.swift */; };
 		5A6E5EF226FD864700D7B6B3 /* AnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E5EEE26FD864700D7B6B3 /* AnimationType.swift */; };
-		5A6E5EF326FD864700D7B6B3 /* ViewAnimationPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E5EEF26FD864700D7B6B3 /* ViewAnimationPhase.swift */; };
+		5A6E5EF326FD864700D7B6B3 /* PieceViewAnimationPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */; };
 		5A81824C26F2E14400B7042E /* PieceRemovalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */; };
 		5A81824D26F2E14400B7042E /* PieceRemovalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */; };
+		5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
+		5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
 		5A8B5A2A26E1B7B000DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B5A2B26E1B7B100DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */; };
@@ -103,11 +107,13 @@
 		1A59043FB43BD5C14A522A9E /* Pods-Ko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ko.debug.xcconfig"; path = "Target Support Files/Pods-Ko/Pods-Ko.debug.xcconfig"; sourceTree = "<group>"; };
 		4408F1594CA4F054E65399BF /* Pods-KoModelMacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModelMacOS.release.xcconfig"; path = "Target Support Files/Pods-KoModelMacOS/Pods-KoModelMacOS.release.xcconfig"; sourceTree = "<group>"; };
 		4ADC738E40217E8DBD3CA621 /* Pods-KoModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModel.debug.xcconfig"; path = "Target Support Files/Pods-KoModel/Pods-KoModel.debug.xcconfig"; sourceTree = "<group>"; };
+		5A2646512703A5AA0064CC93 /* PlacePieceMoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePieceMoveGenerator.swift; sourceTree = "<group>"; };
 		5A6E5EEC26FD864700D7B6B3 /* AnimationPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationPhase.swift; sourceTree = "<group>"; };
 		5A6E5EED26FD864700D7B6B3 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		5A6E5EEE26FD864700D7B6B3 /* AnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationType.swift; sourceTree = "<group>"; };
-		5A6E5EEF26FD864700D7B6B3 /* ViewAnimationPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimationPhase.swift; sourceTree = "<group>"; };
+		5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceViewAnimationPhase.swift; sourceTree = "<group>"; };
 		5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalRule.swift; sourceTree = "<group>"; };
+		5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressMoveGenerator.swift; sourceTree = "<group>"; };
 		5A8B5A2926E1B7B000DD64A7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		5A8B770E26DF2CED0063C3E7 /* Ko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -245,7 +251,7 @@
 				5A6E5EED26FD864700D7B6B3 /* AnimationManager.swift */,
 				5A6E5EEC26FD864700D7B6B3 /* AnimationPhase.swift */,
 				5A6E5EEE26FD864700D7B6B3 /* AnimationType.swift */,
-				5A6E5EEF26FD864700D7B6B3 /* ViewAnimationPhase.swift */,
+				5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */,
 				5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */,
 				5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */,
 				5A8B771526DF2CED0063C3E7 /* ViewController.swift */,
@@ -283,6 +289,8 @@
 				5A99568026F042F700E95169 /* RabbitRules.swift */,
 				5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */,
 				5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */,
+				5A2646512703A5AA0064CC93 /* PlacePieceMoveGenerator.swift */,
+				5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */,
 			);
 			path = KoModel;
 			sourceTree = "<group>";
@@ -587,7 +595,7 @@
 				5A96DFA426FC1EBD00D38763 /* PieceSelectorView.swift in Sources */,
 				5A6E5EF226FD864700D7B6B3 /* AnimationType.swift in Sources */,
 				5A96DFA226FC1CE500D38763 /* PieceViewButton.swift in Sources */,
-				5A6E5EF326FD864700D7B6B3 /* ViewAnimationPhase.swift in Sources */,
+				5A6E5EF326FD864700D7B6B3 /* PieceViewAnimationPhase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A984DD726FAB735006738CD /* RuleResolver.swift in Sources */,
+				5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */,
 				5A972E5026E06D84009E6B3D /* Player.swift in Sources */,
 				5A98CAD126E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
 				5A99568126F042F700E95169 /* RabbitRules.swift in Sources */,
@@ -604,6 +613,7 @@
 				5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */,
 				5A8EA1AE26EEF02B005B4874 /* HareRules.swift in Sources */,
 				5A8D322626E5A1FA0065B536 /* Rule.swift in Sources */,
+				5A2646522703A5AA0064CC93 /* PlacePieceMoveGenerator.swift in Sources */,
 				5A972E5626E073AD009E6B3D /* Array2D.swift in Sources */,
 				5A98CAD726E3A91D00D1FEE8 /* Move.swift in Sources */,
 				5A81824C26F2E14400B7042E /* PieceRemovalRule.swift in Sources */,
@@ -620,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A984DD826FAB735006738CD /* RuleResolver.swift in Sources */,
+				5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */,
 				5A972E5126E06D88009E6B3D /* Player.swift in Sources */,
 				5A98CAD226E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
 				5A99568226F042F700E95169 /* RabbitRules.swift in Sources */,
@@ -628,6 +639,7 @@
 				5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */,
 				5A8EA1AF26EEF02B005B4874 /* HareRules.swift in Sources */,
 				5A8D322726E5A1FA0065B536 /* Rule.swift in Sources */,
+				5A2646532703A5AA0064CC93 /* PlacePieceMoveGenerator.swift in Sources */,
 				5A972E5726E073AD009E6B3D /* Array2D.swift in Sources */,
 				5A98CAD826E3A91D00D1FEE8 /* Move.swift in Sources */,
 				5A81824D26F2E14400B7042E /* PieceRemovalRule.swift in Sources */,
