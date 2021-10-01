@@ -38,7 +38,7 @@ class PieceView: UIView {
     var pieceLayers: [CAShapeLayer] = []
     
     private func setupLayers() {
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        pieceLayers.forEach { $0.removeFromSuperlayer() }
         for _ in pieces {
             let pieceLayer = CAShapeLayer()
             pieceLayers.append(pieceLayer)
@@ -60,8 +60,9 @@ class PieceView: UIView {
         
         let lineWidth: CGFloat = 4
         let drawingRect = bounds.insetBy(dx: bounds.width * 0.1, dy: bounds.height * 0.1)
-        for (piece, layer) in zip(pieces, pieceLayers) {
+        for (index, (piece, layer)) in zip(pieces, pieceLayers).enumerated() {
             layer.frame = bounds
+            layer.zPosition = CGFloat(index) * 2
             let path = UIBezierPath()
             path.move(to: CGPoint(x: drawingRect.minX + drawingRect.width * (1 - topProportion) / 2,
                                   y: drawingRect.minY))
@@ -91,12 +92,14 @@ class PieceView: UIView {
                 layer.strokeColor = UIColor.red.cgColor
             }
             layer.path = path.cgPath
+            layer.sublayers?.forEach { $0.removeFromSuperlayer() }
             let textLayer = CATextLayer()
+            layer.zPosition = CGFloat(index) * 2 + 1
             layer.addSublayer(textLayer)
             let text: String
             switch piece.type {
             case .field:
-                return
+                text = ""
             case .empress:
                 text = "E"
             case .burrow:
