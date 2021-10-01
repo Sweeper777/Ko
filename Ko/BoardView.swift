@@ -92,6 +92,7 @@ class BoardView: UIView {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         let highlightPaths = highlightedPositions.map { pos -> UIBezierPath in
             let squareRect = CGRect(x: CGFloat(pos.x) * squareLength,
                                     y: CGFloat(pos.y) * squareLength,
