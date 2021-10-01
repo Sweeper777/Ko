@@ -214,6 +214,13 @@ fileprivate let burrowPlacementRule = PlacePieceRule("a burrow can be placed in 
     }
     return .compliance
 })
+fileprivate let noMoveToSameSquareRule = MoveRule("the origin and destination squares of a move cannot be the same") { _, from, to, _ in
+    if from == to {
+        return .violation
+    } else {
+        return .compliance
+    }
+}
 fileprivate let empressMoveRule = MoveRule("empress can move to one of its 8 neighbours that are empty", for: .empress, apply: {
     game, from, to, _ in
     if !game.board[to].isEmpty {
@@ -318,13 +325,36 @@ let gameBeginningRulesOnly: [RuleProtocol] = [
     placePieceResultRule,
     currentTurnRule,
     placePieceOnEmptySquaresRule,
-    // MARK: Game Beginning
     firstTurnRule,
     secondToFourthTurnRule,
     lShapeRule,
     empressExistenceRule,
     fifthTurnRule,
     grasslandConnectedRule
+]
+
+let rulesWithoutMovementRule: [RuleProtocol] = [
+    ifGameEndedNoMovesRule,
+    rangeCheckRule,
+    movePieceResultRule,
+    placePieceResultRule,
+    movablePiecesRule,
+    currentTurnRule,
+    placePieceOnEmptySquaresRule,
+    firstTurnRule,
+    secondToFourthTurnRule,
+    lShapeRule,
+    empressExistenceRule,
+    fifthTurnRule,
+    empressMoonExistenceRule,
+    moonEmpressExistenceRule,
+    moonExistenceRule,
+    burrowExistenceRule,
+    noMoveToSameSquareRule,
+    pieceRemovalRule,
+    grasslandConnectedRule,
+    noTrappingEmpressRule,
+    empressCastleRule
 ]
 
 fileprivate extension Board {
