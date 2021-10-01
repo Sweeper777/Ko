@@ -1,19 +1,3 @@
-class RabbitMovementRule: MoveRule {
-    init() {
-        super.init("rabbits can move to one of its 8 neighbours, given that the square is empty.", for: .rabbit) {
-            game, from, to, _ in
-            if !game.board[to].isEmpty {
-                return .violation
-            }
-            if from.eightNeighbours.contains(to) {
-                return .compliance
-            } else {
-                return .violation
-            }
-        }
-    }
-}
-
 class RabbitJumpRule: MoveRule {
     init() {
         super.init("rabbits can jump horizontally, vertically or diagonally to an empty square, given that all the squares along the path are occupied", for: .rabbit) {
@@ -86,5 +70,52 @@ class RabbitConquerRule: MoveRule {
             result.conqueredPositions = conqueredPositions
             return .compliance
         }
+    }
+}
+
+public enum RabbitMoveGenerator {
+    public static func generateMoves(fromStartingPosition position: Position, game: Game) -> Set<Move> {
+        var candidatePositions = [Position]()
+        if let positiveXEmpty = (stride(from: position.x, to: GameConstants.boardColumns, by: 1)
+            .map { Position($0, position.y) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.append(positiveXEmpty)
+        }
+        if let negativeXEmpty = (stride(from: position.x, through: 0, by: -1)
+            .map { Position($0, position.y) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.append(negativeXEmpty)
+        }
+        if let positiveYEmpty = (stride(from: position.y, to: GameConstants.boardRows, by: 1)
+            .map { Position(position.x, $0) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.append(positiveYEmpty)
+        }
+        if let negativeYEmpty = (stride(from: position.y, through: 0, by: -1)
+            .map { Position(position.x, $0) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.append(negativeYEmpty)
+        }
+        if let topLeftEmpty = (sequence(first: position, next: { $0.above().left() })
+            .first { game.board.board[safe: $0]?.isEmpty == true }) {
+            candidatePositions.append(topLeftEmpty)
+        }
+        if let topRightEmpty = (sequence(first: position, next: { $0.above().right() })
+            .first { game.board.board[safe: $0]?.isEmpty == true }) {
+            candidatePositions.append(topRightEmpty)
+        }
+        if let bottomLeftEmpty = (sequence(first: position, next: { $0.below().left() })
+            .first { game.board.board[safe: $0]?.isEmpty == true }) {
+            candidatePositions.append(bottomLeftEmpty)
+        }
+        if let bottomRightEmpty = (sequence(first: position, next: { $0.below().right() })
+            .first { game.board.board[safe: $0]?.isEmpty == true }) {
+            candidatePositions.append(bottomRightEmpty)
+        }
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = allRules
+        return Set(candidatePositions
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
     }
 }
