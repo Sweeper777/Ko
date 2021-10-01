@@ -39,6 +39,10 @@ class BoardView: UIView {
                         highlightMoves(EmpressMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
                     case .hare:
                         highlightMoves(HareMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                    case .rabbit:
+                        highlightMoves(RabbitMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                    case .moon:
+                        highlightMoves(MoonMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
                     default:
                         break
                     }
