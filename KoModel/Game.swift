@@ -142,4 +142,24 @@ public class Game {
         bluePlayer.availableFields = GameConstants.initialFields - 42
         whitePlayer.availableFields = GameConstants.initialFields - 45
     }
+    
+    public func allAvailableMoves() -> Set<Move> {
+        var set = Set<Move>()
+        for placeablePiece in allPlaceablePieces() {
+            set.formUnion(PlacePieceMoveGenerator.generateMoves(forPlacing: placeablePiece.type, game: self))
+        }
+        for empressPosition in board.piecesPositions[Piece(currentTurn, .empress)] ?? [] {
+            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: empressPosition, game: self))
+        }
+        for harePosition in board.piecesPositions[Piece(currentTurn, .hare)] ?? [] {
+            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: harePosition, game: self))
+        }
+        for rabbitPosition in board.piecesPositions[Piece(currentTurn, .rabbit)] ?? [] {
+            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: rabbitPosition, game: self))
+        }
+        for moonPosition in board.piecesPositions[Piece(currentTurn, .moon)] ?? [] {
+            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: moonPosition, game: self))
+        }
+        return set
+    }
 }
