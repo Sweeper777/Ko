@@ -29,11 +29,7 @@ class PieceView: UIView {
         }
     }
     
-    private var isDirty = false
-    
-    func markDirty() {
-        isDirty = true
-    }
+    var isDirty = false
     
     var pieceLayers: [CAShapeLayer] = []
     

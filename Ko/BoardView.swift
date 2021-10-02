@@ -124,17 +124,23 @@ class BoardView: UIView {
         }
         for x in 0..<game.board.board.columns {
             for y in 0..<game.board.board.rows {
-                let stack = game.board.board[x, y]
-                if !stack.isEmpty {
-                    let pieceView = PieceView(frame: CGRect(x: CGFloat(x) * squareLength,
-                                                            y: CGFloat(y) * squareLength,
-                                                            width: squareLength,
-                                                            height: squareLength))
-                    addSubview(pieceView)
-                    pieceView.pieces = stack
-                    pieceView.tag = Position(x, y).rawValue
-                }
+                addPieceView(atX: x, y: y)
             }
+        }
+    }
+    
+    private func addPieceView(atX x: Int, y: Int) {
+        guard let game = game else { return }
+        
+        let stack = game.board.board[x, y]
+        if !stack.isEmpty {
+            let pieceView = PieceView(frame: CGRect(x: CGFloat(x) * squareLength,
+                                                    y: CGFloat(y) * squareLength,
+                                                    width: squareLength,
+                                                    height: squareLength))
+            addSubview(pieceView)
+            pieceView.pieces = stack
+            pieceView.tag = Position(x, y).rawValue
         }
     }
     
@@ -152,8 +158,39 @@ class BoardView: UIView {
     let animationManager = AnimationManager<PieceViewAnimationPhase>()
     
     func animateMoveResult(_ moveResult: MoveResult, completion: (() -> Void)?) {
-        updatePieceViews()
-        completion?()
+        // 1. place/move
+        // 2. conquer
+        // 3. remove
+        animationManager.reset()
+        
+        if let from = moveResult.fromPosition, let to = moveResult.toPosition {
+            let dx = Double(CGFloat(to.x - from.x) * squareLength)
+            let dy = Double(CGFloat(to.y - from.y) * squareLength)
+            if let movingPieceView = viewWithTag(from.rawValue) as? PieceView,
+               let movingPieceLayer = movingPieceView.pieceLayers.last {
+                movingPieceView.isDirty = true
+                selectedPosition = nil
+                animationManager.addPhase(group: [
+                    .move(dx: dx, dy: dy): [movingPieceLayer]
+                ], duration: 0.3) { [weak self] in
+                    movingPieceView.isDirty = false
+                    movingPieceView.pieces = self?.game?.board[from] ?? .init()
+                    if movingPieceView.pieces.isEmpty {
+                        movingPieceView.removeFromSuperview()
+                    }
+                    if let destinationPieceView = self?.viewWithTag(to.rawValue) as? PieceView {
+                        destinationPieceView.pieces = self?.game?.board[from] ?? .init()
+                    } else {
+                        self?.addPieceView(atX: to.x, y: to.y)
+                    }
+                }
+            }
+        }
+        
+        animationManager.runAnimation { [weak self] in
+            self?.updatePieceViews()
+            completion?()
+        }
     }
     
     func highlightMoves<S: Sequence>(_ moves: S) where S.Element == Move {
