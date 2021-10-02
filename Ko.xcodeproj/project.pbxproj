@@ -17,6 +17,8 @@
 		5A81824D26F2E14400B7042E /* PieceRemovalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */; };
 		5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
 		5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
+		5A849DF827078A38007F0DB3 /* KoModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A849DF727078A38007F0DB3 /* KoModelTests.swift */; };
+		5A849DFA27078A39007F0DB3 /* KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8B772A26DF2D610063C3E7 /* KoModel.framework */; };
 		5A8B5A2A26E1B7B000DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B5A2B26E1B7B100DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */; };
@@ -73,6 +75,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5A849DFB27078A39007F0DB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A8B770626DF2CED0063C3E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A8B772926DF2D610063C3E7;
+			remoteInfo = KoModel;
+		};
 		5A8B773D26DF2D620063C3E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5A8B770626DF2CED0063C3E7 /* Project object */;
@@ -114,6 +123,9 @@
 		5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceViewAnimationPhase.swift; sourceTree = "<group>"; };
 		5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalRule.swift; sourceTree = "<group>"; };
 		5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressMoveGenerator.swift; sourceTree = "<group>"; };
+		5A849DF527078A38007F0DB3 /* KoModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A849DF727078A38007F0DB3 /* KoModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoModelTests.swift; sourceTree = "<group>"; };
+		5A849DF927078A39007F0DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A8B5A2926E1B7B000DD64A7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		5A8B770E26DF2CED0063C3E7 /* Ko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +174,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5A849DF227078A38007F0DB3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A849DFA27078A39007F0DB3 /* KoModel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A8B770B26DF2CED0063C3E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,6 +241,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5A849DF627078A38007F0DB3 /* KoModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				5A849DF727078A38007F0DB3 /* KoModelTests.swift */,
+				5A849DF927078A39007F0DB3 /* Info.plist */,
+			);
+			path = KoModelTests;
+			sourceTree = "<group>";
+		};
 		5A8B770526DF2CED0063C3E7 = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +257,7 @@
 				5A8B772B26DF2D610063C3E7 /* KoModel */,
 				5A8B774E26DF2DCD0063C3E7 /* KoModelMacOS */,
 				5A8B775926DF2DCD0063C3E7 /* KoModelMacOSTests */,
+				5A849DF627078A38007F0DB3 /* KoModelTests */,
 				5A8B770F26DF2CED0063C3E7 /* Products */,
 				58C073890332E565013B73AF /* Pods */,
 				2C6AFD8577D7B51B0903D9C2 /* Frameworks */,
@@ -241,6 +271,7 @@
 				5A8B772A26DF2D610063C3E7 /* KoModel.framework */,
 				5A8B774D26DF2DCD0063C3E7 /* KoModel.framework */,
 				5A8B775526DF2DCD0063C3E7 /* KoModelMacOSTests.xctest */,
+				5A849DF527078A38007F0DB3 /* KoModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +368,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		5A849DF427078A38007F0DB3 /* KoModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A849DFD27078A39007F0DB3 /* Build configuration list for PBXNativeTarget "KoModelTests" */;
+			buildPhases = (
+				5A849DF127078A38007F0DB3 /* Sources */,
+				5A849DF227078A38007F0DB3 /* Frameworks */,
+				5A849DF327078A38007F0DB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A849DFC27078A39007F0DB3 /* PBXTargetDependency */,
+			);
+			name = KoModelTests;
+			productName = KoModelTests;
+			productReference = 5A849DF527078A38007F0DB3 /* KoModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5A8B770D26DF2CED0063C3E7 /* Ko */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A8B772226DF2CF00063C3E7 /* Build configuration list for PBXNativeTarget "Ko" */;
@@ -423,6 +472,9 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					5A849DF427078A38007F0DB3 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					5A8B770D26DF2CED0063C3E7 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -456,11 +508,19 @@
 				5A8B772926DF2D610063C3E7 /* KoModel */,
 				5A8B774C26DF2DCD0063C3E7 /* KoModelMacOS */,
 				5A8B775426DF2DCD0063C3E7 /* KoModelMacOSTests */,
+				5A849DF427078A38007F0DB3 /* KoModelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5A849DF327078A38007F0DB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A8B770C26DF2CED0063C3E7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -581,6 +641,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5A849DF127078A38007F0DB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A849DF827078A38007F0DB3 /* KoModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A8B770A26DF2CED0063C3E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,6 +732,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5A849DFC27078A39007F0DB3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A8B772926DF2D610063C3E7 /* KoModel */;
+			targetProxy = 5A849DFB27078A39007F0DB3 /* PBXContainerItemProxy */;
+		};
 		5A8B773E26DF2D620063C3E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5A8B772926DF2D610063C3E7 /* KoModel */;
@@ -696,6 +769,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5A849DFE27078A39007F0DB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				INFOPLIST_FILE = KoModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.sweeper777.KoModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5A849DFF27078A39007F0DB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				INFOPLIST_FILE = KoModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.sweeper777.KoModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5A8B772026DF2CF00063C3E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1021,6 +1130,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5A849DFD27078A39007F0DB3 /* Build configuration list for PBXNativeTarget "KoModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A849DFE27078A39007F0DB3 /* Debug */,
+				5A849DFF27078A39007F0DB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5A8B770926DF2CED0063C3E7 /* Build configuration list for PBXProject "Ko" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
