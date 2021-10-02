@@ -51,7 +51,7 @@ class HareConquerRule: MoveRule {
     }
 }
 
-public extension Board {
+fileprivate extension Board {
     func positionsReachableByHare(from: Position) -> Set<Position> {
         var visitedPositions = Set<Position>()
         func findPositionsReachableByHare(from: Position, depth: Int) {
