@@ -85,7 +85,7 @@ class PieceView: UIView {
                 path.apply(CGAffineTransform(scaleX: 1, y: -1))
                 path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
             }
-            if isSelected {
+            if isSelected, index == pieces.count - 1 {
                 layer.strokeColor = UIColor.red.cgColor
             }
             layer.path = path.cgPath
