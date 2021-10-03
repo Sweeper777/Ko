@@ -46,10 +46,14 @@ class PieceView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+
         guard !isDirty else {
             return
         }
-        
+        refreshLayers()
+    }
+    
+    func refreshLayers() {
         let topProportion: CGFloat = 0.2
         let bottomProportion: CGFloat = 0.6
         let bottomHeightProportion: CGFloat = 0.4
