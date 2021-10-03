@@ -34,7 +34,8 @@ class PieceView: UIView {
     var pieceLayers: [CAShapeLayer] = []
     
     private func setupLayers() {
-        pieceLayers.forEach { $0.removeFromSuperlayer() }
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        pieceLayers = []
         for _ in pieces {
             let pieceLayer = CAShapeLayer()
             pieceLayers.append(pieceLayer)
