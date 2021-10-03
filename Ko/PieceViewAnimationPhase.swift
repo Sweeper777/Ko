@@ -4,7 +4,6 @@ import UIKit
 class PieceViewAnimationPhase: AnimationPhase {
 
     let duration: TimeInterval
-    static let invisibleScale: CGFloat = 0.000001
 
     var onEnd: (() -> Void)?
 
