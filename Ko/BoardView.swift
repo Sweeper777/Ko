@@ -194,9 +194,12 @@ class BoardView: UIView {
             }
         }
         
-        animationManager.runAnimation { [weak self] in
-            self?.updatePieceViews()
-            completion?()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [weak self] in
+            self?.animationManager.runAnimation { [weak self] in
+                self?.updatePieceViews()
+                completion?()
+            }
         }
     }
     
