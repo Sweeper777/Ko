@@ -60,8 +60,8 @@ extension ViewController: BoardViewDelegate {
         switch pieceSelector.selectedPiece?.type {
         case nil:
             if let selectedPosition = boardView.selectedPosition {
+                boardView.selectedPosition = nil
                 if selectedPosition == position {
-                    boardView.selectedPosition = nil
                     return
                 }
                 moveToMake = .move(from: selectedPosition, to: position)

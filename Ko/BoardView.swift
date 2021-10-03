@@ -162,23 +162,30 @@ class BoardView: UIView {
         // 2. conquer
         // 3. remove
         animationManager.reset()
-        
+        let animationDuration: TimeInterval = 0.2
         if let from = moveResult.fromPosition, let to = moveResult.toPosition {
             let dx = Double(CGFloat(to.x - from.x) * squareLength)
             let dy = Double(CGFloat(to.y - from.y) * squareLength)
             if let movingPieceView = viewWithTag(from.rawValue) as? PieceView,
                let movingPieceLayer = movingPieceView.pieceLayers.last {
                 movingPieceView.isDirty = true
-                selectedPosition = nil
-                animationManager.addPhase(group: [
-                    .move(dx: dx, dy: dy): [movingPieceLayer]
-                ], duration: 0.3) { [weak self] in
+                bringSubviewToFront(movingPieceView)
+                var animationGroup = [
+                    AnimationType.move(dx: dx, dy: dy): [movingPieceLayer]
+                ]
+                if moveResult.hasCapture, let capturedPieceView = viewWithTag(to.rawValue) as? PieceView,
+                   let capturedPieceLayer = capturedPieceView.pieceLayers.last {
+                    capturedPieceView.isDirty = true
+                    animationGroup[.disappear] = [capturedPieceLayer]
+                }
+                animationManager.addPhase(group: animationGroup, duration: animationDuration) { [weak self] in
                     movingPieceView.isDirty = false
                     movingPieceView.pieces = self?.game?.board[from] ?? .init()
                     if movingPieceView.pieces.isEmpty {
                         movingPieceView.removeFromSuperview()
                     }
                     if let destinationPieceView = self?.viewWithTag(to.rawValue) as? PieceView {
+                        destinationPieceView.isDirty = false
                         destinationPieceView.pieces = self?.game?.board[from] ?? .init()
                     } else {
                         self?.addPieceView(atX: to.x, y: to.y)
