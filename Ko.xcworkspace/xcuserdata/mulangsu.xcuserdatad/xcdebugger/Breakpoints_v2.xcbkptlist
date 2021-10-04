@@ -5,20 +5,26 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "13A2B2D1-682F-4B77-8A67-6D79CB6EF6AC"
+            uuid = "B571F891-CC29-4866-B257-76AB9113F82F"
             shouldBeEnabled = "No"
-            condition = "tag == 8008"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ko/PieceView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            symbolName = "CGAffineTransformInvert"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "B571F891-CC29-4866-B257-76AB9113F82F - 7ca9f709a8cfecd8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CGAffineTransformInvert"
+                  moduleName = "CoreGraphics"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
