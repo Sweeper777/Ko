@@ -243,6 +243,21 @@ class BoardView: UIView {
             }
         }
         
+        if moveResult.piecesRemoved.isNotEmpty {
+            let animatedPieceViews = moveResult.piecesRemoved.compactMap {
+                viewWithTag($0.position.rawValue) as? PieceView
+            }
+            let animatedPieceLayers = zip(animatedPieceViews, moveResult.piecesRemoved).compactMap {
+                $0.pieceLayers[$1.stackIndex]
+            }
+            animatedPieceViews.forEach { $0.isDirty = true }
+            animationManager.addPhase(group: [
+                .disappear: animatedPieceLayers
+            ], duration: animationDuration) {
+                animatedPieceViews.forEach { $0.removeFromSuperview() }
+            }
+        }
+        
         CATransaction.flush()
         animationManager.runAnimation { [weak self] in
             self?.updatePieceViews()
