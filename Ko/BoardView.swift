@@ -179,16 +179,19 @@ class BoardView: UIView {
                     animationGroup[.disappear] = [capturedPieceLayer]
                 }
                 animationManager.addPhase(group: animationGroup, duration: animationDuration) { [weak self] in
-                    movingPieceView.isDirty = false
-                    movingPieceView.pieces = self?.game?.board[from] ?? .init()
+                    let movedPiece = movingPieceView.pieces.pop()
                     if movingPieceView.pieces.isEmpty {
                         movingPieceView.removeFromSuperview()
                     }
+                    movingPieceView.refreshLayers()
                     if let destinationPieceView = self?.viewWithTag(to.rawValue) as? PieceView {
-                        destinationPieceView.isDirty = false
-                        destinationPieceView.pieces = self?.game?.board[from] ?? .init()
+                        movedPiece.map { destinationPieceView.pieces.push($0) }
+                        destinationPieceView.refreshLayers()
                     } else {
                         self?.addPieceView(atX: to.x, y: to.y)
+                        let newPieceView = (self?.viewWithTag(to.rawValue) as? PieceView)
+                        newPieceView?.pieces = .init()
+                        movedPiece.map { newPieceView?.pieces.push($0) }
                     }
                 }
             }
@@ -203,7 +206,7 @@ class BoardView: UIView {
                 placedPieceLayer.setAffineTransform(CGAffineTransform(scaleX: 0, y: 0))
                 animationManager.addPhase(group: [.appear: [placedPieceLayer]],
                                           duration: animationDuration) {
-                    placedPieceView.isDirty = false
+                    placedPieceView.refreshLayers()
                 }
             }
         }
@@ -236,9 +239,9 @@ class BoardView: UIView {
                 animation: animatedPieceLayers,
                 .rotate: animatedPieceLayers
             ], duration: animationDuration) { [weak self] in
-                animatedPieceViews.forEach { $0.isDirty = false }
                 animatedPieceViews.forEach {
                     $0.pieces = self?.game?.board[Position(rawValue: $0.tag)!] ?? .init()
+                    $0.refreshLayers()
                 }
             }
         }
@@ -253,9 +256,7 @@ class BoardView: UIView {
             animatedPieceViews.forEach { $0.isDirty = true }
             animationManager.addPhase(group: [
                 .disappear: animatedPieceLayers
-            ], duration: animationDuration) {
-                animatedPieceViews.forEach { $0.removeFromSuperview() }
-            }
+            ], duration: animationDuration, completion: nil)
         }
         
         CATransaction.flush()
