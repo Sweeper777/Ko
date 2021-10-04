@@ -194,6 +194,20 @@ class BoardView: UIView {
             }
         }
         
+        if let placementRecord = moveResult.piecePlaced {
+            self.addPieceView(atX: placementRecord.position.x, y: placementRecord.position.y)
+            if let placedPieceView = viewWithTag(placementRecord.position.rawValue) as? PieceView,
+               let placedPieceLayer = placedPieceView.pieceLayers.last {
+                placedPieceView.isDirty = true
+                placedPieceView.refreshLayers()
+                placedPieceLayer.setAffineTransform(CGAffineTransform(scaleX: 0, y: 0))
+                animationManager.addPhase(group: [.appear: [placedPieceLayer]],
+                                          duration: animationDuration) {
+                    placedPieceView.isDirty = false
+                }
+            }
+        }
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [weak self] in
             self?.animationManager.runAnimation { [weak self] in
