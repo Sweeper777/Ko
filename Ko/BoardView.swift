@@ -208,6 +208,40 @@ class BoardView: UIView {
             }
         }
         
+        if let firstConqueredPosition = moveResult.conqueredPositions.first,
+           let color = game?.board[firstConqueredPosition].bottom?.color {
+            let animation: AnimationType
+            switch color {
+            case .blue:
+                animation = .changeColor(
+                    fill: UIColor(named: "bluePlayerColor")!.cgColor,
+                    border: UIColor(named: "bluePlayerColor")!.lighter().cgColor,
+                    text: UIColor.white.cgColor
+                )
+            case .white:
+                animation = .changeColor(
+                    fill: UIColor(named: "whitePlayerColor")!.cgColor,
+                    border: UIColor(named: "whitePlayerColor")!.darker().cgColor,
+                    text: UIColor.black.cgColor
+                )
+            }
+            let animatedPieceViews = moveResult.conqueredPositions.compactMap {
+                viewWithTag($0.rawValue) as? PieceView
+            }
+            let animatedPieceLayers = animatedPieceViews.compactMap {
+                $0.pieceLayers.first
+            }
+            animatedPieceViews.forEach { $0.isDirty = true }
+            animationManager.addPhase(group: [
+                animation: animatedPieceLayers,
+                .rotate: animatedPieceLayers
+            ], duration: animationDuration) { [weak self] in
+                animatedPieceViews.forEach { $0.isDirty = false }
+                animatedPieceViews.forEach {
+                    $0.pieces = self?.game?.board[Position(rawValue: $0.tag)!] ?? .init()
+                }
+            }
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [weak self] in
             self?.animationManager.runAnimation { [weak self] in
