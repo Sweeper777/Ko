@@ -54,4 +54,45 @@ class ExistenceRuleTests: XCTestCase {
         )
     }
     
+    func testBurrowExistenceRule() {
+        let game = Game()
+        game.board.placePiece(Piece(.blue, .burrow), at: .init(9, 9))
+        game.currentTurnNumber = 10
+        game.currentTurn = .white
+        game.bluePlayer.placementRecords.append(.init(pieceType: .burrow, position: .init(9, 9)))
+        game.whitePlayer.placementRecords.append(.init(pieceType: .burrow, position: .init(9, 9)))
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = [burrowExistenceRule]
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(9, 10)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(9, 11)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(9, 12)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(9, 13)), game: game)
+        )
+        XCTAssertNotNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(9, 14)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(8, 13)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(7, 13)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(6, 13)), game: game)
+        )
+        XCTAssertNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(5, 13)), game: game)
+        )
+        XCTAssertNotNil(
+            ruleResolver.resolve(against: .placePiece(.burrow, at: .init(4, 13)), game: game)
+        )
+    }
+    
 }
