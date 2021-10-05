@@ -1,4 +1,4 @@
-fileprivate let ifGameEndedNoMovesRule = Rule("if a game has ended, no moves can be made", isApplicable: { game, _ in
+let ifGameEndedNoMovesRule = Rule("if a game has ended, no moves can be made", isApplicable: { game, _ in
     if case .notDetermined = game.result {
         return false
     } else {
@@ -7,7 +7,7 @@ fileprivate let ifGameEndedNoMovesRule = Rule("if a game has ended, no moves can
 }, apply: { _, _, _ in
     return .violation
 })
-fileprivate let rangeCheckRule = Rule("all moves must be in range of the board", apply: { game, move, _ in
+let rangeCheckRule = Rule("all moves must be in range of the board", apply: { game, move, _ in
     func inRange(_ position: Position) -> Bool {
         game.board.board[safe: position] != nil
     }
@@ -18,16 +18,16 @@ fileprivate let rangeCheckRule = Rule("all moves must be in range of the board",
         return inRange(pos) ? .compliance : .violation
     }
 })
-fileprivate let movePieceResultRule = MoveRule("moves can move pieces", apply: { _, from, to, result in
+let movePieceResultRule = MoveRule("moves can move pieces", apply: { _, from, to, result in
     result.fromPosition = from
     result.toPosition = to
     return .compliance
 })
-fileprivate let placePieceResultRule = PlacePieceRule("moves can place pieces", apply: { _, piecePlaced, result in
+let placePieceResultRule = PlacePieceRule("moves can place pieces", apply: { _, piecePlaced, result in
     result.piecePlaced = piecePlaced
     return .compliance
 })
-fileprivate let movablePiecesRule = MoveRule("the movable pieces are empress, rabbit, hare, moon", apply: { game, from, _, _ in
+let movablePiecesRule = MoveRule("the movable pieces are empress, rabbit, hare, moon", apply: { game, from, _, _ in
     switch game.board[from] {
     case .empress, .rabbit, .hare, .moon:
         return .compliance
@@ -35,14 +35,14 @@ fileprivate let movablePiecesRule = MoveRule("the movable pieces are empress, ra
         return .violation
     }
 })
-fileprivate let currentTurnRule = MoveRule("players can only move their own pieces", apply: { game, from, _, _ in
+let currentTurnRule = MoveRule("players can only move their own pieces", apply: { game, from, _, _ in
     if game.board[from].top?.color == game.currentTurn {
         return .compliance
     } else {
         return .violation
     }
 })
-fileprivate let placePieceOnEmptySquaresRule = PlacePieceRule("pieces can only be placed on empty squares", apply: {
+let placePieceOnEmptySquaresRule = PlacePieceRule("pieces can only be placed on empty squares", apply: {
     game, placedPiece, _ in
     if game.board[placedPiece.position].isEmpty {
         return .compliance
@@ -50,7 +50,7 @@ fileprivate let placePieceOnEmptySquaresRule = PlacePieceRule("pieces can only b
         return .violation
     }
 })
-fileprivate let firstTurnRule = PlacePieceRule("first field must be placed on the central squares on the first turn") {
+let firstTurnRule = PlacePieceRule("first field must be placed on the central squares on the first turn") {
     game, _ in game.currentTurnNumber == 0
 } apply: { game, placedPiece, _ in
     if placedPiece.pieceType != .field {
@@ -70,7 +70,7 @@ fileprivate let firstTurnRule = PlacePieceRule("first field must be placed on th
         return .violation
     }
 }
-fileprivate let secondToFourthTurnRule = PlacePieceRule("the second to the fourth fields must be placed connected to the grassland via 4-neighbours") {
+let secondToFourthTurnRule = PlacePieceRule("the second to the fourth fields must be placed connected to the grassland via 4-neighbours") {
     game, _ in (1...3).contains(game.currentTurnNumber)
 } apply: { game, placedPiece, _ in
     if placedPiece.pieceType != .field {
@@ -92,7 +92,7 @@ fileprivate let secondToFourthTurnRule = PlacePieceRule("the second to the fourt
         return .violation
     }
 }
-fileprivate let lShapeRule = PlacePieceRule("after 4 moves, the fields must form an L shape") {
+let lShapeRule = PlacePieceRule("after 4 moves, the fields must form an L shape") {
     game, _ in game.currentTurnNumber == 3
 } apply: { game, placedPiece, _ in
     func countNeighbours(_ position: Position) -> Int {
@@ -110,7 +110,7 @@ fileprivate let lShapeRule = PlacePieceRule("after 4 moves, the fields must form
     return isL ? .compliance : .violation
 }
 
-fileprivate let empressExistenceRule = ExistenceRule("there must not be other empresses in the 8-neighbourhood of an empress", for: .empress, apply: {
+let empressExistenceRule = ExistenceRule("there must not be other empresses in the 8-neighbourhood of an empress", for: .empress, apply: {
     game, position, _ in
     if position.eightNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .empress) }) {
         return .compliance
@@ -118,7 +118,7 @@ fileprivate let empressExistenceRule = ExistenceRule("there must not be other em
         return .violation
     }
 })
-fileprivate let fifthTurnRule = PlacePieceRule("the fifth move must place an empress") {
+let fifthTurnRule = PlacePieceRule("the fifth move must place an empress") {
     game, _ in game.currentTurnNumber == 4
 } apply: { game, placedPiece, _ in
     if placedPiece.pieceType != .empress {
@@ -137,7 +137,7 @@ fileprivate let fifthTurnRule = PlacePieceRule("the fifth move must place an emp
         return .violation
     }
 }
-fileprivate let empressMoonExistenceRule = ExistenceRule("there must not an opponent moon in the 4-neighbourhood of an empress", for: .empress, apply: {
+let empressMoonExistenceRule = ExistenceRule("there must not an opponent moon in the 4-neighbourhood of an empress", for: .empress, apply: {
     game, position, _ in
     if position.fourNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .moon) }) {
         return .compliance
@@ -145,7 +145,7 @@ fileprivate let empressMoonExistenceRule = ExistenceRule("there must not an oppo
         return .violation
     }
 })
-fileprivate let moonEmpressExistenceRule = ExistenceRule("there must not an opponent empress in the 4-neighbourhood of a moon", for: .moon, apply: {
+let moonEmpressExistenceRule = ExistenceRule("there must not an opponent empress in the 4-neighbourhood of a moon", for: .moon, apply: {
     game, position, _ in
     if position.fourNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .empress) }) {
         return .compliance
@@ -153,7 +153,7 @@ fileprivate let moonEmpressExistenceRule = ExistenceRule("there must not an oppo
         return .violation
     }
 })
-fileprivate let moonExistenceRule = ExistenceRule("there must not be an opponent moon in the 8-neighbourhood of a moon", for: .moon, apply: {
+let moonExistenceRule = ExistenceRule("there must not be an opponent moon in the 8-neighbourhood of a moon", for: .moon, apply: {
     game, position, _ in
     if position.eightNeighbours.allSatisfy({ game.board.board[safe: $0]?.top != Piece(game.currentTurn.opposingColor, .moon) }) {
         return .compliance
@@ -161,7 +161,7 @@ fileprivate let moonExistenceRule = ExistenceRule("there must not be an opponent
         return .violation
     }
 })
-fileprivate let burrowExistenceRule = ExistenceRule("burrows must be 5 squares away from any other burrows", for: .burrow, apply: {
+let burrowExistenceRule = ExistenceRule("burrows must be 5 squares away from any other burrows", for: .burrow, apply: {
     game, position, _ in
     if game.board.hasPiece(Piece(.blue, .burrow), within: 5, of: position) ||
         game.board.hasPiece(Piece(.white, .burrow), within: 5, of: position) {
@@ -180,7 +180,7 @@ fileprivate let burrowExistenceRule = ExistenceRule("burrows must be 5 squares a
             return .violation
         }
       }))
-fileprivate let placePieceNearEmpressRule = PlacePieceRule("pieces can only be placed near the player's empress", isApplicable: {
+let placePieceNearEmpressRule = PlacePieceRule("pieces can only be placed near the player's empress", isApplicable: {
     game, _ in game.currentTurnNumber > 4
 }, apply: { game, placedPiece, _ in
     if placedPiece.position.eightNeighbours.contains(where: { game.board.board[safe: $0]?.top == Piece(game.currentTurn, .empress) }) {
@@ -199,7 +199,7 @@ fileprivate let placePieceNearEmpressRule = PlacePieceRule("pieces can only be p
     }
     return touching ? .compliance : .violation
 }))
-fileprivate let burrowPlacementRule = PlacePieceRule("a burrow can be placed in a position if that position is surrounded by fields of either color. When it is placed, the fields are conquered.", isApplicable: {
+let burrowPlacementRule = PlacePieceRule("a burrow can be placed in a position if that position is surrounded by fields of either color. When it is placed, the fields are conquered.", isApplicable: {
     _, placedPiece in placedPiece.pieceType == .burrow
 }, apply: { game, placedPiece, result in
     let neighbours = placedPiece.position.eightNeighbours
@@ -214,14 +214,14 @@ fileprivate let burrowPlacementRule = PlacePieceRule("a burrow can be placed in 
     }
     return .compliance
 })
-fileprivate let noMoveToSameSquareRule = MoveRule("the origin and destination squares of a move cannot be the same") { _, from, to, _ in
+let noMoveToSameSquareRule = MoveRule("the origin and destination squares of a move cannot be the same") { _, from, to, _ in
     if from == to {
         return .violation
     } else {
         return .compliance
     }
 }
-fileprivate let empressMoveRule = MoveRule("empress can move to one of its 8 neighbours that are empty", for: .empress, apply: {
+let empressMoveRule = MoveRule("empress can move to one of its 8 neighbours that are empty", for: .empress, apply: {
     game, from, to, _ in
     if !game.board[to].isEmpty {
         return .violation
@@ -232,7 +232,7 @@ fileprivate let empressMoveRule = MoveRule("empress can move to one of its 8 nei
         return .violation
     }
 })
-fileprivate let grasslandConnectedRule = PostMoveRule("after every move, the grassland must be connected", apply: {
+let grasslandConnectedRule = PostMoveRule("after every move, the grassland must be connected", apply: {
     _, move, newBoard, _ in
     let startPosition: Position
     switch move {
@@ -247,7 +247,7 @@ fileprivate let grasslandConnectedRule = PostMoveRule("after every move, the gra
         return .violation
     }
 })
-fileprivate let noTrappingEmpressRule = PostMoveRule("a player must not trap their empress", isApplicable: {
+let noTrappingEmpressRule = PostMoveRule("a player must not trap their empress", isApplicable: {
     game, move in
     if case .placePiece = move, game.board.piecesPositions[Piece(game.currentTurn, .empress)]?.first != nil {
         return true
@@ -265,12 +265,12 @@ fileprivate let noTrappingEmpressRule = PostMoveRule("a player must not trap the
         return .compliance
     }
 })
-fileprivate let pieceRemovalRule = PieceRemovalRule()
-fileprivate let empressCastleRule = EmpressCastleRule()
-fileprivate let hareMoveRule = HareConquerRule().ifViolatedApply(HareMovementRule())
-fileprivate let moonMoveRule = MoonMovementRule()
-fileprivate let moonCaptureRule = MoonCaptureRule()
-fileprivate let rabbitMoveRule = RabbitConquerRule().ifViolatedApply(RabbitJumpRule())
+let pieceRemovalRule = PieceRemovalRule()
+let empressCastleRule = EmpressCastleRule()
+let hareMoveRule = HareConquerRule().ifViolatedApply(HareMovementRule())
+let moonMoveRule = MoonMovementRule()
+let moonCaptureRule = MoonCaptureRule()
+let rabbitMoveRule = RabbitConquerRule().ifViolatedApply(RabbitJumpRule())
 
 let allRules: [RuleProtocol] = [
     // MARK: Basic Rules
