@@ -1,6 +1,6 @@
 import KoModel
 
-protocol AnimationPhase: class {
+protocol AnimationPhase: AnyObject {
     associatedtype AnimatedObject
     var duration: TimeInterval { get }
     var onEnd: (() -> Void)? { get set }
