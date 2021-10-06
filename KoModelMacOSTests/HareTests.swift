@@ -44,4 +44,33 @@ class HareTests : XCTestCase {
         game.board.placePiece(.init(.white, .field), at: .init(9, 6))
     }
     
+    func testHareConquerRule() {
+        let rule = HareConquerRule()
+        var moveResult = MoveResult()
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(13, 9)), pendingMoveResult: &moveResult),
+                       .compliance)
+        XCTAssertEqual(Set(moveResult.conqueredPositions), [
+            .init(10, 9), .init(11, 9), .init(12, 9)
+        ])
+        moveResult = MoveResult()
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(5, 9)), pendingMoveResult: &moveResult),
+                       .compliance)
+        XCTAssertEqual(Set(moveResult.conqueredPositions), [
+            .init(8, 9), .init(7, 9), .init(6, 9)
+        ])
+        moveResult = MoveResult()
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(9, 13)), pendingMoveResult: &moveResult),
+                       .compliance)
+        XCTAssertEqual(Set(moveResult.conqueredPositions), [
+            .init(9, 10), .init(9, 11), .init(9, 12)
+        ])
+        moveResult = MoveResult()
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(9, 5)), pendingMoveResult: &moveResult),
+                       .compliance)
+        XCTAssertEqual(Set(moveResult.conqueredPositions), [
+            .init(9, 8), .init(9, 7), .init(9, 6)
+        ])
+        moveResult = MoveResult()
+    }
+    
 }
