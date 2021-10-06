@@ -73,4 +73,18 @@ class HareTests : XCTestCase {
         moveResult = MoveResult()
     }
     
+    func testInvalidHareConquers() {
+        let rule = HareConquerRule()
+        var moveResult = MoveResult()
+        game.board.removePiece(at: .init(11, 9))
+        game.board.placePiece(.init(.white, .empress), at: .init(11, 9))
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(13, 9)), pendingMoveResult: &moveResult),
+                       .violation)
+        game.board.removePiece(at: .init(11, 9))
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(13, 9)), pendingMoveResult: &moveResult),
+                       .violation)
+        game.board.placePiece(.init(.blue, .field), at: .init(11, 9))
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: .init(13, 9)), pendingMoveResult: &moveResult),
+                       .violation)
+    }
 }
