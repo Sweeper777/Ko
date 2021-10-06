@@ -19,6 +19,12 @@
 		5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
 		5A849DF827078A38007F0DB3 /* KoModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A849DF727078A38007F0DB3 /* KoModelTests.swift */; };
 		5A849DFA27078A39007F0DB3 /* KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8B772A26DF2D610063C3E7 /* KoModel.framework */; };
+		5A86577E270B19330070D50D /* ExistenceRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A86577D270B19330070D50D /* ExistenceRuleTests.swift */; };
+		5A865780270B348A0070D50D /* MiscRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A86577F270B348A0070D50D /* MiscRuleTests.swift */; };
+		5A865782270B34F00070D50D /* RabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865781270B34F00070D50D /* RabbitTests.swift */; };
+		5A865784270B35450070D50D /* MoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865783270B35450070D50D /* MoonTests.swift */; };
+		5A865786270B359E0070D50D /* EmpressCastleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865785270B359E0070D50D /* EmpressCastleTests.swift */; };
+		5A865788270B35EC0070D50D /* PieceRemovalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865787270B35EC0070D50D /* PieceRemovalTests.swift */; };
 		5A8B5A2A26E1B7B000DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B5A2B26E1B7B100DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */; };
@@ -126,6 +132,12 @@
 		5A849DF527078A38007F0DB3 /* KoModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A849DF727078A38007F0DB3 /* KoModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoModelTests.swift; sourceTree = "<group>"; };
 		5A849DF927078A39007F0DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A86577D270B19330070D50D /* ExistenceRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistenceRuleTests.swift; sourceTree = "<group>"; };
+		5A86577F270B348A0070D50D /* MiscRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscRuleTests.swift; sourceTree = "<group>"; };
+		5A865781270B34F00070D50D /* RabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabbitTests.swift; sourceTree = "<group>"; };
+		5A865783270B35450070D50D /* MoonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonTests.swift; sourceTree = "<group>"; };
+		5A865785270B359E0070D50D /* EmpressCastleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleTests.swift; sourceTree = "<group>"; };
+		5A865787270B35EC0070D50D /* PieceRemovalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalTests.swift; sourceTree = "<group>"; };
 		5A8B5A2926E1B7B000DD64A7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		5A8B770E26DF2CED0063C3E7 /* Ko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -341,6 +353,12 @@
 				5A8B775A26DF2DCD0063C3E7 /* GameBeginningTests.swift */,
 				5A8EA1AB26EED823005B4874 /* EmpressTests.swift */,
 				5A8EA1B026EEF5E5005B4874 /* HareTests.swift */,
+				5A865783270B35450070D50D /* MoonTests.swift */,
+				5A86577D270B19330070D50D /* ExistenceRuleTests.swift */,
+				5A865781270B34F00070D50D /* RabbitTests.swift */,
+				5A865785270B359E0070D50D /* EmpressCastleTests.swift */,
+				5A865787270B35EC0070D50D /* PieceRemovalTests.swift */,
+				5A86577F270B348A0070D50D /* MiscRuleTests.swift */,
 				5A8B775C26DF2DCD0063C3E7 /* Info.plist */,
 			);
 			path = KoModelMacOSTests;
@@ -724,7 +742,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A8B775B26DF2DCD0063C3E7 /* GameBeginningTests.swift in Sources */,
+				5A865786270B359E0070D50D /* EmpressCastleTests.swift in Sources */,
 				5A8EA1B126EEF5E5005B4874 /* HareTests.swift in Sources */,
+				5A865784270B35450070D50D /* MoonTests.swift in Sources */,
+				5A865788270B35EC0070D50D /* PieceRemovalTests.swift in Sources */,
+				5A865780270B348A0070D50D /* MiscRuleTests.swift in Sources */,
+				5A865782270B34F00070D50D /* RabbitTests.swift in Sources */,
+				5A86577E270B19330070D50D /* ExistenceRuleTests.swift in Sources */,
 				5A8EA1AC26EED823005B4874 /* EmpressTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
