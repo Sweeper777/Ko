@@ -1,20 +1,24 @@
 PODS:
   - SCLAlertView (0.8)
   - SwiftyUtils (5.2.0)
+  - TYMProgressBarView (0.3.2)
 
 DEPENDENCIES:
   - SCLAlertView
   - SwiftyUtils
+  - TYMProgressBarView
 
 SPEC REPOS:
   trunk:
     - SCLAlertView
     - SwiftyUtils
+    - TYMProgressBarView
 
 SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SwiftyUtils: 4c99e810e769063dbd5d4e83b486961a5d470aeb
+  TYMProgressBarView: 9f4c54bfd1cde0340f25a8c67e6c3548611f1a8e
 
-PODFILE CHECKSUM: 3e5be7eaf20efe5aef5e51513682ba34d8ceb53d
+PODFILE CHECKSUM: a1ec9de81aa77a776aca87df869ff69b6e6123fd
 
 COCOAPODS: 1.10.1

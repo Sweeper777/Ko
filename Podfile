@@ -8,6 +8,7 @@ target 'Ko' do
   # Pods for Ko
   pod 'SwiftyUtils'
   pod 'SCLAlertView'
+  pod 'TYMProgressBarView'
 end
 
 target 'KoModel' do
