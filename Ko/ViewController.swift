@@ -36,6 +36,14 @@ class ViewController: UIViewController {
         blueProgress.barInnerPadding = 4
         blueProgress.barInnerBorderWidth = 0
         
+        whiteProgress.barBackgroundColor = .clear
+        whiteProgress.barBorderColor = .white
+        whiteProgress.barBorderWidth = 4
+        whiteProgress.barFillColor = .white
+        whiteProgress.barInnerBorderColor = .clear
+        whiteProgress.barInnerPadding = 4
+        whiteProgress.barInnerBorderWidth = 0
+        
         updateViews()
     }
     

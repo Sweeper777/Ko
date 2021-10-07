@@ -23,8 +23,11 @@
                                         <rect key="frame" x="16" y="0.0" width="343" height="30.333333333333332"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RL-Os-md3" customClass="TYMProgressBarView">
-                                                <rect key="frame" x="0.0" y="0.0" width="257.33333333333331" height="30.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.3333333333333357" width="257.33333333333331" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="MIS-jd-Wfk"/>
+                                                </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="30 Fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZd-vI-zRm">
                                                 <rect key="frame" x="273.33333333333331" y="5" width="69.666666666666686" height="20.333333333333332"/>
