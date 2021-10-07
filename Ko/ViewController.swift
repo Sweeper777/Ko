@@ -28,23 +28,20 @@ class ViewController: UIViewController {
         boardView.delegate = self
         pieceSelector.delegate = self
         
-        blueProgress.barBackgroundColor = .clear
-        blueProgress.barBorderColor = .systemBlue
-        blueProgress.barBorderWidth = 4
-        blueProgress.barFillColor = .systemBlue
-        blueProgress.barInnerBorderColor = .clear
-        blueProgress.barInnerPadding = 4
-        blueProgress.barInnerBorderWidth = 0
-        
-        whiteProgress.barBackgroundColor = .clear
-        whiteProgress.barBorderColor = .white
-        whiteProgress.barBorderWidth = 4
-        whiteProgress.barFillColor = .white
-        whiteProgress.barInnerBorderColor = .clear
-        whiteProgress.barInnerPadding = 4
-        whiteProgress.barInnerBorderWidth = 0
+        configureProgressBar(blueProgress, color: UIColor(named: "bluePlayerColor")!)
+        configureProgressBar(whiteProgress, color: UIColor(named: "whitePlayerColor")!)
         
         updateViews()
+    }
+    
+    func configureProgressBar(_ progressBar: TYMProgressBarView, color: UIColor) {
+        progressBar.barBackgroundColor = .clear
+        progressBar.barBorderColor = color
+        progressBar.barBorderWidth = 4
+        progressBar.barFillColor = color
+        progressBar.barInnerBorderColor = .clear
+        progressBar.barInnerPadding = 4
+        progressBar.barInnerBorderWidth = 0
     }
     
     func updateViews() {
