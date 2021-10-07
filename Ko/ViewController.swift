@@ -27,6 +27,15 @@ class ViewController: UIViewController {
         boardView.updatePieceViews()
         boardView.delegate = self
         pieceSelector.delegate = self
+        
+        blueProgress.barBackgroundColor = .clear
+        blueProgress.barBorderColor = .systemBlue
+        blueProgress.barBorderWidth = 4
+        blueProgress.barFillColor = .systemBlue
+        blueProgress.barInnerBorderColor = .clear
+        blueProgress.barInnerPadding = 4
+        blueProgress.barInnerBorderWidth = 0
+        
         updateViews()
     }
     
