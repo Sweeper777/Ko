@@ -3,7 +3,6 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,14 +20,14 @@
                                 <rect key="frame" x="0.0" y="60" width="375" height="698"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jcC-0f-UJp">
-                                        <rect key="frame" x="16" y="0.0" width="343" height="20.333333333333332"/>
+                                        <rect key="frame" x="16" y="0.0" width="343" height="40"/>
                                         <subviews>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qad-Su-bWz">
-                                                <rect key="frame" x="0.0" y="8.3333333333333286" width="257.33333333333331" height="4"/>
-                                                <color key="progressTintColor" name="whitePlayerColor"/>
-                                            </progressView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RL-Os-md3" customClass="TYMProgressBarView">
+                                                <rect key="frame" x="0.0" y="0.0" width="257.33333333333331" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="30 Fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZd-vI-zRm">
-                                                <rect key="frame" x="273.33333333333331" y="0.0" width="69.666666666666686" height="20.333333333333332"/>
+                                                <rect key="frame" x="273.33333333333331" y="9.9999999999999982" width="69.666666666666686" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -36,7 +35,7 @@
                                         </subviews>
                                     </stackView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" minimumZoomScale="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fdi-B3-6qW">
-                                        <rect key="frame" x="0.0" y="36.333333333333314" width="375" height="559.33333333333348"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="539.66666666666663"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-fK-ZoK" customClass="BoardView" customModule="Ko" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="1026" height="972"/>
@@ -48,10 +47,10 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9Nv-YA-Lf5">
                                         <rect key="frame" x="16" y="611.66666666666663" width="343" height="20.333333333333371"/>
                                         <subviews>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KcV-t1-kPv">
-                                                <rect key="frame" x="0.0" y="8.3333333333333712" width="257.33333333333331" height="4"/>
-                                                <color key="progressTintColor" name="bluePlayerColor"/>
-                                            </progressView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hne-2E-RAV" customClass="TYMProgressBarView">
+                                                <rect key="frame" x="0.0" y="0.0" width="257.33333333333331" height="20.333333333333332"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="30 Fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp1-vB-sZw">
                                                 <rect key="frame" x="273.33333333333331" y="0.0" width="69.666666666666686" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -89,12 +88,12 @@
                     </view>
                     <connections>
                         <outlet property="blueFieldCountLabel" destination="Gp1-vB-sZw" id="eNj-U7-3vJ"/>
-                        <outlet property="blueProgress" destination="KcV-t1-kPv" id="Fbg-Yp-yuJ"/>
+                        <outlet property="blueProgress" destination="Hne-2E-RAV" id="XGb-Oe-sGJ"/>
                         <outlet property="boardView" destination="Nch-fK-ZoK" id="ZjV-Dg-hBb"/>
                         <outlet property="pieceSelector" destination="QCz-PB-bXN" id="O5B-kT-4im"/>
                         <outlet property="scrollView" destination="fdi-B3-6qW" id="2HQ-Xg-ruH"/>
                         <outlet property="whiteFieldCountLabel" destination="eZd-vI-zRm" id="hps-EM-Jz0"/>
-                        <outlet property="whiteProgress" destination="Qad-Su-bWz" id="JJ1-nI-bQw"/>
+                        <outlet property="whiteProgress" destination="2RL-Os-md3" id="xqa-46-2zs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,12 +102,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="bluePlayerColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="whitePlayerColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

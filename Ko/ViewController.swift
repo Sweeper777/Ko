@@ -1,14 +1,15 @@
 import UIKit
 import KoModel
 import SCLAlertView
+import TYMProgressBarView
 
 class ViewController: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var boardView: BoardView!
     @IBOutlet var pieceSelector: PieceSelectorView!
-    @IBOutlet var blueProgress: UIProgressView!
-    @IBOutlet var whiteProgress: UIProgressView!
+    @IBOutlet var blueProgress: TYMProgressBarView!
+    @IBOutlet var whiteProgress: TYMProgressBarView!
     @IBOutlet var blueFieldCountLabel: UILabel!
     @IBOutlet var whiteFieldCountLabel: UILabel!
     
@@ -34,8 +35,8 @@ class ViewController: UIViewController {
         pieceSelector.selectedPiece = nil
         let blueFieldCount = game.board.piecesPositions[Piece(.blue, .field)]?.count ?? 0
         let whiteFieldCount = game.board.piecesPositions[Piece(.white, .field)]?.count ?? 0
-        blueProgress.progress = min(1, Float(blueFieldCount) / Float(GameConstants.requiredFieldCountForCastle))
-        whiteProgress.progress = min(1, Float(whiteFieldCount) / Float(GameConstants.requiredFieldCountForCastle))
+        blueProgress.progress = min(1, CGFloat(blueFieldCount) / CGFloat(GameConstants.requiredFieldCountForCastle))
+        whiteProgress.progress = min(1, CGFloat(whiteFieldCount) / CGFloat(GameConstants.requiredFieldCountForCastle))
         blueFieldCountLabel.text = "\(blueFieldCount)"
         whiteFieldCountLabel.text = "\(whiteFieldCount)"
         pieceSelector.selectablePieces = game.allPlaceablePieces()
