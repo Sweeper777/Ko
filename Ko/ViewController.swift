@@ -34,6 +34,12 @@ class ViewController: UIViewController {
         updateViews()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        centerScrollViewContent()
+        
+    }
+    
     func configureProgressBar(_ progressBar: TYMProgressBarView, color: UIColor) {
         progressBar.barBackgroundColor = .clear
         progressBar.barBorderColor = color
