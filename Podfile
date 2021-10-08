@@ -9,6 +9,7 @@ target 'Ko' do
   pod 'SwiftyUtils'
   pod 'SCLAlertView'
   pod 'TYMProgressBarView'
+  pod 'SwiftyButton'
 end
 
 target 'KoModel' do
