@@ -55,6 +55,12 @@ class ViewController: UIViewController {
         whiteFieldCountLabel.text = "\(whiteFieldCount)"
         pieceSelector.selectablePieces = game.allPlaceablePieces()
     }
+    
+    fileprivate func centerScrollViewContent() {
+        let offsetX = max((scrollView.bounds.width - scrollView.contentSize.width) * 0.5, 0)
+        let offsetY = max((scrollView.bounds.height - scrollView.contentSize.height) * 0.5, 0)
+        scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
+    }
 }
 
 extension ViewController: UIScrollViewDelegate {
@@ -63,9 +69,7 @@ extension ViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        let offsetX = max((scrollView.bounds.width - scrollView.contentSize.width) * 0.5, 0)
-        let offsetY = max((scrollView.bounds.height - scrollView.contentSize.height) * 0.5, 0)
-        scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
+        centerScrollViewContent()
     }
 }
 
