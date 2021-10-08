@@ -128,8 +128,136 @@
             </objects>
             <point key="canvasLocation" x="8.8000000000000007" y="67.916041979010501"/>
         </scene>
+        <!--Main Menu View Controller-->
+        <scene sceneID="Uy2-2A-TJM">
+            <objects>
+                <viewController id="orB-y4-hVA" customClass="MainMenuViewController" customModule="PushySquares" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g3z-Jp-3uC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wEM-7w-Cf0">
+                                <rect key="frame" x="0.0" y="243" width="375" height="519"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve4-tD-jWV" customClass="PressableButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="37.666666666666657" y="0.0" width="300" height="166.33333333333334"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="BxE-vd-a7K"/>
+                                            <constraint firstAttribute="height" constant="61" id="r5y-Th-f4X">
+                                                <variation key="heightClass=regular" constant="70"/>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="52"/>
+                                        <state key="normal" title="START"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowHeight">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="r5y-Th-f4X"/>
+                                            </mask>
+                                        </variation>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogi-eQ-PpJ" customClass="PressableButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="37.666666666666657" y="176.33333333333331" width="300" height="166.33333333333331"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="8sh-66-o33">
+                                                <variation key="heightClass=regular" constant="70"/>
+                                            </constraint>
+                                            <constraint firstAttribute="width" constant="300" id="xTx-no-LOO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="52"/>
+                                        <state key="normal" title="CONNECT"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowHeight">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="8sh-66-o33"/>
+                                            </mask>
+                                        </variation>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URM-YR-JS6" customClass="PressableButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="37.666666666666657" y="352.66666666666663" width="300" height="166.33333333333337"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="ODH-6q-RTv"/>
+                                            <constraint firstAttribute="height" constant="61" id="Qgm-S0-S91">
+                                                <variation key="heightClass=regular" constant="70"/>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="52"/>
+                                        <state key="normal" title="HELP"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowHeight">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Qgm-S0-S91"/>
+                                            </mask>
+                                        </variation>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RWt-D4-cxp">
+                                <rect key="frame" x="0.0" y="37.666666666666671" width="375" height="205.66666666666666"/>
+                                <imageReference key="image" image="photo" catalog="system" symbolScale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="160"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rYZ-7G-vwE"/>
+                        <color key="backgroundColor" red="1" green="0.95527199009999997" blue="0.83132437039999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wEM-7w-Cf0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rYZ-7G-vwE" secondAttribute="top" constant="16" id="Dex-82-Vk9"/>
+                            <constraint firstItem="rYZ-7G-vwE" firstAttribute="trailing" secondItem="wEM-7w-Cf0" secondAttribute="trailing" id="QcW-1y-0aA"/>
+                            <constraint firstItem="rYZ-7G-vwE" firstAttribute="bottom" secondItem="wEM-7w-Cf0" secondAttribute="bottom" constant="16" id="Rus-6b-ZnC"/>
+                            <constraint firstItem="RWt-D4-cxp" firstAttribute="leading" secondItem="rYZ-7G-vwE" secondAttribute="leading" id="U7e-OZ-SwJ"/>
+                            <constraint firstItem="RWt-D4-cxp" firstAttribute="top" secondItem="rYZ-7G-vwE" secondAttribute="top" id="fwW-7j-Sql"/>
+                            <constraint firstItem="wEM-7w-Cf0" firstAttribute="top" secondItem="RWt-D4-cxp" secondAttribute="bottom" constant="8" symbolic="YES" id="hNp-mS-3pd"/>
+                            <constraint firstItem="wEM-7w-Cf0" firstAttribute="leading" secondItem="rYZ-7G-vwE" secondAttribute="leading" id="hWe-Q1-in0"/>
+                            <constraint firstItem="RWt-D4-cxp" firstAttribute="trailing" secondItem="rYZ-7G-vwE" secondAttribute="trailing" id="pau-CV-oXv"/>
+                        </constraints>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <exclude reference="RWt-D4-cxp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="ogi-eQ-PpJ" id="pLe-3e-Odb"/>
+                        <outlet property="helpButton" destination="URM-YR-JS6" id="lar-UA-93C"/>
+                        <outlet property="startButton" destination="Ve4-tD-jWV" id="3c2-DJ-2J7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ule-IM-u6q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-678" y="67"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="URM-YR-JS6">
+            <size key="intrinsicContentSize" width="118" height="74"/>
+        </designable>
+        <designable name="Ve4-tD-jWV">
+            <size key="intrinsicContentSize" width="155" height="74"/>
+        </designable>
+        <designable name="ogi-eQ-PpJ">
+            <size key="intrinsicContentSize" width="224" height="74"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="photo" catalog="system" width="128" height="93"/>
+        <namedColor name="bluePlayerColor">
+            <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whitePlayerColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
