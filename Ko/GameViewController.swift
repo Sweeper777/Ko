@@ -3,7 +3,7 @@ import KoModel
 import SCLAlertView
 import TYMProgressBarView
 
-class ViewController: UIViewController {
+class GameViewController: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var boardView: BoardView!
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UIScrollViewDelegate {
+extension GameViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         boardView
     }
@@ -79,7 +79,7 @@ extension ViewController: UIScrollViewDelegate {
     }
 }
 
-extension ViewController: BoardViewDelegate {
+extension GameViewController: BoardViewDelegate {
     func didTapPosition(_ boardView: BoardView, position: Position) {
         let moveToMake: Move
         switch pieceSelector.selectedPiece?.type {
@@ -117,7 +117,7 @@ extension ViewController: BoardViewDelegate {
     }
 }
 
-extension ViewController: PieceSelectorDelegate {
+extension GameViewController: PieceSelectorDelegate {
     func pieceSelectorValueDidChange(_ pieceSelector: PieceSelectorView, selectedPiece: Piece?) {
         boardView.selectedPosition = nil
         if let selectedPieceType = selectedPiece?.type {
