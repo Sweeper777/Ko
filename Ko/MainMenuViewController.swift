@@ -7,6 +7,38 @@ class MainMenuViewController : UIViewController {
     @IBOutlet var connectButton: PressableButton!
     @IBOutlet var helpButton: PressableButton!
 
+    override func viewDidLoad() {
+        startButton.setTitle("START", for: .normal)
+        startButton.colors = PressableButton.ColorSet(
+                button: UIColor.green.desaturated().darker(),
+                shadow: UIColor.green.desaturated().darker().darker())
+        startButton.addTarget(self, action: #selector(startTapped), for: .touchUpInside)
+
+        connectButton.setTitle("CONNECT", for: .normal)
+        connectButton.colors = PressableButton.ColorSet(
+                button: UIColor.yellow.darker().desaturated(),
+                shadow: UIColor.yellow.darker().desaturated().darker())
+        connectButton.addTarget(self, action: #selector(connectTapped), for: .touchUpInside)
+        
+        helpButton.setTitle("HELP", for: .normal)
+        helpButton.colors = PressableButton.ColorSet(
+                button: UIColor.blue.desaturated(),
+                shadow: UIColor.blue.desaturated().darker())
+        helpButton.addTarget(self, action: #selector(helpTapped), for: .touchUpInside)
+
+    }
+
+    @objc func startTapped() {
+        
+    }
+
+    @objc func connectTapped() {
+        
+    }
+    
+    @objc func helpTapped() {
+        
+    }
 }
 
 extension UIColor {
