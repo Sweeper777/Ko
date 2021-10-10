@@ -67,6 +67,16 @@ class GameViewController: UIViewController {
         let offsetY = max((scrollView.bounds.height - scrollView.contentSize.height) * 0.5, 0)
         scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
     }
+    
+    @IBAction func closeTapped() {
+        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
+        alert.addButton("Yes", action: quitGame)
+        alert.addButton("No", action: {})
+        alert.showWarning("Confirm", subTitle: "Do you really want to quit?")
+    }
+    @objc func quitGame() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension GameViewController: UIScrollViewDelegate {
