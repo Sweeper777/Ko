@@ -115,6 +115,11 @@ extension GameViewController: BoardViewDelegate {
             }
         }
     }
+    
+    func setUserInteractionEnabled(_ enabled: Bool) {
+        boardView.isUserInteractionEnabled = enabled
+        pieceSelector.isUserInteractionEnabled = enabled
+    }
 }
 
 extension GameViewController: PieceSelectorDelegate {
