@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     @IBOutlet var whiteFieldCountLabel: UILabel!
     
     let game = Game()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentSize = boardView.intrinsicContentSize
@@ -106,7 +106,12 @@ extension GameViewController: BoardViewDelegate {
             }
         }
         if let moveResult = game.makeMove(moveToMake) {
-            boardView.animateMoveResult(moveResult, completion: nil)
+            setUserInteractionEnabled(false)
+            boardView.animateMoveResult(moveResult) {
+                [weak self] in
+                
+                self?.setUserInteractionEnabled(true)
+            }
             updateViews()
             if case .wins(let color) = moveResult.gameResult {
                 SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
