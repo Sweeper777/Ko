@@ -26,6 +26,29 @@ class MoonTests: XCTestCase {
         }
     }
     
+    func testUnreachableByMoon() {
+        var moveResult = MoveResult()
+        let rule = MoonMovementRule()
+        let unreachablePositions = [
+            Position(8, 8),
+            Position(11, 8),
+            Position(8, 11),
+            Position(11, 11),
+            Position(9, 7),
+            Position(10, 7),
+            Position(9, 12),
+            Position(10, 12),
+            Position(7, 9),
+            Position(7, 10),
+            Position(12, 9),
+            Position(12, 10),
+        ]
+        for pos in unreachablePositions {
+            XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(9, 9), to: pos), pendingMoveResult: &moveResult),
+                       .violation)
+        }
+    }
+    
     
     override func setUp() {
         game = Game()
