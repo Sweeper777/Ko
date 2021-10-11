@@ -49,6 +49,18 @@ class MoonTests: XCTestCase {
         }
     }
     
+    func testCaptures() {
+        let movementRule = MoonMovementRule()
+        let captureRule = MoonCaptureRule()
+        for pos in fieldPositions {
+            var moveResult = MoveResult()
+            XCTAssertEqual(movementRule.apply(to: game, move: .move(from: .init(9, 9), to: pos), pendingMoveResult: &moveResult),
+                       .compliance)
+            XCTAssertEqual(captureRule.apply(to: game, move: .move(from: .init(9, 9), to: pos), pendingMoveResult: &moveResult),
+                       .compliance)
+            XCTAssertTrue(moveResult.hasCapture)
+        }
+    }
     
     override func setUp() {
         game = Game()
