@@ -29,7 +29,11 @@ class MainMenuViewController : UIViewController {
     }
 
     @objc func startTapped() {
-        
+        guard let gameVC = UIStoryboard.main?.instantiateViewController(identifier: "GameVC") else {
+            return
+        }
+        gameVC.modalPresentationStyle = .fullScreen
+        present(gameVC, animated: true, completion: nil)
     }
 
     @objc func connectTapped() {
