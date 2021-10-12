@@ -37,4 +37,16 @@ class EmpressCastleTests: XCTestCase {
                        .compliance)
         XCTAssertEqual(moveResult.gameResult, .wins(.blue))
     }
+    func testTopRightWin() {
+        game.board.placePiece(Piece(.blue, .field), at: .init(18, 1))
+        game.board.placePiece(Piece(.blue, .field), at: .init(17, 0))
+        game.board.placePiece(Piece(.blue, .empress), at: .init(17, 1))
+        game.board.placePiece(Piece(.blue, .field), at: .init(16, 1))
+        game.board.placePiece(Piece(.blue, .moon), at: .init(17, 2))
+        var moveResult = MoveResult(piecePlaced: .init(pieceType: .field, position: .init(18, 0)))
+        let rule = EmpressCastleRule()
+        XCTAssertEqual(rule.apply(to: game, move: .placePiece(.field, at: .init(18, 0)), pendingMoveResult: &moveResult),
+                       .compliance)
+        XCTAssertEqual(moveResult.gameResult, .wins(.blue))
+    }
 }
