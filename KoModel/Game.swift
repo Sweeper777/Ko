@@ -4,6 +4,14 @@ public class Game {
         whitePlayer = Player(color: .white)
     }
     
+    public init(copyOf game: Game) {
+        bluePlayer = Player(copyOf: game.bluePlayer)
+        whitePlayer = Player(copyOf: game.whitePlayer)
+        currentTurn = game.currentTurn
+        board = game.board
+        currentTurnNumber = game.currentTurnNumber
+        result = game.result
+    }
     
     public let bluePlayer: Player
     public let whitePlayer: Player
