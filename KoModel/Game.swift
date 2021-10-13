@@ -2,10 +2,13 @@ public class Game {
     public init() {
         ruleResolver.rules.append(contentsOf: allRules)
         ruleResolver.outputDebugMessages = true
+        bluePlayer = Player(color: .blue)
+        whitePlayer = Player(color: .white)
     }
     
-    public let bluePlayer = Player(color: .blue)
-    public let whitePlayer = Player(color: .white)
+    
+    public let bluePlayer: Player
+    public let whitePlayer: Player
     public internal(set) var currentTurn = PlayerColor.blue
     public internal(set) var board = Board()
     public internal(set) var currentTurnNumber = 0
