@@ -1,7 +1,5 @@
 public class Game {
     public init() {
-        ruleResolver.rules.append(contentsOf: allRules)
-        ruleResolver.outputDebugMessages = true
         bluePlayer = Player(color: .blue)
         whitePlayer = Player(color: .white)
     }
@@ -13,8 +11,6 @@ public class Game {
     public internal(set) var board = Board()
     public internal(set) var currentTurnNumber = 0
     public internal(set) var result = GameResult.notDetermined
-    
-    private let ruleResolver = RuleResolver()
     
     public var currentPlayer: Player {
         playerOfColor(currentTurn)
