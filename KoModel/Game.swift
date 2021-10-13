@@ -52,11 +52,7 @@ public class Game {
             guard let empressPosition = board.piecesPositions[Piece(currentTurn, .empress)]?.first else {
                 return moveResult
             }
-            ruleResolver.outputDebugMessages = false
-            let stalemate = empressPosition.eightNeighbours.map {
-                Move.move(from: empressPosition, to: $0)
-            }.allSatisfy { ruleResolver.resolve(against: $0, game: self) != nil }
-            ruleResolver.outputDebugMessages = true
+            let stalemate = EmpressMoveGenerator.generateMoves(fromStartingPosition: empressPosition, game: self).isEmpty
             if stalemate {
                 result = .draw
             }
