@@ -32,6 +32,16 @@ public class Game {
     }
     
     public func makeMove(_ move: Move) -> MoveResult? {
+        makeMove(move, rules: allRules)
+    }
+    
+    public func makeMoveUnchecked(_ move: Move) -> MoveResult? {
+        makeMove(move, rules: rulesThatModifyResultOnly)
+    }
+    
+    private func makeMove(_ move: Move, rules: [RuleProtocol]) -> MoveResult? {
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = rules
         guard let moveResult = ruleResolver.resolve(against: move, game: self) else {
             return nil
         }
