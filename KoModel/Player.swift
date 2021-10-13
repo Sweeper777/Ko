@@ -11,4 +11,14 @@ public class Player: Codable {
     public init(color: PlayerColor) {
         self.color = color
     }
+    
+    public init(copyOf player: Player) {
+        color = player.color
+        availableBurrows = player.availableBurrows
+        availableHares = player.availableHares
+        availableRabbits = player.availableRabbits
+        availableMoons = player.availableMoons
+        availableFields = player.availableFields
+        placementRecords = player.placementRecords
+    }
 }
