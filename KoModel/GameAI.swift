@@ -16,6 +16,14 @@ public class GameAI {
 
     func evaluateHeuristics() -> Int {
     }
+    
+    private func isEmpressFarFromBurrows() -> Bool {
+        guard let empressPosition = game.board.piecesPositions[Piece(myColor, .empress)]?.first else {
+            return true
+        }
+        return !game.board.hasPiece(Piece(.blue, .burrow), within: 6, of: empressPosition) &&
+            !game.board.hasPiece(Piece(.white, .burrow), within: 6, of: empressPosition)
+    }
 
     private func minimax() -> Move {
         minimax(depth: searchDepth, color: myColor, alpha: PositionScore(magnitude: .min, depth: searchDepth), beta: PositionScore(magnitude: .max, depth: searchDepth)).move
