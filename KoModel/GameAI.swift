@@ -15,3 +15,12 @@ public class GameAI {
     }
 
 }
+struct PositionScore : Comparable {
+    let magnitude: Int
+    let depth: Int
+
+    static func <(lhs: PositionScore, rhs: PositionScore) -> Bool {
+        (lhs.magnitude < rhs.magnitude) ||
+                (lhs.magnitude == rhs.magnitude && lhs.depth > rhs.depth)
+    }
+}
