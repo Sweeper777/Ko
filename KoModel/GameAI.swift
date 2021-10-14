@@ -24,6 +24,15 @@ public class GameAI {
         return !game.board.hasPiece(Piece(.blue, .burrow), within: 6, of: empressPosition) &&
             !game.board.hasPiece(Piece(.white, .burrow), within: 6, of: empressPosition)
     }
+    
+    private func materialValue(of player: PlayerColor) -> Int {
+        let fieldCount = game.board.piecesPositions[Piece(player, .field)]?.count ?? 0
+        let burrowCount = game.board.piecesPositions[Piece(player, .burrow)]?.count ?? 0
+        let rabbitCount = game.board.piecesPositions[Piece(player, .rabbit)]?.count ?? 0
+        let hareCount = game.board.piecesPositions[Piece(player, .hare)]?.count ?? 0
+        let moonCount = game.board.piecesPositions[Piece(player, .moon)]?.count ?? 0
+        return fieldCount + burrowCount + rabbitCount + hareCount + moonCount
+    }
 
     private func minimax() -> Move {
         minimax(depth: searchDepth, color: myColor, alpha: PositionScore(magnitude: .min, depth: searchDepth), beta: PositionScore(magnitude: .max, depth: searchDepth)).move
