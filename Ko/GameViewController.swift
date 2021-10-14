@@ -119,8 +119,10 @@ extension GameViewController: BoardViewDelegate {
             setUserInteractionEnabled(false)
             boardView.animateMoveResult(moveResult) {
                 [weak self] in
-                
-                self?.setUserInteractionEnabled(true)
+                guard let self = self else { return }
+                let game = GameAI(game: self.game, myColor: self.game.currentTurn)
+                print(game.getNextMove())
+                self.setUserInteractionEnabled(true)
             }
             updateViews()
             if case .wins(let color) = moveResult.gameResult {
