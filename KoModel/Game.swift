@@ -57,10 +57,7 @@ public class Game {
         result = moveResult.gameResult
         if case .notDetermined = result {
             nextTurn()
-            guard let empressPosition = board.piecesPositions[Piece(currentTurn, .empress)]?.first else {
-                return moveResult
-            }
-            let stalemate = EmpressMoveGenerator.generateMoves(fromStartingPosition: empressPosition, game: self).isEmpty
+            let stalemate = allAvailableMoves().isEmpty
             if stalemate {
                 result = .draw
             }
