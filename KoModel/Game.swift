@@ -165,13 +165,13 @@ public class Game {
             set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: empressPosition, game: self))
         }
         for harePosition in board.piecesPositions[Piece(currentTurn, .hare)] ?? [] {
-            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: harePosition, game: self))
+            set.formUnion(HareMoveGenerator.generateMoves(fromStartingPosition: harePosition, game: self))
         }
         for rabbitPosition in board.piecesPositions[Piece(currentTurn, .rabbit)] ?? [] {
-            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: rabbitPosition, game: self))
+            set.formUnion(RabbitMoveGenerator.generateMoves(fromStartingPosition: rabbitPosition, game: self))
         }
         for moonPosition in board.piecesPositions[Piece(currentTurn, .moon)] ?? [] {
-            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: moonPosition, game: self))
+            set.formUnion(MoonMoveGenerator.generateMoves(fromStartingPosition: moonPosition, game: self))
         }
         return set
     }
