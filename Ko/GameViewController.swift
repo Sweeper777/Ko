@@ -125,9 +125,9 @@ extension GameViewController: BoardViewDelegate {
                 self.setUserInteractionEnabled(true)
             }
             updateViews()
-            if case .wins(let color) = moveResult.gameResult {
+            if case .wins(let color) = game.result {
                 SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
-            } else if .draw == moveResult.gameResult {
+            } else if .draw == game.result {
                 SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
             }
         }
