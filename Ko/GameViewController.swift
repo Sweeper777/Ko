@@ -115,7 +115,7 @@ extension GameViewController: BoardViewDelegate {
                 moveToMake = .placePiece(type, at: position)
             }
         }
-        if let moveResult = game.makeMove(moveToMake) {
+        if let moveResult = game.makeMoveUnchecked(moveToMake) {
             setUserInteractionEnabled(false)
             boardView.animateMoveResult(moveResult) {
                 [weak self] in
