@@ -34,4 +34,12 @@ class RabbitTests: XCTestCase {
                        .compliance)
     }
     
+    func testRabbitConquer() {
+        let rule = rabbitMoveRule
+        var moveResult = MoveResult()
+        game.board.placePiece(Piece(.blue, .rabbit), at: .init(7, 7))
+        XCTAssertEqual(rule.apply(to: game, move: .move(from: .init(7, 7), to: .init(11, 11)), pendingMoveResult: &moveResult),
+                       .compliance)
+        XCTAssertEqual(Set(moveResult.conqueredPositions), [.init(8, 8), .init(9, 9), .init(10, 10)])
+    }
 }
