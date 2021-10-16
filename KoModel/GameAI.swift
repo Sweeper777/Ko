@@ -87,8 +87,7 @@ public class GameAI {
     }
 
     public func getNextMove(on dispatchQueue: DispatchQueue, completion: @escaping (Move) -> Void) {
-        dispatchQueue.async { [weak self] in
-            guard let `self` = self else { return }
+        dispatchQueue.async {
             completion(self.minimax())
         }
     }
