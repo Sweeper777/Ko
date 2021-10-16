@@ -92,9 +92,11 @@ extension GameViewController: UIScrollViewDelegate {
 extension GameViewController: BoardViewDelegate {
     func didTapPosition(_ boardView: BoardView, position: Position) {
         let moveToMake: Move
+        let validMove: Bool
         switch pieceSelector.selectedPiece?.type {
         case nil:
             if let selectedPosition = boardView.selectedPosition {
+                validMove = boardView.highlightedPositions.contains(position)
                 boardView.selectedPosition = nil
                 if selectedPosition == position {
                     return
@@ -112,10 +114,12 @@ extension GameViewController: BoardViewDelegate {
                 boardView.selectedPosition = position
                 return
             } else {
+                validMove = boardView.highlightedPositions.contains(position)
                 moveToMake = .placePiece(type, at: position)
             }
         }
-        if let moveResult = game.makeMoveUnchecked(moveToMake) {
+        if validMove,
+           let moveResult = game.makeMoveUnchecked(moveToMake) {
             setUserInteractionEnabled(false)
             boardView.animateMoveResult(moveResult) {
                 [weak self] in
