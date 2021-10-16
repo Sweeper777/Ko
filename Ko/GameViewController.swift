@@ -120,9 +120,23 @@ extension GameViewController: BoardViewDelegate {
             boardView.animateMoveResult(moveResult) {
                 [weak self] in
                 guard let self = self else { return }
-                let game = GameAI(game: self.game, myColor: self.game.currentTurn)
-                print(game.getNextMove())
-                self.setUserInteractionEnabled(true)
+                let ai = GameAI(game: self.game, myColor: self.game.currentTurn)
+                ai.getNextMove(on: .global(qos: .userInitiated)) { [weak self] aiMove in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let moveResult = self?.game.makeMoveUnchecked(aiMove) else {
+                            return
+                        }
+                        self?.boardView.animateMoveResult(moveResult) { [weak self] in
+                            self?.setUserInteractionEnabled(true)
+                            self?.updateViews()
+                            if case .wins(let color) = self?.game.result {
+                                SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
+                            } else if .draw == self?.game.result {
+                                SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
+                            }
+                        }
+                    }
+                }
             }
             updateViews()
             if case .wins(let color) = game.result {
