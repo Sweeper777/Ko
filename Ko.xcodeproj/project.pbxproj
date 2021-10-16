@@ -17,6 +17,8 @@
 		5A81824D26F2E14400B7042E /* PieceRemovalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */; };
 		5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
 		5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
+		5A82D2A92711B169000B1F76 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82D2A82711B169000B1F76 /* GameAI.swift */; };
+		5A82D2AA2711B16A000B1F76 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82D2A82711B169000B1F76 /* GameAI.swift */; };
 		5A849DF827078A38007F0DB3 /* KoModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A849DF727078A38007F0DB3 /* KoModelTests.swift */; };
 		5A849DFA27078A39007F0DB3 /* KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8B772A26DF2D610063C3E7 /* KoModel.framework */; };
 		5A86577E270B19330070D50D /* ExistenceRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A86577D270B19330070D50D /* ExistenceRuleTests.swift */; };
@@ -130,6 +132,7 @@
 		5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceViewAnimationPhase.swift; sourceTree = "<group>"; };
 		5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalRule.swift; sourceTree = "<group>"; };
 		5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressMoveGenerator.swift; sourceTree = "<group>"; };
+		5A82D2A82711B169000B1F76 /* GameAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAI.swift; sourceTree = "<group>"; };
 		5A849DF527078A38007F0DB3 /* KoModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A849DF727078A38007F0DB3 /* KoModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoModelTests.swift; sourceTree = "<group>"; };
 		5A849DF927078A39007F0DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 				5A8B5A2926E1B7B000DD64A7 /* Board.swift */,
 				5A98CAD026E30C9A00D1FEE8 /* PiecePlacementRecord.swift */,
 				5A98CAD326E3A6CC00D1FEE8 /* Game.swift */,
+				5A82D2A82711B169000B1F76 /* GameAI.swift */,
 				5A98CAD626E3A91D00D1FEE8 /* Move.swift */,
 				5A8D322526E5A1FA0065B536 /* Rule.swift */,
 				5A984DD626FAB735006738CD /* RuleResolver.swift */,
@@ -696,6 +700,7 @@
 				5A984DD726FAB735006738CD /* RuleResolver.swift in Sources */,
 				5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */,
 				5A972E5026E06D84009E6B3D /* Player.swift in Sources */,
+				5A82D2A92711B169000B1F76 /* GameAI.swift in Sources */,
 				5A98CAD126E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
 				5A99568126F042F700E95169 /* RabbitRules.swift in Sources */,
 				5A91767126F1F50500D85B96 /* ExtraPieceDetector.swift in Sources */,
@@ -722,6 +727,7 @@
 				5A984DD826FAB735006738CD /* RuleResolver.swift in Sources */,
 				5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */,
 				5A972E5126E06D88009E6B3D /* Player.swift in Sources */,
+				5A82D2AA2711B16A000B1F76 /* GameAI.swift in Sources */,
 				5A98CAD226E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
 				5A99568226F042F700E95169 /* RabbitRules.swift in Sources */,
 				5A91767226F1F50500D85B96 /* ExtraPieceDetector.swift in Sources */,
