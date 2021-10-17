@@ -75,6 +75,14 @@ class RabbitConquerRule: MoveRule {
 
 public enum RabbitMoveGenerator {
     public static func generateMoves(fromStartingPosition position: Position, game: Game) -> Set<Move> {
+        let candidates = candidatePositions(fromStartingPosition: position, game: game)
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = allRules
+        return Set(candidates
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
+    }
+    private static func candidatePositions(fromStartingPosition position: Position, game: Game) -> [Position] {
         var candidatePositions = [Position]()
         if let positiveXEmpty = (stride(from: position.x, to: GameConstants.boardColumns, by: 1)
             .map { Position($0, position.y) }
@@ -112,10 +120,6 @@ public enum RabbitMoveGenerator {
             .first { game.board.board[safe: $0]?.isEmpty == true }) {
             candidatePositions.append(bottomRightEmpty)
         }
-        let ruleResolver = RuleResolver()
-        ruleResolver.rules = allRules
-        return Set(candidatePositions
-            .map { Move.move(from: position, to: $0) }
-            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
+        return candidatePositions
     }
 }
