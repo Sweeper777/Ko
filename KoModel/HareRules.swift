@@ -84,6 +84,16 @@ public enum HareMoveGenerator {
             .filter { ruleResolver.resolve(against: $0, game: game) != nil })
     }
     
+    public static func canMove(fromStartingPosition position: Position, game: Game) -> Bool {
+        let candidates = candidatePositions(fromStartingPosition: position, game: game)
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = allRules
+        return !candidates.lazy
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil }
+            .isEmpty
+    }
+    
     public static func candidatePositions(fromStartingPosition position: Position, game: Game) -> Set<Position> {
         var candidatePositions = game.board.positionsReachableByHare(from: position)
         if let positiveXEmpty = (stride(from: position.x, to: GameConstants.boardColumns, by: 1)
