@@ -75,6 +75,16 @@ fileprivate extension Board {
 
 public enum HareMoveGenerator {
     public static func generateMoves(fromStartingPosition position: Position, game: Game) -> Set<Move> {
+        
+        let candidates = candidatePositions(fromStartingPosition: position, game: game)
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = allRules
+        return Set(candidates
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
+    }
+    
+    public static func candidatePositions(fromStartingPosition position: Position, game: Game) -> Set<Position> {
         var candidatePositions = game.board.positionsReachableByHare(from: position)
         if let positiveXEmpty = (stride(from: position.x, to: GameConstants.boardColumns, by: 1)
             .map { Position($0, position.y) }
@@ -96,10 +106,6 @@ public enum HareMoveGenerator {
             .first { game.board[$0].isEmpty }) {
             candidatePositions.insert(negativeYEmpty)
         }
-        let ruleResolver = RuleResolver()
-        ruleResolver.rules = allRules
-        return Set(candidatePositions
-            .map { Move.move(from: position, to: $0) }
-            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
+        return candidatePositions
     }
 }
