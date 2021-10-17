@@ -172,4 +172,27 @@ public class Game {
         }
         return set
     }
+    
+    private func hasAnyMoves() -> Bool {
+        if allPlaceablePieces().contains(where: { PlacePieceMoveGenerator.canPlacePiece($0.type, game: self) }) {
+            return true
+        }
+        let empressPositions = board.piecesPositions[Piece(currentTurn, .empress)] ?? []
+        if empressPositions.contains(where: { EmpressMoveGenerator.canMove(fromStartingPosition: $0, game: self) }) {
+            return true
+        }
+        let harePositions = board.piecesPositions[Piece(currentTurn, .hare)] ?? []
+        if harePositions.contains(where: { HareMoveGenerator.canMove(fromStartingPosition: $0, game: self) }) {
+            return true
+        }
+        let rabbitPositions = board.piecesPositions[Piece(currentTurn, .rabbit)] ?? []
+        if rabbitPositions.contains(where: { RabbitMoveGenerator.canMove(fromStartingPosition: $0, game: self) }) {
+            return true
+        }
+        let moonPositions = board.piecesPositions[Piece(currentTurn, .moon)] ?? []
+        if moonPositions.contains(where: { MoonMoveGenerator.canMove(fromStartingPosition: $0, game: self) }) {
+            return true
+        }
+        return false
+    }
 }
