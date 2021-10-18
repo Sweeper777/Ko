@@ -97,3 +97,43 @@ public struct RabbitMoveGenerator : MoveGenerator {
     public init() {}
 }
 
+// MARK: Moon Move Generator
+public struct MoonMoveGenerator : MoveGenerator {
+    public func generateMoves(fromStartingPosition position: Position, game: Game) -> Set<Move> {
+        let allPositionsReachable = game.board.positionsReachableByMoon(from: position)
+        let candidatePositions = allPositionsReachable.filter { position in
+            position.eightNeighbours.contains {
+                game.board.board[safe: $0] != nil &&
+                    !game.board[$0].isEmpty &&
+                    game.board[$0].top != Piece(game.currentTurn, .moon)
+            }
+        }
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = rulesWithoutMovementRule
+        return Set(candidatePositions
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
+    }
+    
+    public func canMove(fromStartingPosition position: Position, game: Game) -> Bool {
+        let allPositionsReachable = game.board.positionsReachableByMoon(from: position)
+        let candidatePositions = allPositionsReachable.lazy.filter { position in
+            position.eightNeighbours.contains {
+                game.board.board[safe: $0] != nil &&
+                    !game.board[$0].isEmpty &&
+                    game.board[$0].top != Piece(game.currentTurn, .moon)
+            }
+        }
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = rulesWithoutMovementRule
+        return !candidatePositions
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil }
+            .isEmpty
+    }
+    
+    public var pieceType: PieceType { .moon }
+    
+    public init() {}
+}
+
