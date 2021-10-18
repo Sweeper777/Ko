@@ -57,7 +57,7 @@ public class Game {
         result = moveResult.gameResult
         if case .notDetermined = result {
             nextTurn()
-            let stalemate = allAvailableMoves().isEmpty
+            let stalemate = !hasAnyMoves()
             if stalemate {
                 result = .draw
             }
