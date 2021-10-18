@@ -26,7 +26,7 @@ class MoonCaptureRule: MoveRule {
     }
 }
 
-fileprivate extension Board {
+extension Board {
     func positionsReachableByMoon(from start: Position) -> Set<Position> {
         var reachable = Set<Position>()
         reachable.insert(start)
