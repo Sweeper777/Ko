@@ -19,6 +19,9 @@ public class Game {
     public internal(set) var board = Board()
     public internal(set) var currentTurnNumber = 0
     public internal(set) var result = GameResult.notDetermined
+    private let moveGenerators: [MoveGenerator] = [
+        EmpressMoveGenerator(), HareMoveGenerator(), RabbitMoveGenerator(), MoonMoveGenerator()
+    ]
     
     public var currentPlayer: Player {
         playerOfColor(currentTurn)
