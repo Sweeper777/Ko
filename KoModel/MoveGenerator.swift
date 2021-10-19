@@ -137,3 +137,54 @@ public struct MoonMoveGenerator : MoveGenerator {
     public init() {}
 }
 
+// MARK: Hare Move Generator
+public struct HareMoveGenerator: MoveGenerator {
+    public func generateMoves(fromStartingPosition position: Position, game: Game) -> Set<Move> {
+        
+        let candidates = candidatePositions(fromStartingPosition: position, game: game)
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = allRules
+        return Set(candidates
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil })
+    }
+    
+    public func canMove(fromStartingPosition position: Position, game: Game) -> Bool {
+        let candidates = candidatePositions(fromStartingPosition: position, game: game)
+        let ruleResolver = RuleResolver()
+        ruleResolver.rules = allRules
+        return !candidates.lazy
+            .map { Move.move(from: position, to: $0) }
+            .filter { ruleResolver.resolve(against: $0, game: game) != nil }
+            .isEmpty
+    }
+    
+    public func candidatePositions(fromStartingPosition position: Position, game: Game) -> Set<Position> {
+        var candidatePositions = game.board.positionsReachableByHare(from: position)
+        if let positiveXEmpty = (stride(from: position.x, to: GameConstants.boardColumns, by: 1)
+            .map { Position($0, position.y) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.insert(positiveXEmpty)
+        }
+        if let negativeXEmpty = (stride(from: position.x, through: 0, by: -1)
+            .map { Position($0, position.y) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.insert(negativeXEmpty)
+        }
+        if let positiveYEmpty = (stride(from: position.y, to: GameConstants.boardRows, by: 1)
+            .map { Position(position.x, $0) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.insert(positiveYEmpty)
+        }
+        if let negativeYEmpty = (stride(from: position.y, through: 0, by: -1)
+            .map { Position(position.x, $0) }
+            .first { game.board[$0].isEmpty }) {
+            candidatePositions.insert(negativeYEmpty)
+        }
+        return candidatePositions
+    }
+    
+    public var pieceType: PieceType { .hare }
+    
+    public init() {}
+}
