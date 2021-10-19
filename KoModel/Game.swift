@@ -161,17 +161,10 @@ public class Game {
         for placeablePiece in allPlaceablePieces() {
             set.formUnion(PlacePieceMoveGenerator.generateMoves(forPlacing: placeablePiece.type, game: self))
         }
-        for empressPosition in board.piecesPositions[Piece(currentTurn, .empress)] ?? [] {
-            set.formUnion(EmpressMoveGenerator.generateMoves(fromStartingPosition: empressPosition, game: self))
-        }
-        for harePosition in board.piecesPositions[Piece(currentTurn, .hare)] ?? [] {
-            set.formUnion(HareMoveGenerator.generateMoves(fromStartingPosition: harePosition, game: self))
-        }
-        for rabbitPosition in board.piecesPositions[Piece(currentTurn, .rabbit)] ?? [] {
-            set.formUnion(RabbitMoveGenerator.generateMoves(fromStartingPosition: rabbitPosition, game: self))
-        }
-        for moonPosition in board.piecesPositions[Piece(currentTurn, .moon)] ?? [] {
-            set.formUnion(MoonMoveGenerator.generateMoves(fromStartingPosition: moonPosition, game: self))
+        for moveGen in moveGenerators {
+            for position in board.piecesPositions[Piece(currentTurn, moveGen.pieceType)] ?? [] {
+                set.formUnion(moveGen.generateMoves(fromStartingPosition: position, game: self))
+            }
         }
         return set
     }
