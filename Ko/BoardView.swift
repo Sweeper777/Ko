@@ -36,13 +36,13 @@ class BoardView: UIView {
                 if let game = game {
                     switch game.board[selectedPos] {
                     case .empress:
-                        highlightMoves(EmpressMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                        highlightMoves(EmpressMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
                     case .hare:
-                        highlightMoves(HareMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                        highlightMoves(HareMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
                     case .rabbit:
-                        highlightMoves(RabbitMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                        highlightMoves(RabbitMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
                     case .moon:
-                        highlightMoves(MoonMoveGenerator.generateMoves(fromStartingPosition: selectedPos, game: game))
+                        highlightMoves(MoonMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
                     default:
                         break
                     }
