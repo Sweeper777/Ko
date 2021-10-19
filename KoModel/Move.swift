@@ -1,4 +1,4 @@
-public enum Move: Hashable {
+public enum Move: Hashable, Codable {
     case placePiece(PieceType, at: Position)
     case move(from: Position, to: Position)
 }
@@ -31,4 +31,24 @@ public struct MoveResult: Hashable {
         self.fromPosition = fromPosition
         self.toPosition = toPosition
     }
+}
+
+extension Move {
+    enum CodingKeys: CodingKey {
+        case pieceType
+        case source
+        case destination
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let pieceType = try container.decodeIfPresent(PieceType.self, forKey: .pieceType) {
+            let destination = try container.decode(Position.self, forKey: .destination)
+            self = .placePiece(pieceType, at: destination)
+        } else {
+            self = .move(from: try container.decode(Position.self, forKey: .source),
+                         to: try container.decode(Position.self, forKey: .destination))
+        }
+    }
+    
 }
