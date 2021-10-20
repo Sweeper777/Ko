@@ -130,12 +130,22 @@ class PieceView: UIView {
             switch piece.color {
             case .blue:
                 textColor = .white
-                textOffset = 5
-                initialTextTransform = .identity
+                if isInverted {
+                    textOffset = -5
+                    initialTextTransform = CGAffineTransform(rotationAngle: .pi)
+                } else {
+                    textOffset = 5
+                    initialTextTransform = .identity
+                }
             case .white:
                 textColor = .black
-                textOffset = -5
-                initialTextTransform = CGAffineTransform(rotationAngle: .pi)
+                if !isInverted {
+                    textOffset = -5
+                    initialTextTransform = CGAffineTransform(rotationAngle: .pi)
+                } else {
+                    textOffset = 5
+                    initialTextTransform = .identity
+                }
             }
             let attrString = NSAttributedString(string: text, attributes: [
                 .foregroundColor: textColor,
