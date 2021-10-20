@@ -28,6 +28,8 @@ class GameViewController: UIViewController {
         boardView.delegate = self
         pieceSelector.delegate = self
         
+        scrollView.transform = CGAffineTransform(rotationAngle: .pi)
+        
         configureProgressBar(blueProgress, color: UIColor(named: "bluePlayerColor")!)
         configureProgressBar(whiteProgress, color: UIColor(named: "whitePlayerColor")!)
         
