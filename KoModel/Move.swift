@@ -51,4 +51,15 @@ extension Move {
         }
     }
     
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .move(from: let from, to: let to):
+            try container.encode(from, forKey: .source)
+            try container.encode(to, forKey: .destination)
+        case .placePiece(let type, at: let destination):
+            try container.encode(type, forKey: .pieceType)
+            try container.encode(destination, forKey: .destination)
+        }
+    }
 }
