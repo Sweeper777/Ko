@@ -31,6 +31,12 @@ class PieceView: UIView {
     
     var isDirty = false
     
+    var isInverted = false {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
     var pieceLayers: [CAShapeLayer] = []
     
     private func setupLayers() {
@@ -83,11 +89,17 @@ class PieceView: UIView {
             case .blue:
                 layer.fillColor = UIColor(named: "bluePlayerColor")?.cgColor
                 layer.strokeColor = UIColor(named: "bluePlayerColor")?.lighter().cgColor
+                if isInverted {
+                    path.apply(CGAffineTransform(scaleX: 1, y: -1))
+                    path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
+                }
             case .white:
                 layer.fillColor = UIColor(named: "whitePlayerColor")?.cgColor
                 layer.strokeColor = UIColor(named: "whitePlayerColor")?.darker().cgColor
-                path.apply(CGAffineTransform(scaleX: 1, y: -1))
-                path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
+                if !isInverted {
+                    path.apply(CGAffineTransform(scaleX: 1, y: -1))
+                    path.apply(CGAffineTransform(translationX: 0, y: bounds.height))
+                }
             }
             if isSelected, index == pieces.count - 1 {
                 layer.strokeColor = UIColor.red.cgColor
