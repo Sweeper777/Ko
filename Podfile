@@ -10,6 +10,8 @@ target 'Ko' do
   pod 'SCLAlertView'
   pod 'TYMProgressBarView'
   pod 'SwiftyButton'
+  pod 'RxCocoa'
+  pod 'RxSwift'
 end
 
 target 'KoModel' do
