@@ -32,6 +32,15 @@ class ConnectViewController: UIViewController {
                 shadow: UIColor.gray.darker())
         backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
         
+        foundPeers.asObservable().bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) {
+            row, model, cell in
+            cell.backgroundColor = .clear
+            cell.textLabel?.text = model.displayName
+        }.disposed(by: disposeBag)
+    }
+    
+    @objc func backTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
