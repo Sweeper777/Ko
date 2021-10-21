@@ -54,9 +54,17 @@ extension ConnectViewController : MCNearbyServiceAdvertiserDelegate {
 
 extension ConnectViewController : MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        guard let index = foundPeers.value.firstIndex(of: peerID) else { return }
+        var copy = foundPeers.value
+        copy.remove(at: index)
+        foundPeers.accept(copy)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        var copy = foundPeers.value
+        copy.append(peerID)
+        foundPeers.accept(copy)
+    }
 }
 
 extension ConnectViewController : MCSessionDelegate {
