@@ -26,6 +26,12 @@ class ConnectViewController: UIViewController {
         browser.startBrowsingForPeers()
         advertiser.startAdvertisingPeer()
         
+        backButton.setTitle("BACK", for: .normal)
+        backButton.colors = PressableButton.ColorSet(
+                button: UIColor.gray,
+                shadow: UIColor.gray.darker())
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
+        
     }
 }
 
