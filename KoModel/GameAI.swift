@@ -17,13 +17,10 @@ public class GameAI {
     func evaluateHeuristics() -> Int {
         if case .wins(myColor) = game.result {
             return .max
-        } else if case .wins(myColor.opposingColor) = game.result {
+        } else if case .wins(myColor.opposingColor) = game.result, case .draw = game.result {
             return .min
-        } else if case .draw = game.result {
-            return 0
         }
         return materialValue(of: myColor) - materialValue(of: myColor.opposingColor)
-            - (isEmpressFarFromBurrows() ? 5 : 0)
     }
     
     private func isEmpressFarFromBurrows() -> Bool {
