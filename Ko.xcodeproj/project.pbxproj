@@ -15,8 +15,6 @@
 		5A6E5EF326FD864700D7B6B3 /* PieceViewAnimationPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */; };
 		5A81824C26F2E14400B7042E /* PieceRemovalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */; };
 		5A81824D26F2E14400B7042E /* PieceRemovalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */; };
-		5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
-		5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */; };
 		5A82D2A92711B169000B1F76 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82D2A82711B169000B1F76 /* GameAI.swift */; };
 		5A82D2AA2711B16A000B1F76 /* GameAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82D2A82711B169000B1F76 /* GameAI.swift */; };
 		5A849DF827078A38007F0DB3 /* KoModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A849DF727078A38007F0DB3 /* KoModelTests.swift */; };
@@ -27,6 +25,8 @@
 		5A865784270B35450070D50D /* MoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865783270B35450070D50D /* MoonTests.swift */; };
 		5A865786270B359E0070D50D /* EmpressCastleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865785270B359E0070D50D /* EmpressCastleTests.swift */; };
 		5A865788270B35EC0070D50D /* PieceRemovalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A865787270B35EC0070D50D /* PieceRemovalTests.swift */; };
+		5A893D1D271AF71A009CD3A4 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A893D1C271AF71A009CD3A4 /* ConnectViewController.swift */; };
+		5A893D23271AFAA8009CD3A4 /* NearbyPeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A893D22271AFAA8009CD3A4 /* NearbyPeerCell.xib */; };
 		5A8B5A2A26E1B7B000DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B5A2B26E1B7B100DD64A7 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B5A2926E1B7B000DD64A7 /* Board.swift */; };
 		5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */; };
@@ -78,6 +78,8 @@
 		5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA826F5D12800F48727 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA726F5D12800F48727 /* PieceView.swift */; };
+		5AA030A3271C1BFD0033A2B1 /* MoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */; };
+		5AA030A4271C1BFD0033A2B1 /* MoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */; };
 		ACA978C81008B24F22C95788 /* Pods_KoModelMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */; };
 		DFC6B28C38CDFD14613339A4 /* Pods_Ko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC9E7099C708D0CEDDC576F /* Pods_Ko.framework */; };
 		F1F2F4052D100621DEC4D197 /* Pods_KoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14719D225B1D54F491DD50 /* Pods_KoModel.framework */; };
@@ -131,7 +133,6 @@
 		5A6E5EEE26FD864700D7B6B3 /* AnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationType.swift; sourceTree = "<group>"; };
 		5A6E5EEF26FD864700D7B6B3 /* PieceViewAnimationPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieceViewAnimationPhase.swift; sourceTree = "<group>"; };
 		5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalRule.swift; sourceTree = "<group>"; };
-		5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressMoveGenerator.swift; sourceTree = "<group>"; };
 		5A82D2A82711B169000B1F76 /* GameAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAI.swift; sourceTree = "<group>"; };
 		5A849DF527078A38007F0DB3 /* KoModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A849DF727078A38007F0DB3 /* KoModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoModelTests.swift; sourceTree = "<group>"; };
@@ -142,6 +143,8 @@
 		5A865783270B35450070D50D /* MoonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonTests.swift; sourceTree = "<group>"; };
 		5A865785270B359E0070D50D /* EmpressCastleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleTests.swift; sourceTree = "<group>"; };
 		5A865787270B35EC0070D50D /* PieceRemovalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceRemovalTests.swift; sourceTree = "<group>"; };
+		5A893D1C271AF71A009CD3A4 /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		5A893D22271AFAA8009CD3A4 /* NearbyPeerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyPeerCell.xib; sourceTree = "<group>"; };
 		5A8B5A2926E1B7B000DD64A7 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		5A8B770E26DF2CED0063C3E7 /* Ko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 		5A99568026F042F700E95169 /* RabbitRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabbitRules.swift; sourceTree = "<group>"; };
 		5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleRule.swift; sourceTree = "<group>"; };
 		5A9E3CA726F5D12800F48727 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
+		5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveGenerator.swift; sourceTree = "<group>"; };
 		728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoModelMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837253C06417681D14FC5E5D /* Pods-Ko.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ko.release.xcconfig"; path = "Target Support Files/Pods-Ko/Pods-Ko.release.xcconfig"; sourceTree = "<group>"; };
 		AD15E928AF4F4780FC9A0340 /* Pods-KoModelMacOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoModelMacOS.debug.xcconfig"; path = "Target Support Files/Pods-KoModelMacOS/Pods-KoModelMacOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -303,11 +307,13 @@
 				5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */,
 				5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */,
 				5A8B771526DF2CED0063C3E7 /* GameViewController.swift */,
+				5A893D1C271AF71A009CD3A4 /* ConnectViewController.swift */,
 				5A97A670270F403900E28DAE /* MainMenuViewController.swift */,
 				5A8F47BD26ECA090000E1C1B /* BoardView.swift */,
 				5A9E3CA726F5D12800F48727 /* PieceView.swift */,
 				5A96DFA126FC1CE500D38763 /* PieceViewButton.swift */,
 				5A96DFA326FC1EBD00D38763 /* PieceSelectorView.swift */,
+				5A893D22271AFAA8009CD3A4 /* NearbyPeerCell.xib */,
 				5A8B771726DF2CED0063C3E7 /* Main.storyboard */,
 				5A8B771A26DF2CF00063C3E7 /* Assets.xcassets */,
 				5A8B771C26DF2CF00063C3E7 /* LaunchScreen.storyboard */,
@@ -340,7 +346,7 @@
 				5A81824B26F2E14400B7042E /* PieceRemovalRule.swift */,
 				5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */,
 				5A2646512703A5AA0064CC93 /* PlacePieceMoveGenerator.swift */,
-				5A81FE51270458F400D6E25D /* EmpressMoveGenerator.swift */,
+				5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */,
 			);
 			path = KoModel;
 			sourceTree = "<group>";
@@ -550,6 +556,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A893D23271AFAA8009CD3A4 /* NearbyPeerCell.xib in Resources */,
 				5A8B771E26DF2CF00063C3E7 /* LaunchScreen.storyboard in Resources */,
 				5A8B771B26DF2CF00063C3E7 /* Assets.xcassets in Resources */,
 				5A8B771926DF2CED0063C3E7 /* Main.storyboard in Resources */,
@@ -688,6 +695,7 @@
 				5A6E5EF126FD864700D7B6B3 /* AnimationManager.swift in Sources */,
 				5A96DFA426FC1EBD00D38763 /* PieceSelectorView.swift in Sources */,
 				5A6E5EF226FD864700D7B6B3 /* AnimationType.swift in Sources */,
+				5A893D1D271AF71A009CD3A4 /* ConnectViewController.swift in Sources */,
 				5A96DFA226FC1CE500D38763 /* PieceViewButton.swift in Sources */,
 				5A6E5EF326FD864700D7B6B3 /* PieceViewAnimationPhase.swift in Sources */,
 			);
@@ -698,7 +706,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A984DD726FAB735006738CD /* RuleResolver.swift in Sources */,
-				5A81FE52270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */,
 				5A972E5026E06D84009E6B3D /* Player.swift in Sources */,
 				5A82D2A92711B169000B1F76 /* GameAI.swift in Sources */,
 				5A98CAD126E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
@@ -717,6 +724,7 @@
 				5A972E5326E06F99009E6B3D /* GameConstants.swift in Sources */,
 				5A99567E26F0381100E95169 /* MoonRules.swift in Sources */,
 				5A90E2C326E6FF1C00FC3AF1 /* AllRules.swift in Sources */,
+				5AA030A3271C1BFD0033A2B1 /* MoveGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,7 +733,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A984DD826FAB735006738CD /* RuleResolver.swift in Sources */,
-				5A81FE53270458F400D6E25D /* EmpressMoveGenerator.swift in Sources */,
 				5A972E5126E06D88009E6B3D /* Player.swift in Sources */,
 				5A82D2AA2711B16A000B1F76 /* GameAI.swift in Sources */,
 				5A98CAD226E30C9A00D1FEE8 /* PiecePlacementRecord.swift in Sources */,
@@ -744,6 +751,7 @@
 				5A972E5426E07012009E6B3D /* GameConstants.swift in Sources */,
 				5A99567F26F0381100E95169 /* MoonRules.swift in Sources */,
 				5A90E2C426E6FF1C00FC3AF1 /* AllRules.swift in Sources */,
+				5AA030A4271C1BFD0033A2B1 /* MoveGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,7 +815,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				INFOPLIST_FILE = KoModelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -825,7 +833,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				INFOPLIST_FILE = KoModelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -963,7 +971,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				INFOPLIST_FILE = Ko/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -984,7 +992,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				INFOPLIST_FILE = Ko/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1005,7 +1013,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1035,7 +1043,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1065,7 +1073,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1097,7 +1105,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1125,7 +1133,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				INFOPLIST_FILE = KoModelMacOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1146,7 +1154,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = E9MW74DJ4Y;
+				DEVELOPMENT_TEAM = XXX;
 				INFOPLIST_FILE = KoModelMacOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
