@@ -4,6 +4,7 @@ public class Game {
         whitePlayer = Player(color: .white)
     }
     
+    @inline(__always)
     public init(copyOf game: Game) {
         bluePlayer = Player(copyOf: game.bluePlayer)
         whitePlayer = Player(copyOf: game.whitePlayer)
@@ -23,14 +24,17 @@ public class Game {
         EmpressMoveGenerator(), HareMoveGenerator(), RabbitMoveGenerator(), MoonMoveGenerator()
     ]
     
+    @inline(__always)
     public var currentPlayer: Player {
         playerOfColor(currentTurn)
     }
     
+    @inline(__always)
     public var currentOpponent: Player {
         playerOfColor(currentTurn.opposingColor)
     }
     
+    @inline(__always)
     public func playerOfColor(_ playerColor: PlayerColor) -> Player {
         switch playerColor {
         case .white: return whitePlayer
@@ -38,10 +42,12 @@ public class Game {
         }
     }
     
+    @inline(__always)
     public func makeMove(_ move: Move) -> MoveResult? {
         makeMove(move, rules: allRules)
     }
     
+    @inline(__always)
     public func makeMoveUnchecked(_ move: Move) -> MoveResult? {
         makeMove(move, rules: rulesThatModifyResultOnly)
     }

@@ -12,6 +12,7 @@ public class Player: Codable {
         self.color = color
     }
     
+    @inline(__always)
     public init(copyOf player: Player) {
         color = player.color
         availableBurrows = player.availableBurrows
