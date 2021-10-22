@@ -144,31 +144,39 @@ public struct Position: Hashable, RawRepresentable, Codable {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
     
+    @inline(__always)
     public func above() -> Position {
         return Position(x, y - 1)
     }
     
+    @inline(__always)
     public func below() -> Position {
         return Position(x, y + 1)
     }
     
+    @inline(__always)
     public func left() -> Position {
         return Position(x - 1, y)
     }
     
+    @inline(__always)
     public func right() -> Position {
         return Position(x + 1, y)
     }
     
+    
+    @inline(__always)
     public init(_ x: Int, _ y: Int) {
         self.x = x
         self.y = y
     }
     
+    @inline(__always)
     public var fourNeighbours: [Position] {
         [above(), below(), left(), right()]
     }
     
+    @inline(__always)
     public var eightNeighbours: [Position] {
         [
             above(), below(), left(), right(),
