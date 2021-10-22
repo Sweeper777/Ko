@@ -37,7 +37,7 @@ class MainMenuViewController : UIViewController {
     }
 
     @objc func connectTapped() {
-        
+        performSegue(withIdentifier: "showConnectVC", sender: nil)
     }
     
     @objc func helpTapped() {
