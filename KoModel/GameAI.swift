@@ -7,7 +7,7 @@ public class GameAI {
     }
     
     let myColor: PlayerColor
-    let searchDepth = 6
+    let searchDepth = 8
 
     public init(game: Game, myColor: PlayerColor) {
         self.gameStates = [game]
