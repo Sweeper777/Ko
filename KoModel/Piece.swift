@@ -5,6 +5,7 @@ public enum PieceType: Int, Hashable, Codable, CaseIterable {
 public enum PlayerColor: Int, Hashable, Codable, CustomStringConvertible {
     case blue, white
     
+    @inline(__always)
     var opposingColor: PlayerColor {
         switch self {
         case .blue:
@@ -14,6 +15,7 @@ public enum PlayerColor: Int, Hashable, Codable, CustomStringConvertible {
         }
     }
     
+    @inline(__always)
     public var description: String {
         switch self {
         case .blue:
@@ -47,35 +49,43 @@ public struct PieceStack: Hashable, Codable, Sequence {
         
     }
     
+    @inline(__always)
     public var top: Piece? {
         pieces.last
     }
     
+    @inline(__always)
     public var bottom: Piece? {
         pieces.first
     }
     
+    @inline(__always)
     public var isEmpty: Bool {
         pieces.isEmpty
     }
     
+    @inline(__always)
     public var count: Int {
         pieces.count
     }
     
+    @inline(__always)
     public func firstIndex(of piece: Piece) -> Int? {
         pieces.firstIndex(of: piece)
     }
     
+    @inline(__always)
     public mutating func push(_ piece: Piece) {
         pieces.append(piece)
     }
     
+    @inline(__always)
     @discardableResult
     public mutating func pop() -> Piece? {
         pieces.popLast()
     }
     
+    @inline(__always)
     public mutating func remove(at index: Int) -> Piece {
         pieces.remove(at: index)
     }
@@ -87,6 +97,7 @@ public struct PieceStack: Hashable, Codable, Sequence {
         lhs == rhs.top?.type
     }
     
+    @inline(__always)
     public func makeIterator() -> IndexingIterator<[Piece]> {
         pieces.makeIterator()
     }
