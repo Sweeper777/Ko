@@ -235,7 +235,7 @@
                         <outlet property="connectButton" destination="ogi-eQ-PpJ" id="pLe-3e-Odb"/>
                         <outlet property="helpButton" destination="URM-YR-JS6" id="lar-UA-93C"/>
                         <outlet property="startButton" destination="Ve4-tD-jWV" id="3c2-DJ-2J7"/>
-                        <segue destination="RAA-O8-ysB" kind="show" identifier="showConnectVC" id="aA9-pj-nvu"/>
+                        <segue destination="RAA-O8-ysB" kind="presentation" identifier="showConnectVC" modalPresentationStyle="formSheet" id="aA9-pj-nvu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ule-IM-u6q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
