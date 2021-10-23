@@ -42,6 +42,11 @@ class ConnectViewController: UIViewController {
     @objc func backTapped() {
         dismiss(animated: true, completion: nil)
     }
+    
+    deinit {
+        browser.stopBrowsingForPeers()
+        advertiser.stopAdvertisingPeer()
+    }
 }
 
 extension ConnectViewController : MCNearbyServiceAdvertiserDelegate {
