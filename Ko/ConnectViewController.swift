@@ -66,7 +66,13 @@ extension ConnectViewController : MCNearbyServiceAdvertiserDelegate {
         let expiryDate = context.flatMap { (try? JSONDecoder().decode(InvitationInfo.self, from: $0))?.expiryDate }
         let alert = SCLAlertView(appearance: .init(showCloseButton: false))
         alert.addButton("Yes") { [weak self] in
-            invitationHandler(self != nil, self?.session)
+            let expired = expiryDate.map { $0 < Date() } ?? false
+            if expired {
+                SCLAlertView().showError("Oops!", subTitle: "The invitation has expired!")
+            } else {
+                invitationHandler(self != nil, self?.session)
+                (self?.session).map { self?.delegate?.inviteeDidAcceptInvitation(session: $0) }
+            }
         }
         alert.addButton("No") {
             invitationHandler(false, nil)
