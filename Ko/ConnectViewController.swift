@@ -63,7 +63,15 @@ class ConnectViewController: UIViewController {
 
 extension ConnectViewController : MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
+        let expiryDate = context.flatMap { (try? JSONDecoder().decode(InvitationInfo.self, from: $0))?.expiryDate }
+        let alert = SCLAlertView(appearance: .init(showCloseButton: false))
+        alert.addButton("Yes") { [weak self] in
+            invitationHandler(self != nil, self?.session)
+        }
+        alert.addButton("No") {
+            invitationHandler(false, nil)
+        }
+        alert.showNotice("Accept Invitation?", subTitle: "\(peerID.displayName) invites you to join their game. Do you want to accept their invitation?")
     }
     
     
