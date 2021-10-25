@@ -245,7 +245,7 @@
         <!--Connect View Controller-->
         <scene sceneID="Uex-yD-0rA">
             <objects>
-                <viewController storyboardIdentifier="HostVC" id="RAA-O8-ysB" customClass="ConnectViewController" customModule="Ko" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RAA-O8-ysB" customClass="ConnectViewController" customModule="Ko" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H0C-xS-tmG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,6 +310,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNH-Lk-Asf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-679" y="799"/>
+        </scene>
+        <!--Waiting For Response Controller-->
+        <scene sceneID="AO6-Ot-0b9">
+            <objects>
+                <viewController storyboardIdentifier="WaitingForResponseVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="yP8-Wi-Ofb" customClass="WaitingForResponseController" customModule="Ko" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="khq-PG-mZ2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1DP-Km-HFV">
+                                <rect key="frame" x="81.666666666666686" y="342" width="212" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xWR-D5-6Ew">
+                                        <rect key="frame" x="16" y="16" width="180" height="96"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzA-xc-tff">
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="Qx7-1N-2Q1"/>
+                                                </constraints>
+                                                <string key="text">Invitation Sent
+Waiting For Response</string>
+                                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FJg-MH-0pR">
+                                                <rect key="frame" x="0.0" y="59" width="180" height="37"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.88240995861235116" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="xWR-D5-6Ew" firstAttribute="leading" secondItem="1DP-Km-HFV" secondAttribute="leading" constant="16" id="Cce-Zx-58u"/>
+                                    <constraint firstAttribute="bottom" secondItem="xWR-D5-6Ew" secondAttribute="bottom" constant="16" id="JBP-UU-6kt"/>
+                                    <constraint firstItem="xWR-D5-6Ew" firstAttribute="top" secondItem="1DP-Km-HFV" secondAttribute="top" constant="16" id="mvv-SQ-kJE"/>
+                                    <constraint firstAttribute="trailing" secondItem="xWR-D5-6Ew" secondAttribute="trailing" constant="16" id="ngr-Qt-Fga"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Gv5-Dd-nHk"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.50433713395074509" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1DP-Km-HFV" firstAttribute="centerX" secondItem="khq-PG-mZ2" secondAttribute="centerX" id="9EQ-J7-19g"/>
+                            <constraint firstItem="1DP-Km-HFV" firstAttribute="centerY" secondItem="khq-PG-mZ2" secondAttribute="centerY" id="Nk8-Cr-jbQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="waitingForResponseBanner" destination="1DP-Km-HFV" id="3xM-rJ-sr8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nlb-dY-yM7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9" y="799"/>
         </scene>
     </scenes>
     <designables>
