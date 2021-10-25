@@ -37,6 +37,18 @@ class ConnectViewController: UIViewController {
             cell.backgroundColor = .clear
             cell.textLabel?.text = model.displayName
         }.disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
+            guard let self = self else { return }
+            let selectedPeer = self.foundPeers.value[indexPath.row]
+            let timeout: TimeInterval = 30
+            let invitationInfo = InvitationInfo(expiryDate: Date().addingTimeInterval(timeout))
+            self.browser.invitePeer(selectedPeer, to: self.session, withContext: try? JSONEncoder().encode(invitationInfo), timeout: timeout)
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            if let waitingForResponseVC = UIStoryboard.main?.instantiateViewController(identifier: "WaitingForResponseVC") {
+                self.present(waitingForResponseVC, animated: true, completion: nil)
+            }
+        }).disposed(by: disposeBag)
     }
     
     @objc func backTapped() {
