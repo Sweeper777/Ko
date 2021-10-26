@@ -12,5 +12,10 @@ class AIGameControllerStrategy : GameControllerStrategy {
         self.humanPlayerColor = humanPlayerColor
     }
     
+
+    var isAITurn: Bool {
+        gameViewController.game.currentTurn != humanPlayerColor
+    }
+    
 }
 
