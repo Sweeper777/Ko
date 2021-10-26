@@ -100,6 +100,9 @@ extension ConnectViewController : MCNearbyServiceBrowserDelegate {
 
 extension ConnectViewController : MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        if state == .connecting {
+            return
+        }
         
     }
     
