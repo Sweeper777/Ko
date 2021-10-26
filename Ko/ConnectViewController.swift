@@ -104,6 +104,14 @@ extension ConnectViewController : MCSessionDelegate {
             return
         }
         
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+            if state == .notConnected {
+                SCLAlertView().showError(":-(", subTitle: "\(peerID.displayName) did not accept your invitation.")
+            } else if state == .connected {
+            }
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
