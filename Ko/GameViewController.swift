@@ -37,6 +37,7 @@ class GameViewController: UIViewController {
         boardView.game = game
         boardView.updatePieceViews()
         updateViews()
+        strategy.didRestartGame()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -128,6 +129,7 @@ extension GameViewController: BoardViewDelegate {
                 moveToMake = .placePiece(type, at: position)
             }
         }
+        strategy.willMove(moveToMake)
         if validMove,
            let moveResult = game.makeMoveUnchecked(moveToMake) {
             setUserInteractionEnabled(false)
@@ -142,6 +144,7 @@ extension GameViewController: BoardViewDelegate {
                 case .notDetermined:
                     self.setUserInteractionEnabled(true)
                 }
+                self.strategy.didEndAnimatingMoveResult(moveResult)
             }
             self.updateViews()
         }
