@@ -157,7 +157,7 @@ class BoardView: UIView {
     
     let animationManager = AnimationManager<PieceViewAnimationPhase>()
     
-    func animateMoveResult(_ moveResult: MoveResult, completion: (() -> Void)?) {
+    func animateMoveResult(_ moveResult: MoveResult) {
         // 1. place/move
         // 2. conquer
         // 3. remove
@@ -261,8 +261,9 @@ class BoardView: UIView {
         
         CATransaction.flush()
         animationManager.runAnimation { [weak self] in
-            self?.updatePieceViews()
-            completion?()
+            guard let self = self else { return }
+            self.updatePieceViews()
+            self.delegate?.didEndAnimatingMove(self, moveResult: moveResult)
         }
     }
     
@@ -281,4 +282,5 @@ class BoardView: UIView {
 
 protocol BoardViewDelegate: AnyObject {
     func didTapPosition(_ boardView: BoardView, position: Position)
+    func didEndAnimatingMove(_ boardView: BoardView, moveResult: MoveResult)
 }
