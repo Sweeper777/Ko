@@ -133,19 +133,7 @@ extension GameViewController: BoardViewDelegate {
         if validMove,
            let moveResult = game.makeMoveUnchecked(moveToMake) {
             setUserInteractionEnabled(false)
-            boardView.animateMoveResult(moveResult) {
-                [weak self] in
-                guard let self = self else { return }
-                switch self.game.result {
-                case .wins(let color):
-                    SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
-                case .draw:
-                    SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
-                case .notDetermined:
-                    self.setUserInteractionEnabled(true)
-                }
-                self.strategy.didEndAnimatingMoveResult(moveResult)
-            }
+            boardView.animateMoveResult(moveResult)
             self.updateViews()
         }
     }
@@ -164,5 +152,17 @@ extension GameViewController: PieceSelectorDelegate {
         } else {
             boardView.highlightedPositions = []
         }
+    }
+    
+    func didEndAnimatingMove(_ boardView: BoardView, moveResult: MoveResult) {
+        switch game.result {
+        case .wins(let color):
+            SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
+        case .draw:
+            SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
+        case .notDetermined:
+            setUserInteractionEnabled(true)
+        }
+        strategy.didEndAnimatingMoveResult(moveResult)
     }
 }

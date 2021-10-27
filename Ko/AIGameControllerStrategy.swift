@@ -49,14 +49,7 @@ class AIGameControllerStrategy : GameControllerStrategy {
                     return
                 }
                 self?.gameViewController.updateViews()
-                self?.gameViewController.boardView.animateMoveResult(moveResult) { [weak self] in
-                    self?.gameViewController.setUserInteractionEnabled(true)
-                    if case .wins(let color) = self?.gameViewController.game.result {
-                        SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
-                    } else if .draw == self?.gameViewController.game.result {
-                        SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
-                    }
-                }
+                self?.gameViewController.boardView.animateMoveResult(moveResult)
             }
         }
     }
