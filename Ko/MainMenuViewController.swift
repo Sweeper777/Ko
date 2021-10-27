@@ -29,11 +29,19 @@ class MainMenuViewController : UIViewController {
     }
 
     @objc func startTapped() {
-        guard let gameVC = UIStoryboard.main?.instantiateViewController(identifier: "GameVC") else {
-            return
+        let gameVC = instantiateGameViewController(withStrategy: { _ in
+            DefaultGameControllerStrategy()
+        })
+        gameVC.map { present($0, animated: true, completion: nil) }
+    }
+    
+    func instantiateGameViewController(withStrategy strategyProvider: (GameViewController) -> GameControllerStrategy) -> GameViewController? {
+        guard let gameVC = UIStoryboard.main?.instantiateViewController(identifier: "GameVC") as? GameViewController else {
+            return nil
         }
         gameVC.modalPresentationStyle = .fullScreen
-        present(gameVC, animated: true, completion: nil)
+        gameVC.strategy = strategyProvider(gameVC)
+        return gameVC
     }
 
     @objc func connectTapped() {
