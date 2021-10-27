@@ -14,6 +14,8 @@ class GameViewController: UIViewController {
     @IBOutlet var whiteFieldCountLabel: UILabel!
     
     let game = Game()
+    
+    var strategy: GameControllerStrategy!
         
     override func viewDidLoad() {
         super.viewDidLoad()
