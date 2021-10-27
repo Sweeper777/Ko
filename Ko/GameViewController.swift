@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
     @IBOutlet var blueFieldCountLabel: UILabel!
     @IBOutlet var whiteFieldCountLabel: UILabel!
     
-    let game = Game()
+    var game: Game!
     
     var strategy: GameControllerStrategy!
         
@@ -24,18 +24,24 @@ class GameViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width / 2 - scrollView.bounds.width / 2,
                                            y: scrollView.contentSize.height / 2 - scrollView.bounds.height / 2)
         
-        boardView.game = game
-        game.placeFieldsForDebugging()
-        boardView.updatePieceViews()
         boardView.delegate = self
         pieceSelector.delegate = self
-        
-//        scrollView.transform = CGAffineTransform(rotationAngle: .pi)
         
         configureProgressBar(blueProgress, color: UIColor(named: "bluePlayerColor")!)
         configureProgressBar(whiteProgress, color: UIColor(named: "whitePlayerColor")!)
         
+    }
+    
+    func restartGame() {
+        game = Game()
+        boardView.game = game
+        boardView.updatePieceViews()
         updateViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        restartGame()
     }
     
     override func viewDidLayoutSubviews() {
