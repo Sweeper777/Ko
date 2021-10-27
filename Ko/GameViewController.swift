@@ -134,30 +134,16 @@ extension GameViewController: BoardViewDelegate {
             boardView.animateMoveResult(moveResult) {
                 [weak self] in
                 guard let self = self else { return }
-                let ai = GameAI(game: self.game, myColor: self.game.currentTurn)
-                ai.getNextMove(on: .global(qos: .userInitiated)) { [weak self] aiMove in
-                    DispatchQueue.main.async { [weak self] in
-                        guard let moveResult = self?.game.makeMoveUnchecked(aiMove) else {
-                            return
-                        }
-                        self?.boardView.animateMoveResult(moveResult) { [weak self] in
-                            self?.setUserInteractionEnabled(true)
-                            self?.updateViews()
-                            if case .wins(let color) = self?.game.result {
-                                SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
-                            } else if .draw == self?.game.result {
-                                SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
-                            }
-                        }
-                    }
+                switch self.game.result {
+                case .wins(let color):
+                    SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
+                case .draw:
+                    SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
+                case .notDetermined:
+                    self.setUserInteractionEnabled(true)
                 }
             }
-            updateViews()
-            if case .wins(let color) = game.result {
-                SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")
-            } else if .draw == game.result {
-                SCLAlertView().showInfo("Game Over!", subTitle: "It's a draw!")
-            }
+            self.updateViews()
         }
     }
     
