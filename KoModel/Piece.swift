@@ -2,7 +2,7 @@ public enum PieceType: Int, Hashable, Codable, CaseIterable {
     case field, empress, burrow, rabbit, hare, moon
 }
 
-public enum PlayerColor: Int, Hashable, Codable, CustomStringConvertible {
+public enum PlayerColor: Int, Hashable, Codable, CustomStringConvertible, CaseIterable {
     case blue, white
     
     @inline(__always)
