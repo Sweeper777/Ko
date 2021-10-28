@@ -132,3 +132,9 @@ extension ConnectViewController : MCSessionDelegate {
     
     
 }
+
+protocol ConnectViewControllerDelegate: AnyObject {
+    func inviterWillStartGame(session: MCSession, startInfo: StartInfo)
+    func inviteeDidAcceptInvitation(session: MCSession)
+}
+
