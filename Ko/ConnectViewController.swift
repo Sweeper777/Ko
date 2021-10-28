@@ -17,6 +17,8 @@ class ConnectViewController: UIViewController {
     lazy var advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: "ko\(Bundle.main.appBuild)")
     lazy var session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
     
+    weak var delegate: ConnectViewControllerDelegate?
+    
     override func viewDidLoad() {
         tableView.register(UINib(nibName: "NearbyPeerCell", bundle: nil), forCellReuseIdentifier: "cell")
         browser.delegate = self
@@ -110,6 +112,11 @@ extension ConnectViewController : MCSessionDelegate {
             if state == .notConnected {
                 SCLAlertView().showError(":-(", subTitle: "\(peerID.displayName) did not accept your invitation.")
             } else if state == .connected {
+                let turns = PlayerColor.allCases.shuffled()
+                self.delegate?.inviterWillStartGame(session: self.session, startInfo: StartInfo(turns: [
+                    self.session.myPeerID: turns[0],
+                    self.session.connectedPeers[0]: turns[1]
+                ]))
             }
         }
     }
