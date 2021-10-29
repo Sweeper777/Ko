@@ -78,6 +78,12 @@
 		5A9E3CA526F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA626F577BB00F48727 /* EmpressCastleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */; };
 		5A9E3CA826F5D12800F48727 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E3CA726F5D12800F48727 /* PieceView.swift */; };
+		5A9F6D85272423DB00AB533C /* WaitingForResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9F6D84272423DB00AB533C /* WaitingForResponseController.swift */; };
+		5A9F6D872724245D00AB533C /* InvitationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9F6D862724245D00AB533C /* InvitationInfo.swift */; };
+		5A9F6D8927242B9900AB533C /* GameControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9F6D8827242B9900AB533C /* GameControllerStrategy.swift */; };
+		5A9F6D8B27242C2500AB533C /* DefaultGameControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9F6D8A27242C2500AB533C /* DefaultGameControllerStrategy.swift */; };
+		5A9F6D8D27242E8500AB533C /* AIGameControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9F6D8C27242E8500AB533C /* AIGameControllerStrategy.swift */; };
+		5A9F6D8F2724432B00AB533C /* MultipeerGameControllerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9F6D8E2724432B00AB533C /* MultipeerGameControllerStrategy.swift */; };
 		5AA030A3271C1BFD0033A2B1 /* MoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */; };
 		5AA030A4271C1BFD0033A2B1 /* MoveGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */; };
 		ACA978C81008B24F22C95788 /* Pods_KoModelMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */; };
@@ -185,6 +191,12 @@
 		5A99568026F042F700E95169 /* RabbitRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RabbitRules.swift; sourceTree = "<group>"; };
 		5A9E3CA426F577BB00F48727 /* EmpressCastleRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpressCastleRule.swift; sourceTree = "<group>"; };
 		5A9E3CA726F5D12800F48727 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
+		5A9F6D84272423DB00AB533C /* WaitingForResponseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForResponseController.swift; sourceTree = "<group>"; };
+		5A9F6D862724245D00AB533C /* InvitationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationInfo.swift; sourceTree = "<group>"; };
+		5A9F6D8827242B9900AB533C /* GameControllerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControllerStrategy.swift; sourceTree = "<group>"; };
+		5A9F6D8A27242C2500AB533C /* DefaultGameControllerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGameControllerStrategy.swift; sourceTree = "<group>"; };
+		5A9F6D8C27242E8500AB533C /* AIGameControllerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGameControllerStrategy.swift; sourceTree = "<group>"; };
+		5A9F6D8E2724432B00AB533C /* MultipeerGameControllerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerGameControllerStrategy.swift; sourceTree = "<group>"; };
 		5AA030A2271C1BFD0033A2B1 /* MoveGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveGenerator.swift; sourceTree = "<group>"; };
 		728EEB77C1A8A0E6A455F5B5 /* Pods_KoModelMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoModelMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837253C06417681D14FC5E5D /* Pods-Ko.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ko.release.xcconfig"; path = "Target Support Files/Pods-Ko/Pods-Ko.release.xcconfig"; sourceTree = "<group>"; };
@@ -307,8 +319,14 @@
 				5A8B771126DF2CED0063C3E7 /* AppDelegate.swift */,
 				5A8B771326DF2CED0063C3E7 /* SceneDelegate.swift */,
 				5A8B771526DF2CED0063C3E7 /* GameViewController.swift */,
+				5A9F6D8827242B9900AB533C /* GameControllerStrategy.swift */,
+				5A9F6D8A27242C2500AB533C /* DefaultGameControllerStrategy.swift */,
+				5A9F6D8C27242E8500AB533C /* AIGameControllerStrategy.swift */,
+				5A9F6D8E2724432B00AB533C /* MultipeerGameControllerStrategy.swift */,
 				5A893D1C271AF71A009CD3A4 /* ConnectViewController.swift */,
 				5A97A670270F403900E28DAE /* MainMenuViewController.swift */,
+				5A9F6D84272423DB00AB533C /* WaitingForResponseController.swift */,
+				5A9F6D862724245D00AB533C /* InvitationInfo.swift */,
 				5A8F47BD26ECA090000E1C1B /* BoardView.swift */,
 				5A9E3CA726F5D12800F48727 /* PieceView.swift */,
 				5A96DFA126FC1CE500D38763 /* PieceViewButton.swift */,
@@ -686,17 +704,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A97A671270F403900E28DAE /* MainMenuViewController.swift in Sources */,
+				5A9F6D872724245D00AB533C /* InvitationInfo.swift in Sources */,
+				5A9F6D8B27242C2500AB533C /* DefaultGameControllerStrategy.swift in Sources */,
 				5A6E5EF026FD864700D7B6B3 /* AnimationPhase.swift in Sources */,
 				5A9E3CA826F5D12800F48727 /* PieceView.swift in Sources */,
 				5A8B771626DF2CED0063C3E7 /* GameViewController.swift in Sources */,
 				5A8F47BE26ECA090000E1C1B /* BoardView.swift in Sources */,
 				5A8B771226DF2CED0063C3E7 /* AppDelegate.swift in Sources */,
+				5A9F6D85272423DB00AB533C /* WaitingForResponseController.swift in Sources */,
 				5A8B771426DF2CED0063C3E7 /* SceneDelegate.swift in Sources */,
 				5A6E5EF126FD864700D7B6B3 /* AnimationManager.swift in Sources */,
 				5A96DFA426FC1EBD00D38763 /* PieceSelectorView.swift in Sources */,
 				5A6E5EF226FD864700D7B6B3 /* AnimationType.swift in Sources */,
 				5A893D1D271AF71A009CD3A4 /* ConnectViewController.swift in Sources */,
 				5A96DFA226FC1CE500D38763 /* PieceViewButton.swift in Sources */,
+				5A9F6D8F2724432B00AB533C /* MultipeerGameControllerStrategy.swift in Sources */,
+				5A9F6D8927242B9900AB533C /* GameControllerStrategy.swift in Sources */,
+				5A9F6D8D27242E8500AB533C /* AIGameControllerStrategy.swift in Sources */,
 				5A6E5EF326FD864700D7B6B3 /* PieceViewAnimationPhase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
