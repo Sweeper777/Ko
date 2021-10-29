@@ -47,6 +47,12 @@ extension MultipeerGameControllerStrategy: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        if let startInfo = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? StartInfo {
+            self.turns = startInfo.turns
+            print(self.turns!)
+        } else {
+            // TODO: handle moves
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
