@@ -51,6 +51,13 @@ class MainMenuViewController : UIViewController {
     @objc func helpTapped() {
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let connectVC = segue.destination as? ConnectViewController {
+            connectVC.delegate = self
+            print("prepared segue")
+        }
+    }
 }
 
 extension UIColor {
