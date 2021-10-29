@@ -53,6 +53,7 @@ public struct RabbitMoveGenerator : MoveGenerator {
     
     private func candidatePositions(fromStartingPosition position: Position, game: Game) -> [Position] {
         var candidatePositions = [Position]()
+        let longerAxis = max(GameConstants.boardColumns, GameConstants.boardRows)
         if let positiveXEmpty = (stride(from: position.x, to: GameConstants.boardColumns, by: 1)
             .map { Position($0, position.y) }
             .first { game.board[$0].isEmpty }) {
@@ -74,18 +75,22 @@ public struct RabbitMoveGenerator : MoveGenerator {
             candidatePositions.append(negativeYEmpty)
         }
         if let topLeftEmpty = (sequence(first: position, next: { $0.above().left() })
+            .prefix(longerAxis)
             .first { game.board.board[safe: $0]?.isEmpty == true }) {
             candidatePositions.append(topLeftEmpty)
         }
         if let topRightEmpty = (sequence(first: position, next: { $0.above().right() })
+            .prefix(longerAxis)
             .first { game.board.board[safe: $0]?.isEmpty == true }) {
             candidatePositions.append(topRightEmpty)
         }
         if let bottomLeftEmpty = (sequence(first: position, next: { $0.below().left() })
+            .prefix(longerAxis)
             .first { game.board.board[safe: $0]?.isEmpty == true }) {
             candidatePositions.append(bottomLeftEmpty)
         }
         if let bottomRightEmpty = (sequence(first: position, next: { $0.below().right() })
+            .prefix(longerAxis)
             .first { game.board.board[safe: $0]?.isEmpty == true }) {
             candidatePositions.append(bottomRightEmpty)
         }
