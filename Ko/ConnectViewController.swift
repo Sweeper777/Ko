@@ -157,4 +157,12 @@ extension MainMenuViewController: ConnectViewControllerDelegate {
         })
     }
     
+    func inviterWillStartGame(session: MCSession, startInfo: StartInfo) {
+        let gameVC = instantiateGameViewController(withStrategy: {
+            MultipeerGameControllerStrategy(session: session, startInfo: startInfo, gameViewController: $0)
+        })
+        presentedViewController?.dismiss(animated: true, completion: { [weak self] in
+            gameVC.map { self?.present($0, animated: true, completion: nil) }
+        })
+    }
 }
