@@ -3,6 +3,8 @@ import MultipeerConnectivity
 import SwiftyButton
 import RxSwift
 import RxCocoa
+import SCLAlertView
+import KoModel
 
 class ConnectViewController: UIViewController {
     @IBOutlet var backButton: PressableButton!
@@ -145,3 +147,14 @@ protocol ConnectViewControllerDelegate: AnyObject {
     func inviteeDidAcceptInvitation(session: MCSession)
 }
 
+extension MainMenuViewController: ConnectViewControllerDelegate {
+    func inviteeDidAcceptInvitation(session: MCSession) {
+        let gameVC = instantiateGameViewController(withStrategy: {
+            MultipeerGameControllerStrategy(session: session, startInfo: nil, gameViewController: $0)
+        })
+        presentedViewController?.dismiss(animated: true, completion: { [weak self] in
+            gameVC.map { self?.present($0, animated: true, completion: nil) }
+        })
+    }
+    
+}
