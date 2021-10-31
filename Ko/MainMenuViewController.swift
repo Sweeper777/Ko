@@ -70,4 +70,14 @@ extension UIColor {
         getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
         return UIColor(hue: hue, saturation: max(0, saturation - 0.2), brightness: brightness, alpha: alpha)
     }
+    
+    func image(size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 56, height: 56), false, 0)
+        setFill()
+        let path = UIBezierPath(ovalIn: CGRect.zero.with(size: size))
+        path.fill()
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
