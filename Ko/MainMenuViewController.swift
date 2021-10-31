@@ -29,8 +29,8 @@ class MainMenuViewController : UIViewController {
     }
 
     @objc func startTapped() {
-        let gameVC = instantiateGameViewController(withStrategy: { _ in
-            DefaultGameControllerStrategy()
+        let gameVC = instantiateGameViewController(withStrategy: { vc in
+            DefaultGameControllerStrategy(gameViewController: vc)
         })
         gameVC.map { present($0, animated: true, completion: nil) }
     }
