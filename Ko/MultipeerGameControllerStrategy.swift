@@ -69,3 +69,14 @@ extension MultipeerGameControllerStrategy: MCSessionDelegate {
     
     
 }
+
+private extension PlayerColor {
+    var uiColor: UIColor {
+        switch self {
+        case .blue:
+            return UIColor(named: "bluePlayerColor")!
+        case .white:
+            return UIColor(named: "whitePlayerColor")!
+        }
+    }
+}
