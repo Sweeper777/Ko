@@ -35,6 +35,7 @@ class AIGameControllerStrategy : GameControllerStrategy {
     func tryAIMove() {
         guard isAITurn else {
             gameViewController.setUserInteractionEnabled(true)
+            gameViewController.pieceSelector.selectablePieces = gameViewController.game.allPlaceablePieces()
             return
         }
         gameViewController.setUserInteractionEnabled(false)
