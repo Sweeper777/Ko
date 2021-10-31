@@ -37,6 +37,7 @@ class GameViewController: UIViewController {
         boardView.game = game
         boardView.updatePieceViews()
         updateViews()
+        pieceSelector.selectablePieces = game.allPlaceablePieces()
         strategy.didRestartGame()
     }
     
@@ -70,7 +71,6 @@ class GameViewController: UIViewController {
         whiteProgress.progress = min(1, CGFloat(whiteFieldCount) / CGFloat(GameConstants.requiredFieldCountForCastle))
         blueFieldCountLabel.text = "\(blueFieldCount)"
         whiteFieldCountLabel.text = "\(whiteFieldCount)"
-        pieceSelector.selectablePieces = game.allPlaceablePieces()
     }
     
     fileprivate func centerScrollViewContent() {
@@ -134,7 +134,7 @@ extension GameViewController: BoardViewDelegate {
            let moveResult = game.makeMoveUnchecked(moveToMake) {
             setUserInteractionEnabled(false)
             boardView.animateMoveResult(moveResult)
-            self.updateViews()
+            updateViews()
         }
     }
     
