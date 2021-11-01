@@ -68,9 +68,15 @@ extension MultipeerGameControllerStrategy: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         if let startInfo = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? StartInfo {
             self.turns = startInfo.turns
-            print(self.turns!)
-        } else {
-            // TODO: handle moves
+        } else if let move = try? JSONDecoder().decode(Move.self, from: data) {
+            DispatchQueue.main.async { [weak self] in
+                if let moveResult = self?.gameViewController.game.makeMove(move) {
+                    self?.gameViewController.boardView.animateMoveResult(moveResult)
+                    self?.gameViewController.updateViews()
+                } else {
+                    SCLAlertView().showError("Error", subTitle: "The move your opponent made was invalid!")
+                }
+            }
         }
     }
     
