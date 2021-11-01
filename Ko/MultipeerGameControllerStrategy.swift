@@ -25,7 +25,18 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
     }
     
     func didRestartGame() {
-        
+        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(kCircleIconHeight: 56, showCloseButton: false))
+        alert.addButton("OK", action: {})
+        let myColor = (turns ?? [:])[session.myPeerID]
+        _ = alert.showCustom(
+                String(format: "Your color is %@.", myColor?.description ?? "Unknown"),
+                subTitle: "", color: .black,
+            icon: ((myColor?.uiColor) ?? .black).image(size: CGSize(width: 56, height: 56)))
+        if gameViewController.game.currentTurn == (turns ?? [:])[session.myPeerID] { // white device
+            gameViewController.setUserInteractionEnabled(true)
+        } else { // blue device
+            gameViewController.setUserInteractionEnabled(false)
+        }
     }
     
     func didEndAnimatingMoveResult(_ moveResult: MoveResult) {
