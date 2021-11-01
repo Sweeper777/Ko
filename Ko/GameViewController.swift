@@ -167,3 +167,15 @@ extension GameViewController: PieceSelectorDelegate {
         strategy.didEndAnimatingMoveResult(moveResult)
     }
 }
+
+extension UIStackView {
+    func swapArrangedSubviewsAt(_ i: Int, _ j: Int) {
+        precondition(i < j)
+        let viewI = arrangedSubviews[i]
+        let viewJ = arrangedSubviews[j]
+        removeArrangedSubview(viewI)
+        removeArrangedSubview(viewJ)
+        insertArrangedSubview(viewJ, at: i)
+        insertArrangedSubview(viewI, at: j)
+    }
+}
