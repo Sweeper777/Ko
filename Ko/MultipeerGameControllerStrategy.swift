@@ -52,7 +52,11 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
     }
     
     func willMove(_ move: Move) {
-        
+        if let data = try? JSONEncoder().encode(move) {
+            try! session.send(data, toPeers: session.connectedPeers, with: .reliable)
+        } else {
+            SCLAlertView().showError("Error", subTitle: "An error occurred while sending your move to the opponent.")
+        }
     }
 }
 
