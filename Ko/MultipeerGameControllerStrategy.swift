@@ -40,7 +40,11 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
     }
     
     func didEndAnimatingMoveResult(_ moveResult: MoveResult) {
-        
+        if gameViewController.game.currentTurn == (turns ?? [:])[session.myPeerID] {
+            gameViewController.setUserInteractionEnabled(true)
+        } else {
+            gameViewController.setUserInteractionEnabled(false)
+        }
     }
     
     func makeMenuButtons() -> [UIView]? {
