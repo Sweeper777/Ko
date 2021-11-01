@@ -12,6 +12,7 @@ class GameViewController: UIViewController {
     @IBOutlet var whiteProgress: TYMProgressBarView!
     @IBOutlet var blueFieldCountLabel: UILabel!
     @IBOutlet var whiteFieldCountLabel: UILabel!
+    @IBOutlet var containerStackView: UIStackView!
     
     var game: Game!
     

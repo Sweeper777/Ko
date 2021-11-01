@@ -121,6 +121,7 @@
                         <outlet property="blueFieldCountLabel" destination="Gp1-vB-sZw" id="eNj-U7-3vJ"/>
                         <outlet property="blueProgress" destination="Hne-2E-RAV" id="XGb-Oe-sGJ"/>
                         <outlet property="boardView" destination="Nch-fK-ZoK" id="ZjV-Dg-hBb"/>
+                        <outlet property="containerStackView" destination="zzZ-Mk-8Lu" id="wsY-oP-9Oa"/>
                         <outlet property="pieceSelector" destination="QCz-PB-bXN" id="O5B-kT-4im"/>
                         <outlet property="scrollView" destination="fdi-B3-6qW" id="2HQ-Xg-ruH"/>
                         <outlet property="whiteFieldCountLabel" destination="eZd-vI-zRm" id="hps-EM-Jz0"/>
