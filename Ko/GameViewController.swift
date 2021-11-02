@@ -89,6 +89,12 @@ class GameViewController: UIViewController {
     @objc func quitGame() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func flipBoard() {
+        scrollView.transform = scrollView.transform.rotated(by: .pi)
+        pieceSelector.transform = pieceSelector.transform.rotated(by: .pi)
+        containerStackView.swapArrangedSubviewsAt(1, 3)
+    }
 }
 
 extension GameViewController: UIScrollViewDelegate {
