@@ -63,7 +63,19 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
 
 extension MultipeerGameControllerStrategy: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        
+        guard state == .notConnected else { return }
+
+        if session.connectedPeers.isEmpty && !disconnectHandled {
+            disconnectHandled = true
+            DispatchQueue.main.async { [weak self] in
+                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
+                alert.addButton("OK", action: {
+                    [weak self] in
+                    self?.gameViewController.dismiss(animated: true, completion: nil)
+                })
+                _ = alert.showWarning("Game Over", subTitle: "You disconnected from the game.")
+            }
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
