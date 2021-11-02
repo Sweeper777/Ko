@@ -36,6 +36,7 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
             gameViewController.setUserInteractionEnabled(true)
         } else { // blue device
             gameViewController.setUserInteractionEnabled(false)
+            gameViewController.flipBoard()
         }
     }
     
