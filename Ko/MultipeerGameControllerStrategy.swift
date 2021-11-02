@@ -36,6 +36,7 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
             gameViewController.setUserInteractionEnabled(true)
         } else { // blue device
             gameViewController.setUserInteractionEnabled(false)
+            gameViewController.pieceSelector.selectablePieces = []
             gameViewController.flipBoard()
         }
     }
@@ -43,6 +44,7 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
     func didEndAnimatingMoveResult(_ moveResult: MoveResult) {
         if gameViewController.game.currentTurn == (turns ?? [:])[session.myPeerID] {
             gameViewController.setUserInteractionEnabled(true)
+            gameViewController.pieceSelector.selectablePieces = gameViewController.game.allPlaceablePieces()
         } else {
             gameViewController.setUserInteractionEnabled(false)
         }
