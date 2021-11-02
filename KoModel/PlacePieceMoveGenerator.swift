@@ -9,11 +9,13 @@ public enum PlacePieceMoveGenerator {
                     .placePiece(.field, at: .init(GameConstants.boardColumns / 2 + 1, GameConstants.boardRows / 2)),
                 ]
             case .white:
-                return [
+                let ruleResolver = RuleResolver()
+                ruleResolver.rules = [grasslandConnectedRule]
+                return Set([
                     .placePiece(.field, at: .init(GameConstants.boardColumns / 2 - 1, GameConstants.boardRows / 2 - 1)),
                     .placePiece(.field, at: .init(GameConstants.boardColumns / 2, GameConstants.boardRows / 2 - 1)),
                     .placePiece(.field, at: .init(GameConstants.boardColumns / 2 + 1, GameConstants.boardRows / 2 - 1)),
-                ]
+                ].filter { ruleResolver.resolve(against: $0, game: game) != nil })
             }
         }
         if (game.currentTurnNumber < 4 && piece == .field) || (game.currentTurnNumber == 4 && piece == .empress) {
