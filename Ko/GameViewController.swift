@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     @IBOutlet var blueFieldCountLabel: UILabel!
     @IBOutlet var whiteFieldCountLabel: UILabel!
     @IBOutlet var containerStackView: UIStackView!
+    @IBOutlet var menuButtonsStackView: UIStackView!
     
     var game: Game!
     
@@ -31,6 +32,7 @@ class GameViewController: UIViewController {
         configureProgressBar(blueProgress, color: UIColor(named: "bluePlayerColor")!)
         configureProgressBar(whiteProgress, color: UIColor(named: "whitePlayerColor")!)
         
+        strategy.makeMenuButtons().forEach(menuButtonsStackView.addArrangedSubview)
     }
     
     func restartGame() {
