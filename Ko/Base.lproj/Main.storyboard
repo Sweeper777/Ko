@@ -22,39 +22,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zzZ-Mk-8Lu">
                                 <rect key="frame" x="0.0" y="60" width="375" height="698"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Czr-xb-BKl">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQW-RK-BFa">
-                                                <rect key="frame" x="20" y="0.0" width="30" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Ee6-5Z-Mnj"/>
-                                                    <constraint firstAttribute="width" constant="30" id="J9B-Nd-G37"/>
-                                                </constraints>
-                                                <connections>
-                                                    <action selector="closeTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="nG3-8H-umo"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="nQW-RK-BFa" firstAttribute="top" secondItem="Czr-xb-BKl" secondAttribute="top" id="8Tq-GV-Fsa"/>
-                                            <constraint firstAttribute="bottom" secondItem="nQW-RK-BFa" secondAttribute="bottom" id="BuO-nh-XmS"/>
-                                            <constraint firstItem="nQW-RK-BFa" firstAttribute="leading" secondItem="Czr-xb-BKl" secondAttribute="leading" constant="20" symbolic="YES" id="XZA-BR-W2z"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jcC-0f-UJp">
-                                        <rect key="frame" x="16" y="46.000000000000014" width="343" height="169.33333333333337"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="okF-5t-GzX">
+                                        <rect key="frame" x="162.66666666666666" y="0.0" width="50" height="50"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jcC-0f-UJp">
+                                        <rect key="frame" x="16" y="66.000000000000014" width="343" height="149.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RL-Os-md3" customClass="TYMProgressBarView">
-                                                <rect key="frame" x="0.0" y="69.666666666666657" width="225.66666666666666" height="30"/>
+                                                <rect key="frame" x="0.0" y="59.666666666666657" width="312.66666666666669" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="MIS-jd-Wfk"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="30 Fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZd-vI-zRm">
-                                                <rect key="frame" x="241.66666666666671" y="67" width="101.33333333333334" height="35.666666666666657"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZd-vI-zRm">
+                                                <rect key="frame" x="328.66666666666669" y="57" width="14.333333333333314" height="35.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
                                                 <color key="textColor" name="whitePlayerColor"/>
                                                 <nil key="highlightedColor"/>
@@ -75,14 +57,14 @@
                                         <rect key="frame" x="16" y="596.33333333333337" width="343" height="35.666666666666629"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hne-2E-RAV" customClass="TYMProgressBarView">
-                                                <rect key="frame" x="0.0" y="3" width="225.66666666666666" height="30"/>
+                                                <rect key="frame" x="0.0" y="3" width="312.66666666666669" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Bup-KO-YoA"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="30 Fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp1-vB-sZw">
-                                                <rect key="frame" x="241.66666666666671" y="0.0" width="101.33333333333334" height="35.666666666666664"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp1-vB-sZw">
+                                                <rect key="frame" x="328.66666666666669" y="0.0" width="14.333333333333314" height="35.666666666666664"/>
                                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
                                                 <color key="textColor" name="bluePlayerColor"/>
                                                 <nil key="highlightedColor"/>
@@ -99,11 +81,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="jcC-0f-UJp" secondAttribute="trailing" constant="16" id="3MB-Ih-K0X"/>
-                                    <constraint firstItem="Czr-xb-BKl" firstAttribute="leading" secondItem="zzZ-Mk-8Lu" secondAttribute="leading" constant="8" id="4NJ-QS-IcL"/>
                                     <constraint firstAttribute="trailing" secondItem="9Nv-YA-Lf5" secondAttribute="trailing" constant="16" id="QZr-1f-Mer"/>
                                     <constraint firstItem="jcC-0f-UJp" firstAttribute="leading" secondItem="zzZ-Mk-8Lu" secondAttribute="leading" constant="16" id="UYN-tb-J5T"/>
                                     <constraint firstItem="9Nv-YA-Lf5" firstAttribute="leading" secondItem="zzZ-Mk-8Lu" secondAttribute="leading" constant="16" id="a5F-iH-gcU"/>
-                                    <constraint firstAttribute="trailing" secondItem="Czr-xb-BKl" secondAttribute="trailing" constant="8" id="czg-vI-5n4"/>
                                     <constraint firstItem="fdi-B3-6qW" firstAttribute="leading" secondItem="zzZ-Mk-8Lu" secondAttribute="leading" id="oUt-ac-zG2"/>
                                     <constraint firstAttribute="trailing" secondItem="fdi-B3-6qW" secondAttribute="trailing" id="uPj-bw-ZeV"/>
                                 </constraints>
@@ -123,6 +103,7 @@
                         <outlet property="blueProgress" destination="Hne-2E-RAV" id="XGb-Oe-sGJ"/>
                         <outlet property="boardView" destination="Nch-fK-ZoK" id="ZjV-Dg-hBb"/>
                         <outlet property="containerStackView" destination="zzZ-Mk-8Lu" id="wsY-oP-9Oa"/>
+                        <outlet property="menuButtonsStackView" destination="okF-5t-GzX" id="oEb-ag-vHM"/>
                         <outlet property="pieceSelector" destination="QCz-PB-bXN" id="O5B-kT-4im"/>
                         <outlet property="scrollView" destination="fdi-B3-6qW" id="2HQ-Xg-ruH"/>
                         <outlet property="whiteFieldCountLabel" destination="eZd-vI-zRm" id="hps-EM-Jz0"/>
