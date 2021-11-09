@@ -82,7 +82,18 @@ class GameViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
     }
     
-    @IBAction func closeTapped() {
+    @objc func restartTapped() {
+        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
+        alert.addButton("Yes", action: {
+            [weak self] in
+            guard let `self` = self else { return }
+            self.restartGame()
+        })
+        alert.addButton("No", action: {})
+        alert.showWarning("Confirm", subTitle: "Do you really want to restart?")
+    }
+    
+    @objc func closeTapped() {
         let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
         alert.addButton("Yes", action: quitGame)
         alert.addButton("No", action: {})
@@ -92,7 +103,7 @@ class GameViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func flipBoard() {
+    @objc func flipBoard() {
         scrollView.transform = scrollView.transform.rotated(by: .pi)
         pieceSelector.transform = pieceSelector.transform.rotated(by: .pi)
         containerStackView.swapArrangedSubviewsAt(1, 3)
