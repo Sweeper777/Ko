@@ -198,3 +198,24 @@ extension UIStackView {
         insertArrangedSubview(viewI, at: j)
     }
 }
+
+enum MenuButtonFactory {
+    static func makeCloseButton(withTarget target: Any?, action: Selector) -> UIView {
+        let closeButton = PressableButton()
+        let buttonHeight = 40.f
+        closeButton.shadowHeight = buttonHeight * 0.1
+        closeButton.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.tintColor = .white
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.addTarget(target, action: action, for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            closeButton.widthAnchor.constraint(equalToConstant: buttonHeight),
+            closeButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        ])
+        
+        return closeButton
+    }
+    
+}
