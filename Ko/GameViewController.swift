@@ -218,4 +218,22 @@ enum MenuButtonFactory {
         return closeButton
     }
     
+    static func makeFlipBoardButton(withTarget target: Any?, action: Selector) -> UIView {
+        let flipButton = PressableButton()
+        let buttonHeight = 40.f
+        flipButton.shadowHeight = buttonHeight * 0.1
+        flipButton.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
+        flipButton.translatesAutoresizingMaskIntoConstraints = false
+        flipButton.tintColor = .white
+        flipButton.setImage(UIImage(systemName: "rotate.left"), for: .normal)
+        flipButton.addTarget(target, action: action, for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            flipButton.widthAnchor.constraint(equalToConstant: buttonHeight),
+            flipButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        ])
+        
+        return flipButton
+    }
+    
 }
