@@ -17,13 +17,16 @@ class DefaultGameControllerStrategy : GameControllerStrategy {
             gameViewController.game.allPlaceablePieces()
     }
 
-    func makeMenuButtons() -> [UIView]? {
-        nil
+    func makeMenuButtons() -> [UIView] {
+        [
+            MenuButtonFactory.makeCloseButton(withTarget: gameViewController, action: #selector(GameViewController.closeTapped)),
+            MenuButtonFactory.makeFlipBoardButton(withTarget: gameViewController, action: #selector(GameViewController.flipBoard)),
+            MenuButtonFactory.makeRestartButton(withTarget: gameViewController, action: #selector(GameViewController.restartTapped))
+        ]
     }
 
     func willMove(_ move: Move) {
 
     }
-
 }
 
