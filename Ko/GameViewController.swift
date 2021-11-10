@@ -236,4 +236,21 @@ enum MenuButtonFactory {
         return flipButton
     }
     
+    static func makeRestartButton(withTarget target: Any?, action: Selector) -> UIView {
+        let restartButton = PressableButton()
+        let buttonHeight = 40.f
+        restartButton.shadowHeight = buttonHeight * 0.1
+        restartButton.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
+        restartButton.translatesAutoresizingMaskIntoConstraints = false
+        restartButton.tintColor = .white
+        restartButton.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)
+        restartButton.addTarget(target, action: action, for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            restartButton.widthAnchor.constraint(equalToConstant: buttonHeight),
+            restartButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        ])
+        
+        return restartButton
+    }
 }
