@@ -200,57 +200,33 @@ extension UIStackView {
 }
 
 enum MenuButtonFactory {
-    static func makeCloseButton(withTarget target: Any?, action: Selector) -> UIView {
-        let closeButton = PressableButton()
+    private static func makeButton(image: UIImage, target: Any?, action: Selector) -> UIView {
+        let button = PressableButton()
         let buttonHeight = 40.f
-        closeButton.shadowHeight = buttonHeight * 0.1
-        closeButton.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.tintColor = .white
-        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        closeButton.addTarget(target, action: action, for: .touchUpInside)
+        button.shadowHeight = buttonHeight * 0.1
+        button.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        button.setImage(image, for: .normal)
+        button.addTarget(target, action: action, for: .touchUpInside)
 
         NSLayoutConstraint.activate([
-            closeButton.widthAnchor.constraint(equalToConstant: buttonHeight),
-            closeButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+            button.widthAnchor.constraint(equalToConstant: buttonHeight),
+            button.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
         
-        return closeButton
+        return button
+    }
+    
+    static func makeCloseButton(withTarget target: Any?, action: Selector) -> UIView {
+        makeButton(image: UIImage(systemName: "xmark")!, target: target, action: action)
     }
     
     static func makeFlipBoardButton(withTarget target: Any?, action: Selector) -> UIView {
-        let flipButton = PressableButton()
-        let buttonHeight = 40.f
-        flipButton.shadowHeight = buttonHeight * 0.1
-        flipButton.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
-        flipButton.translatesAutoresizingMaskIntoConstraints = false
-        flipButton.tintColor = .white
-        flipButton.setImage(UIImage(systemName: "rotate.left"), for: .normal)
-        flipButton.addTarget(target, action: action, for: .touchUpInside)
-
-        NSLayoutConstraint.activate([
-            flipButton.widthAnchor.constraint(equalToConstant: buttonHeight),
-            flipButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        ])
-        
-        return flipButton
+        makeButton(image: UIImage(systemName: "rotate.left")!, target: target, action: action)
     }
     
     static func makeRestartButton(withTarget target: Any?, action: Selector) -> UIView {
-        let restartButton = PressableButton()
-        let buttonHeight = 40.f
-        restartButton.shadowHeight = buttonHeight * 0.1
-        restartButton.colors = PressableButton.ColorSet(button: UIColor.gray.desaturated(), shadow: UIColor.gray.desaturated().darker())
-        restartButton.translatesAutoresizingMaskIntoConstraints = false
-        restartButton.tintColor = .white
-        restartButton.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)
-        restartButton.addTarget(target, action: action, for: .touchUpInside)
-
-        NSLayoutConstraint.activate([
-            restartButton.widthAnchor.constraint(equalToConstant: buttonHeight),
-            restartButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        ])
-        
-        return restartButton
+        makeButton(image: UIImage(systemName: "arrow.counterclockwise")!, target: target, action: action)
     }
 }
