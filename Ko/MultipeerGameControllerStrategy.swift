@@ -50,8 +50,11 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
         }
     }
     
-    func makeMenuButtons() -> [UIView]? {
-        nil
+    func makeMenuButtons() -> [UIView] {
+        [
+            MenuButtonFactory.makeCloseButton(withTarget: self, action: #selector(closeTapped)),
+            MenuButtonFactory.makeFlipBoardButton(withTarget: gameViewController, action: #selector(GameViewController.flipBoard)),
+        ]
     }
     
     func willMove(_ move: Move) {
@@ -60,6 +63,19 @@ class MultipeerGameControllerStrategy: NSObject, GameControllerStrategy {
         } else {
             SCLAlertView().showError("Error", subTitle: "An error occurred while sending your move to the opponent.")
         }
+    }
+    
+    @objc func closeTapped() {
+        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
+        alert.addButton("Yes", action: {
+            [weak self] in
+            guard let `self` = self else { return }
+            self.disconnectHandled = true
+            self.gameViewController.quitGame()
+            self.session.disconnect()
+        })
+        alert.addButton("No", action: {})
+        alert.showWarning("Confirm", subTitle: "Do you really want to quit?")
     }
 }
 
