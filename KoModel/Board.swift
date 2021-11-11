@@ -1,7 +1,19 @@
 public struct Board {
-    public private(set) var board = Array2D<PieceStack>(
-        columns: GameConstants.boardColumns, rows: GameConstants.boardRows, initialValue: .init()
-    )
+    
+    public init(columnCount: Int, rowCount: Int, initialise: ((Piece, Position) -> Void) -> Void) {
+        self.board = Array2D(columns: columnCount, rows: rowCount, initialValue: .init())
+        initialise {
+            self.placePiece($0, at: $1)
+        }
+    }
+    
+    public init() {
+        self.board = Array2D(
+            columns: GameConstants.boardColumns, rows: GameConstants.boardRows, initialValue: .init()
+        )
+    }
+    
+    public private(set) var board: Array2D<PieceStack>
     
     public private(set) var piecesPositions: [Piece: Set<Position>] = [:]
     
