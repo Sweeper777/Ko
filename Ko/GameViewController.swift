@@ -40,6 +40,9 @@ class GameViewController: UIViewController {
         boardView.game = game
         boardView.updatePieceViews()
         updateViews()
+        scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width / 2 - scrollView.bounds.width / 2,
+                                           y: scrollView.contentSize.height / 2 - scrollView.bounds.height / 2)
+        scrollView.zoomScale = 1
         pieceSelector.selectablePieces = game.allPlaceablePieces()
         strategy.didRestartGame()
     }
