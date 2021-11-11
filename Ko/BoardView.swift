@@ -283,4 +283,18 @@ class BoardView: UIView {
 protocol BoardViewDelegate: AnyObject {
     func didTapPosition(_ boardView: BoardView, position: Position)
     func didEndAnimatingMove(_ boardView: BoardView, moveResult: MoveResult)
+protocol BoardProvider: AnyObject {
+    var board: Board { get }
+}
+
+extension Game: BoardProvider {
+    
+}
+
+class ConstantBoard: BoardProvider {
+    let board: Board
+    
+    init(columnCount: Int, rowCount: Int, initialise: ((Piece, Position) -> Void) -> Void) {
+        self.board = Board(columnCount: columnCount, rowCount: rowCount, initialise: initialise)
+    }
 }
