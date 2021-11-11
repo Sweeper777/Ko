@@ -33,19 +33,8 @@ class BoardView: UIView {
             }
             if let selectedPos = selectedPosition, let selectedView = viewWithTag(selectedPos.rawValue) as? PieceView {
                 selectedView.isSelected = true
-                if let game = game {
-                    switch game.board[selectedPos] {
-                    case .empress:
-                        highlightMoves(EmpressMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
-                    case .hare:
-                        highlightMoves(HareMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
-                    case .rabbit:
-                        highlightMoves(RabbitMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
-                    case .moon:
-                        highlightMoves(MoonMoveGenerator().generateMoves(fromStartingPosition: selectedPos, game: game))
-                    default:
-                        break
-                    }
+                if let del = delegate {
+                    highlightMoves(del.highlightedMoves(for: selectedPos))
                 }
             }
         }
@@ -283,6 +272,9 @@ class BoardView: UIView {
 protocol BoardViewDelegate: AnyObject {
     func didTapPosition(_ boardView: BoardView, position: Position)
     func didEndAnimatingMove(_ boardView: BoardView, moveResult: MoveResult)
+    func highlightedMoves(for position: Position) -> [Move]
+}
+
 protocol BoardProvider: AnyObject {
     var board: Board { get }
 }
