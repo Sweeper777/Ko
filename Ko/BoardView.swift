@@ -2,7 +2,7 @@ import UIKit
 import KoModel
 
 class BoardView: UIView {
-    var game: Game?
+    var boardProvider: BoardProvider?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,7 +76,7 @@ class BoardView: UIView {
             .fill()
         
         UIColor.systemOrange.setStroke()
-        for row in 0...GameConstants.boardRows {
+        for row in 0...(boardProvider?.board.board.rows ?? 0) {
             let path = UIBezierPath()
             let y = CGFloat(row) * squareLength
             path.move(to: CGPoint(x: 0, y: y))
@@ -84,7 +84,7 @@ class BoardView: UIView {
             path.lineWidth = lineWidth
             path.stroke()
         }
-        for col in 0...GameConstants.boardColumns {
+        for col in 0...(boardProvider?.board.board.columns ?? 0) {
             let path = UIBezierPath()
             let x = CGFloat(col) * squareLength
             path.move(to: CGPoint(x: x, y: 0))
@@ -113,13 +113,13 @@ class BoardView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        CGSize(width: CGFloat(GameConstants.boardColumns) * squareLength,
-               height: CGFloat(GameConstants.boardRows) * squareLength)
+        CGSize(width: CGFloat(boardProvider?.board.board.columns ?? GameConstants.boardColumns) * squareLength,
+               height: CGFloat(boardProvider?.board.board.rows ?? GameConstants.boardRows) * squareLength)
     }
     
     func updatePieceViews() {
         self.subviews.forEach { $0.removeFromSuperview() }
-        guard let game = game else {
+        guard let game = boardProvider else {
             return
         }
         for x in 0..<game.board.board.columns {
@@ -130,7 +130,7 @@ class BoardView: UIView {
     }
     
     private func addPieceView(atX x: Int, y: Int) {
-        guard let game = game else { return }
+        guard let game = boardProvider else { return }
         
         let stack = game.board.board[x, y]
         if !stack.isEmpty {
@@ -150,7 +150,7 @@ class BoardView: UIView {
         }
         let location = touch.location(in: self)
         let (x, y) = (Int(location.x / squareLength), Int(location.y / squareLength))
-        if (0..<(game?.board.board.columns ?? 0)).contains(x) && (0..<(game?.board.board.rows ?? 0)).contains(y) {
+        if (0..<(boardProvider?.board.board.columns ?? 0)).contains(x) && (0..<(boardProvider?.board.board.rows ?? 0)).contains(y) {
             delegate?.didTapPosition(self, position: Position(x, y))
         }
     }
@@ -212,7 +212,7 @@ class BoardView: UIView {
         }
         
         if let firstConqueredPosition = moveResult.conqueredPositions.first,
-           let color = game?.board[firstConqueredPosition].bottom?.color {
+           let color = boardProvider?.board[firstConqueredPosition].bottom?.color {
             let animation: AnimationType
             switch color {
             case .blue:
@@ -240,7 +240,7 @@ class BoardView: UIView {
                 .rotate: animatedPieceLayers
             ], duration: animationDuration) { [weak self] in
                 animatedPieceViews.forEach {
-                    $0.pieces = self?.game?.board[Position(rawValue: $0.tag)!] ?? .init()
+                    $0.pieces = self?.boardProvider?.board[Position(rawValue: $0.tag)!] ?? .init()
                     $0.refreshLayers()
                 }
             }
