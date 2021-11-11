@@ -2,6 +2,7 @@ import UIKit
 import KoModel
 import SCLAlertView
 import TYMProgressBarView
+import SwiftyButton
 
 class GameViewController: UIViewController {
 
@@ -37,7 +38,7 @@ class GameViewController: UIViewController {
     
     func restartGame() {
         game = Game()
-        boardView.game = game
+        boardView.boardProvider = game
         boardView.updatePieceViews()
         updateViews()
         scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width / 2 - scrollView.bounds.width / 2,
@@ -102,6 +103,7 @@ class GameViewController: UIViewController {
         alert.addButton("No", action: {})
         alert.showWarning("Confirm", subTitle: "Do you really want to quit?")
     }
+    
     @objc func quitGame() {
         dismiss(animated: true, completion: nil)
     }
@@ -187,6 +189,21 @@ extension GameViewController: PieceSelectorDelegate {
             setUserInteractionEnabled(true)
         }
         strategy.didEndAnimatingMoveResult(moveResult)
+    }
+    
+    func highlightedMoves(for position: Position) -> [Move] {
+        switch game.board[position] {
+        case .empress:
+            return Array(EmpressMoveGenerator().generateMoves(fromStartingPosition: position, game: game))
+        case .hare:
+            return Array(HareMoveGenerator().generateMoves(fromStartingPosition: position, game: game))
+        case .rabbit:
+            return Array(RabbitMoveGenerator().generateMoves(fromStartingPosition: position, game: game))
+        case .moon:
+            return Array(MoonMoveGenerator().generateMoves(fromStartingPosition: position, game: game))
+        default:
+            return []
+        }
     }
 }
 
