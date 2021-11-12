@@ -33,6 +33,9 @@ class HelpViewController: UIViewController {
         return vc
     }
     
+    @IBAction func backPressed() {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPageVC",

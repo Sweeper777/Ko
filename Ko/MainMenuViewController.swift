@@ -49,7 +49,7 @@ class MainMenuViewController : UIViewController {
     }
     
     @objc func helpTapped() {
-        
+        performSegue(withIdentifier: "showHelpVC", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
