@@ -33,5 +33,32 @@ class HelpViewController: UIViewController {
         return vc
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPageVC",
+            let pageVC = segue.destination as? UIPageViewController {
+            pageVC.delegate = self
+            pageVC.dataSource = self
+            pageVC.setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
+        }
+    }
 }
 
+extension HelpViewController : UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if let index = pages.firstIndex(of: viewController), pages.indices.contains(index - 1) {
+            return pages[index - 1]
+        } else {
+            return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if let index = pages.firstIndex(of: viewController), pages.indices.contains(index + 1) {
+            return pages[index + 1]
+        } else {
+            return nil
+        }
+    }
+    
+}
