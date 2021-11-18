@@ -15,6 +15,16 @@ class HelpPageViewController: UIViewController {
 }
 
 struct HelpPage {
+    init(board: ConstantBoard? = nil, resultBoard: ConstantBoard? = nil,
+         animatedMoveResult: MoveResult? = nil,
+         helpText: String, highlightedMoves: [Move] = []) {
+        self.board = board
+        self.resultBoard = resultBoard
+        self.animatedMoveResult = animatedMoveResult
+        self.helpText = helpText
+        self.highlightedMoves = highlightedMoves
+    }
+    
     let board: ConstantBoard?
     let resultBoard: ConstantBoard?
     let animatedMoveResult: MoveResult?
