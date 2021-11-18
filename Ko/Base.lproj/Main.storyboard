@@ -260,34 +260,23 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nS-Op-fvI">
-                                <rect key="frame" x="16" y="74" width="343" height="615"/>
+                                <rect key="frame" x="16" y="74" width="343" height="650"/>
                                 <connections>
                                     <segue destination="jun-nm-myf" kind="embed" identifier="showPageVC" id="tsi-Iu-nEy"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="9uP-uz-Vh8">
-                                <rect key="frame" x="16" y="697" width="343" height="25"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sS9-cn-kUz"/>
                         <color key="backgroundColor" red="1" green="0.95686274510000002" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="sS9-cn-kUz" firstAttribute="bottom" secondItem="9uP-uz-Vh8" secondAttribute="bottom" constant="2" id="Gi6-0T-vdb"/>
+                            <constraint firstItem="sS9-cn-kUz" firstAttribute="bottom" secondItem="3nS-Op-fvI" secondAttribute="bottom" id="5Vz-d6-rYM"/>
                             <constraint firstItem="sS9-cn-kUz" firstAttribute="trailing" secondItem="3nS-Op-fvI" secondAttribute="trailing" constant="16" id="Kgh-TF-phD"/>
                             <constraint firstItem="OUB-gS-bz8" firstAttribute="leading" secondItem="sS9-cn-kUz" secondAttribute="leading" constant="16" id="LF6-rA-q12"/>
                             <constraint firstItem="OUB-gS-bz8" firstAttribute="top" secondItem="sS9-cn-kUz" secondAttribute="top" constant="16" id="LyL-mb-n6l"/>
-                            <constraint firstItem="9uP-uz-Vh8" firstAttribute="leading" secondItem="sS9-cn-kUz" secondAttribute="leading" constant="16" id="MUO-kT-tXY"/>
                             <constraint firstItem="3nS-Op-fvI" firstAttribute="top" secondItem="OUB-gS-bz8" secondAttribute="bottom" constant="8" symbolic="YES" id="gm8-Z3-FOd"/>
                             <constraint firstItem="3nS-Op-fvI" firstAttribute="leading" secondItem="sS9-cn-kUz" secondAttribute="leading" constant="16" id="iHD-ZW-eVv"/>
-                            <constraint firstItem="sS9-cn-kUz" firstAttribute="trailing" secondItem="9uP-uz-Vh8" secondAttribute="trailing" constant="16" id="p3s-zV-hxQ"/>
-                            <constraint firstItem="9uP-uz-Vh8" firstAttribute="top" secondItem="3nS-Op-fvI" secondAttribute="bottom" constant="8" symbolic="YES" id="qTo-TC-t73"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="pageControl" destination="9uP-uz-Vh8" id="ccF-rM-ggh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHw-YS-Snt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,18 +299,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cnX-PB-o4J">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="719.66666666666674"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kX5-Gb-EnT" customClass="BoardView" customModule="Ko" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unK-TG-LXX">
-                                        <rect key="frame" x="7.3333333333333428" y="663" width="360.66666666666663" height="71"/>
+                                        <rect key="frame" x="43.333333333333343" y="663" width="288.66666666666663" height="56.666666666666629"/>
                                         <string key="text">Welcome to Ko!
 The National Game of Pekoland!</string>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="25"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
