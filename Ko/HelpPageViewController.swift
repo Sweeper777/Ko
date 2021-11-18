@@ -16,6 +16,8 @@ class HelpPageViewController: UIViewController {
 
 struct HelpPage {
     let board: ConstantBoard?
-    let move: Move?
+    let resultBoard: ConstantBoard?
+    let animatedMoveResult: MoveResult?
     let helpText: String
+    let highlightedMoves: [Move]
 }
