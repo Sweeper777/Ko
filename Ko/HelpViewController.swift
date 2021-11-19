@@ -3,8 +3,6 @@ import KoModel
 
 class HelpViewController: UIViewController {
     
-    @IBOutlet var pageControl: UIPageControl!
-    
     lazy var pages = [
         HelpPage(
             board: .init(columnCount: 5, rowCount: 4) { place in
@@ -26,6 +24,7 @@ class HelpViewController: UIViewController {
             helpText: "Welcome to Ko, the national game of Pekoland!"
         )
     ].map(helpPageVC(fromHelpPage:))
+    
     
     private func helpPageVC(fromHelpPage helpPage: HelpPage) -> UIViewController {
         let vc = UIStoryboard.main!.instantiateViewController(withIdentifier: "HelpPage") as! HelpPageViewController
@@ -64,4 +63,16 @@ extension HelpViewController : UIPageViewControllerDelegate, UIPageViewControlle
         }
     }
     
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        pages.count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        if let page = pageViewController.viewControllers?.first,
+           let index = pages.firstIndex(of: page) {
+            return index
+        } else {
+            return 0
+        }
+    }
 }
