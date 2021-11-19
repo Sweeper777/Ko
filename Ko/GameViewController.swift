@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width / 2 - scrollView.bounds.width / 2,
                                            y: scrollView.contentSize.height / 2 - scrollView.bounds.height / 2)
         
+        boardView.boardProvider = ConstantBoard(columnCount: GameConstants.boardColumns, rowCount: GameConstants.boardRows, initialise: {_ in})
         boardView.delegate = self
         pieceSelector.delegate = self
         
