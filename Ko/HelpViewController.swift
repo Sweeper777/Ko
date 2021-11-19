@@ -33,6 +33,15 @@ class HelpViewController: UIViewController {
             },
             helpText: "The goal of the game is to create the Empress' Castle (shown above) at one corner of the board, and have at least 60 field pieces and 3 burrows. The Empress' Castle consists of a field piece at the corner, 3 field pieces surrounding 3 sides of the empress, and the moon on her remaining side."
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .empress), .init(2, 2))
+            },
+            helpText: "The empress can move to any one of its 8 neighbouring squares. These are also the places where you can place new pieces.",
+            highlightedMoves: Position(2, 2).eightNeighbours.map {
+                .move(from: .init(2, 2), to: $0)
+            }
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
