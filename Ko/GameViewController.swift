@@ -180,6 +180,7 @@ extension GameViewController: PieceSelectorDelegate {
     }
     
     func didEndAnimatingMove(_ boardView: BoardView, moveResult: MoveResult) {
+        boardView.updatePieceViews()
         switch game.result {
         case .wins(let color):
             SCLAlertView().showInfo("Game Over!", subTitle: "\(color) wins!")

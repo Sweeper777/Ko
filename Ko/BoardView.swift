@@ -251,7 +251,6 @@ class BoardView: UIView {
         CATransaction.flush()
         animationManager.runAnimation { [weak self] in
             guard let self = self else { return }
-            self.updatePieceViews()
             self.delegate?.didEndAnimatingMove(self, moveResult: moveResult)
         }
     }
