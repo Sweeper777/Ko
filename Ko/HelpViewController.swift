@@ -20,9 +20,19 @@ class HelpViewController: UIViewController {
                 place(Piece(.blue, .moon), .init(2, 3))
                 place(Piece(.blue, .rabbit), .init(3, 3))
             },
-            move: nil,
-            helpText: "Welcome to Ko, the national game of Pekoland!"
-        )
+            helpText: "Welcome to Ko, the national game of Pekoland! There are 6 kinds of pieces in this game. From left to right, top to bottom, the blue pieces are, Empress, Burrow, Field, Hare, Moon, Rabbit."
+        ),
+        HelpPage(
+            board: .init(columnCount: 3, rowCount: 3) { place in
+                place(Piece(.blue, .field), .init(2, 2))
+                place(Piece(.blue, .empress), .init(1, 1))
+                place(Piece(.blue, .field), .init(1, 2))
+                place(Piece(.blue, .field), .init(2, 1))
+                place(Piece(.blue, .field), .init(0, 1))
+                place(Piece(.blue, .moon), .init(1, 0))
+            },
+            helpText: "The goal of the game is to create the Empress' Castle (shown above) at one corner of the board, and have at least 60 field pieces and 3 burrows. The Empress' Castle consists of a field piece at the corner, 3 field pieces surrounding 3 sides of the empress, and the moon on her remaining side."
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
