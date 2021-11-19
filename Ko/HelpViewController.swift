@@ -42,6 +42,13 @@ class HelpViewController: UIViewController {
                 .move(from: .init(2, 2), to: $0)
             }
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .empress), .init(2, 2))
+                place(Piece(.white, .empress), .init(2, 1))
+            },
+            helpText: "In the 8 neighbouring squares of an empress, there cannot be another empress. For example, the board position above is invalid."
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
