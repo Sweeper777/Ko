@@ -2,7 +2,11 @@ import UIKit
 import KoModel
 
 class BoardView: UIView {
-    var boardProvider: BoardProvider?
+    var boardProvider: BoardProvider? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
