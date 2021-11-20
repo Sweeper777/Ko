@@ -58,6 +58,24 @@ class HelpViewController: UIViewController {
             },
             helpText: "Fields are immovable pieces that can be conquered (changed into the opposite color)"
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .rabbit), .init(1, 2))
+                place(Piece(.blue, .field), .init(2, 2))
+                place(Piece(.white, .field), .init(3, 2))
+            },
+            helpText: "Rabbits can move to any one of its 8 neighbouring squares. It can also jump over occupied squares in any direction to an empty square.",
+            highlightedMoves: [
+                Position(0, 2),
+                Position(1, 3),
+                Position(1, 1),
+                Position(0, 1),
+                Position(0, 3),
+                Position(2, 3),
+                Position(2, 1),
+                Position(4, 2),
+            ].map { .move(from: .init(1, 2), to: $0) }
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
