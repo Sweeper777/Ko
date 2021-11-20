@@ -49,6 +49,15 @@ class HelpViewController: UIViewController {
             },
             helpText: "In the 8 neighbouring squares of an empress, there cannot be another empress. For example, the board position above is invalid."
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .field), .init(2, 2))
+                place(Piece(.blue, .field), .init(1, 2))
+                place(Piece(.white, .field), .init(3, 2))
+                place(Piece(.white, .field), .init(4, 2))
+            },
+            helpText: "Fields are immovable pieces that can be conquered (changed into the opposite color)"
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
