@@ -156,6 +156,13 @@ class HelpViewController: UIViewController {
             animatedMoveResult: MoveResult(conqueredPositions: [.init(2, 1), .init(2, 2), .init(2, 3)], fromPosition: .init(2, 0), toPosition: .init(2, 4)),
             helpText: "A hare can jump over a vertical or horizontal line of fields of the opposite color (no matter how long) to an empty square, to conquer all of them."
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .moon), .init(2, 2))
+            },
+            helpText: "Moons can move horizontally or vertically an unlimited number of times, so it can reach any empty square on the board unless it is trapped.",
+            highlightedMoves: (0..<5).flatMap { x in (0..<5).filter { y in (x, y) != (2, 2) }.map { y in Position(x, y) } }.map { .move(from: .init(2, 2), to: $0) }
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
