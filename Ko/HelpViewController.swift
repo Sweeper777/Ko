@@ -140,6 +140,21 @@ class HelpViewController: UIViewController {
                 Position(3, 0),
             ].map { .move(from: .init(0, 0), to: $0) }
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .hare), .init(2, 0))
+                place(Piece(.white, .field), .init(2, 1))
+                place(Piece(.white, .field), .init(2, 2))
+                place(Piece(.white, .field), .init(2, 3))
+            },
+            resultBoard: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .hare), .init(2, 4))
+                place(Piece(.blue, .field), .init(2, 1))
+                place(Piece(.blue, .field), .init(2, 2))
+                place(Piece(.blue, .field), .init(2, 3))
+            },
+            animatedMoveResult: MoveResult(conqueredPositions: [.init(2, 1), .init(2, 2), .init(2, 3)], fromPosition: .init(2, 0), toPosition: .init(2, 4)),
+            helpText: "A hare can jump over a vertical or horizontal line of fields of the opposite color (no matter how long) to an empty square, to conquer all of them."
         ),
     ].map(helpPageVC(fromHelpPage:))
     
