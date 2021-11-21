@@ -163,6 +163,21 @@ class HelpViewController: UIViewController {
             helpText: "Moons can move horizontally or vertically an unlimited number of times, so it can reach any empty square on the board unless it is trapped.",
             highlightedMoves: (0..<5).flatMap { x in (0..<5).filter { y in (x, y) != (2, 2) }.map { y in Position(x, y) } }.map { .move(from: .init(2, 2), to: $0) }
         ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .moon), .init(2, 0))
+                place(Piece(.white, .field), .init(2, 1))
+                place(Piece(.white, .field), .init(2, 2))
+                place(Piece(.white, .field), .init(2, 3))
+            },
+            resultBoard: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .moon), .init(2, 1))
+                place(Piece(.white, .field), .init(2, 2))
+                place(Piece(.white, .field), .init(2, 3))
+            },
+            animatedMoveResult: MoveResult(hasCapture: true, fromPosition: .init(2, 0), toPosition: .init(2, 1)),
+            helpText: "A moon can capture fields, hares, rabbits of either color. The captured pieces can be placed by their original owner again."
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
