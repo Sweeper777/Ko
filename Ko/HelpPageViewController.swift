@@ -7,11 +7,15 @@ class HelpPageViewController: UIViewController {
     var helpPage: HelpPage!
     
     override func viewDidLoad() {
-        boardView.boardProvider = helpPage.board
-        boardView.updatePieceViews()
+        if let board = helpPage.board {
+            boardView.boardProvider = board
+            boardView.updatePieceViews()
+            boardView.highlightMoves(helpPage.highlightedMoves)
+            boardView.delegate = self
+        } else {
+            boardView.removeFromSuperview()
+        }
         label.text = helpPage.helpText
-        boardView.highlightMoves(helpPage.highlightedMoves)
-        boardView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
