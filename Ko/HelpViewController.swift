@@ -60,6 +60,20 @@ class HelpViewController: UIViewController {
         ),
         HelpPage(
             board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .burrow), .init(2, 2))
+                place(Piece(.blue, .field), .init(1, 2))
+                place(Piece(.blue, .field), .init(3, 2))
+                place(Piece(.blue, .field), .init(2, 1))
+                place(Piece(.blue, .field), .init(2, 3))
+                place(Piece(.blue, .field), .init(1, 1))
+                place(Piece(.blue, .field), .init(3, 3))
+                place(Piece(.blue, .field), .init(3, 1))
+                place(Piece(.blue, .field), .init(1, 3))
+            },
+            helpText: "Burrows are immovable pieces that can be placed inside of a square of 8 fields as shown."
+        ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
                 place(Piece(.blue, .rabbit), .init(1, 2))
                 place(Piece(.blue, .field), .init(2, 2))
                 place(Piece(.white, .field), .init(3, 2))
