@@ -74,6 +74,21 @@ class HelpViewController: UIViewController {
         ),
         HelpPage(
             board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .burrow), .init(2, 2))
+                place(Piece(.blue, .field), .init(1, 2))
+                place(Piece(.blue, .field), .init(3, 2))
+                place(Piece(.blue, .field), .init(2, 1))
+                place(Piece(.blue, .field), .init(2, 3))
+                place(Piece(.blue, .field), .init(1, 1))
+                place(Piece(.blue, .field), .init(3, 3))
+                place(Piece(.blue, .field), .init(3, 1))
+                place(Piece(.blue, .field), .init(1, 3))
+                place(Piece(.blue, .empress), .init(0, 2))
+            },
+            helpText: "To place a burrow, the empress has to be touching the square of 8 fields. Once placed, all 8 fields are conquered, if not already."
+        ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
                 place(Piece(.blue, .rabbit), .init(1, 2))
                 place(Piece(.blue, .field), .init(2, 2))
                 place(Piece(.white, .field), .init(3, 2))
