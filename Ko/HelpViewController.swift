@@ -119,7 +119,27 @@ class HelpViewController: UIViewController {
                 place(Piece(.blue, .field), .init(1, 3))
             },
             animatedMoveResult: MoveResult(conqueredPositions: [.init(3, 1), .init(2, 2), .init(1, 3)], fromPosition: .init(4, 0), toPosition: .init(0, 4)),
-            helpText: "If a rabbit jumps over a diagonal line of fields of the opposite color, all of them are conquered"
+            helpText: "If a rabbit jumps over a diagonal line of fields of the opposite color, all of them are conquered."
+        ),
+        HelpPage(
+            board: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .hare), .init(0, 0))
+                place(Piece(.blue, .field), .init(0, 1))
+                place(Piece(.white, .field), .init(1, 0))
+            },
+            helpText: "Hares can move vertically or horizontally, at most 3 times. It can also go on top of fields, rabbits and other hares. Pieces that are under a hare cannot move.",
+            highlightedMoves: [
+                Position(0, 1),
+                Position(0, 2),
+                Position(0, 3),
+                Position(1, 1),
+                Position(1, 0),
+                Position(1, 2),
+                Position(2, 0),
+                Position(2, 1),
+                Position(3, 0),
+            ].map { .move(from: .init(0, 0), to: $0) }
+        ),
         ),
     ].map(helpPageVC(fromHelpPage:))
     
