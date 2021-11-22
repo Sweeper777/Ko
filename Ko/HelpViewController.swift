@@ -192,6 +192,19 @@ class HelpViewController: UIViewController {
                     The piece will be removed if the number of fields drops below the required number of fields for that piece.
                     """
         ),
+        HelpPage(
+            board: .init(columnCount: 3, rowCount: 3) { place in
+                place(Piece(.blue, .moon), .init(2, 1))
+                place(Piece(.white, .field), .init(1, 0))
+                place(Piece(.white, .field), .init(2, 2))
+            },
+            resultBoard: .init(columnCount: 5, rowCount: 5) { place in
+                place(Piece(.blue, .moon), .init(2, 2))
+                place(Piece(.white, .field), .init(1, 0))
+            },
+            animatedMoveResult: MoveResult(hasCapture: true, fromPosition: .init(2, 1), toPosition: .init(2, 2)),
+            helpText: "After every move, all the pieces on the board must be connected (diagonally counts too). If a move disconnects some piece(s) from every other piece, that move is invalid. For example, the move shown above is invalid."
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
