@@ -178,6 +178,11 @@ class HelpViewController: UIViewController {
             animatedMoveResult: MoveResult(hasCapture: true, fromPosition: .init(2, 0), toPosition: .init(2, 1)),
             helpText: "A moon can capture fields, hares, rabbits of either color. The captured pieces can be placed by their original owner again."
         ),
+        HelpPage(
+            helpText: """
+                    Your moon is not allowed to be in the 4 squares around the opponent's empress, and is also not allowed to be in the 8 squares around the opponent's moon.
+                    """
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
