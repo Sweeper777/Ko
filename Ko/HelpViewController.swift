@@ -183,6 +183,15 @@ class HelpViewController: UIViewController {
                     Your moon is not allowed to be in the 4 squares around the opponent's empress, and is also not allowed to be in the 8 squares around the opponent's moon.
                     """
         ),
+        HelpPage(
+            helpText: """
+                    Placing pieces requires that you have enough fields.
+                    Placing the first burrow requires 8 fields, the second requires 22, and the third requires 36.
+                    Placing the first rabbit/hare requires 14 fields, and the second requires 28.
+                    Placing the moon requires 43 fields.
+                    The piece will be removed if the number of fields drops below the required number of fields for that piece.
+                    """
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
