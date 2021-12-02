@@ -244,6 +244,22 @@ class HelpViewController: UIViewController {
             },
             helpText: "At the beginning of the game, both players must place 4 fields in the shape of 'L's on their own side of the board."
         ),
+        HelpPage(
+            board: .init(columnCount: 3, rowCount: 6) { place in
+                place(Piece(.blue, .field), .init(0, 3))
+                place(Piece(.blue, .field), .init(1, 3))
+                place(Piece(.blue, .field), .init(2, 3))
+                place(Piece(.blue, .field), .init(2, 4))
+                place(Piece(.blue, .empress), .init(1, 5))
+                
+                place(Piece(.white, .field), .init(0, 0))
+                place(Piece(.white, .field), .init(0, 1))
+                place(Piece(.white, .field), .init(0, 2))
+                place(Piece(.white, .field), .init(1, 0))
+                place(Piece(.blue, .empress), .init(2, 1))
+            },
+            helpText: "After that, both players must place an empress on their own side of the board. Then, the game proceeds normally - the players take turns to place/move a piece."
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
