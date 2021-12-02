@@ -260,6 +260,9 @@ class HelpViewController: UIViewController {
             },
             helpText: "After that, both players must place an empress on their own side of the board. Then, the game proceeds normally - the players take turns to place/move a piece."
         ),
+        HelpPage(
+            helpText: "Each player gets 111 fields, 3 burrows, 1 empress, 1 hare, 1 rabbit and 1 moon. That's the end. Have fun!"
+        )
     ].map(helpPageVC(fromHelpPage:))
     
     
