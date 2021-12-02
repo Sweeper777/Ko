@@ -59,6 +59,31 @@ class HelpViewController: UIViewController {
             helpText: "Fields are immovable pieces that can be conquered (changed into the opposite color)"
         ),
         HelpPage(
+            board: .init(columnCount: 4, rowCount: 3) { place in
+                place(Piece(.white, .empress), .init(1, 1))
+                place(Piece(.white, .field), .init(0, 0))
+                place(Piece(.white, .field), .init(0, 1))
+                place(Piece(.white, .field), .init(0, 2))
+                place(Piece(.white, .field), .init(1, 0))
+                place(Piece(.white, .field), .init(1, 2))
+                place(Piece(.blue, .field), .init(2, 2))
+                place(Piece(.blue, .empress), .init(3, 1))
+            },
+            resultBoard: .init(columnCount: 4, rowCount: 3) { place in
+                place(Piece(.white, .empress), .init(1, 1))
+                place(Piece(.white, .field), .init(0, 0))
+                place(Piece(.white, .field), .init(0, 1))
+                place(Piece(.white, .field), .init(0, 2))
+                place(Piece(.white, .field), .init(1, 0))
+                place(Piece(.white, .field), .init(1, 2))
+                place(Piece(.blue, .field), .init(2, 2))
+                place(Piece(.blue, .field), .init(2, 1))
+                place(Piece(.blue, .empress), .init(3, 1))
+            },
+            animatedMoveResult: .init(gameResult: .draw, piecePlaced: .init(pieceType: .field, position: .init(2, 1))),
+            helpText: "If you make a move that causes your opponent to be unable to make any moves, the game ends in a draw."
+        ),
+        HelpPage(
             board: .init(columnCount: 5, rowCount: 5) { place in
                 place(Piece(.blue, .burrow), .init(2, 2))
                 place(Piece(.blue, .field), .init(1, 2))
