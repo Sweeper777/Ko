@@ -230,6 +230,20 @@ class HelpViewController: UIViewController {
             animatedMoveResult: MoveResult(hasCapture: true, fromPosition: .init(2, 1), toPosition: .init(2, 2)),
             helpText: "After every move, all the pieces on the board must be connected (diagonally counts too). If a move disconnects some piece(s) from every other piece, that move is invalid. For example, the move shown above is invalid."
         ),
+        HelpPage(
+            board: .init(columnCount: 3, rowCount: 6) { place in
+                place(Piece(.blue, .field), .init(0, 3))
+                place(Piece(.blue, .field), .init(1, 3))
+                place(Piece(.blue, .field), .init(2, 3))
+                place(Piece(.blue, .field), .init(2, 4))
+                
+                place(Piece(.white, .field), .init(0, 0))
+                place(Piece(.white, .field), .init(0, 1))
+                place(Piece(.white, .field), .init(0, 2))
+                place(Piece(.white, .field), .init(1, 0))
+            },
+            helpText: "At the beginning of the game, both players must place 4 fields in the shape of 'L's on their own side of the board."
+        ),
     ].map(helpPageVC(fromHelpPage:))
     
     
