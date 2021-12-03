@@ -8,7 +8,7 @@ class DefaultGameControllerStrategy : GameControllerStrategy {
     }
     
     func didRestartGame() {
-
+        gameViewController.setUserInteractionEnabled(true)
     }
 
     func didEndAnimatingMoveResult(_ moveResult: MoveResult) {
